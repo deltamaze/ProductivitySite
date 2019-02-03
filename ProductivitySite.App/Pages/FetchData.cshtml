@@ -1,6 +1,6 @@
-﻿@using ProductivitySite.Shared
+﻿@using ProductivitySite.App.Services
 @page "/fetchdata"
-@inject HttpClient Http
+@inject WeatherForecastService ForecastService
 
 <h1>Weather forecast</h1>
 
@@ -40,6 +40,6 @@ else
 
     protected override async Task OnInitAsync()
     {
-        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("api/SampleData/WeatherForecasts");
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
 }

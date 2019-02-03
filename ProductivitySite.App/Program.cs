@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Blazor.Hosting;
 
-namespace ProductivitySite.Client
+namespace ProductivitySite.App
 {
     public class Program
     {

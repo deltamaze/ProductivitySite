@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProductivitySite.Client\ProductivitySite.Client.csproj" />
-    <ProjectReference Include="..\ProductivitySite.Shared\ProductivitySite.Shared.csproj" />
+    <ProjectReference Include="..\ProductivitySite.App\ProductivitySite.App.csproj" />
   </ItemGroup>
 
 </Project>

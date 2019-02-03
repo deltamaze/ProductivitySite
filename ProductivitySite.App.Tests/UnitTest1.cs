@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace ProductivitySite.Library.Tests
+namespace ProductivitySite.App.Tests
 {
     public class UnitTest1
     {
@@ -90,6 +90,6 @@ namespace ProductivitySite.Library.Tests
         {
             Assert.Equal(0, 1);
         }
-
     }
 }
+
