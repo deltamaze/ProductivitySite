@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductivitySite.Server", "ProductivitySite.Server\ProductivitySite.Server.csproj", "{E27843F8-85B7-4958-B8F5-5FD9C7B728AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivitySite.Server", "ProductivitySite.Server\ProductivitySite.Server.csproj", "{E27843F8-85B7-4958-B8F5-5FD9C7B728AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductivitySite.App", "ProductivitySite.App\ProductivitySite.App.csproj", "{060B5A0A-48AB-4228-9B7D-38F691850811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivitySite.App", "ProductivitySite.App\ProductivitySite.App.csproj", "{060B5A0A-48AB-4228-9B7D-38F691850811}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductivitySite.App.Tests", "ProductivitySite.App.Tests\ProductivitySite.App.Tests.csproj", "{D9E67CC1-5761-4A1D-8422-DEC090C6B5F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivitySite.App.Tests", "ProductivitySite.App.Tests\ProductivitySite.App.Tests.csproj", "{D9E67CC1-5761-4A1D-8422-DEC090C6B5F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
