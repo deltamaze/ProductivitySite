@@ -6,7 +6,7 @@ using Google.Apis.Firestore;
 
 namespace ProductivitySite.App.Services
 {
-    public class IDataAccess
+    public interface IDataAccess
     {
     }
 }
