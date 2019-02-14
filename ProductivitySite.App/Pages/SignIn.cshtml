@@ -1,0 +1,25 @@
+﻿@page "/signin"
+
+<h1>Sign In</h1>
+
+<div class="container">
+    <h1>Log in to ProductivitySite</h1>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" placeholder="Email" class="form-control" bind="Email" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password"  class="form-control" placeholder="Password" bind="Password" />
+    </div>
+    <button onclick="SubmitForm">Submit</button>
+</div>
+
+@functions {
+    string Email { get; set; } = "test";
+    string Password { get; set; } = "";
+    private void SubmitForm()
+    {
+        Console.WriteLine($"{Email} and {Password}");
+    }
+}
