@@ -10,7 +10,7 @@ namespace ProductivitySite.App.Services
     {
         // reference : https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/FlightFinder/FlightFinder.Client/Services/AppState.cs
         // Actual state
-
+        public string userEmail { get; private set; }
         // Lets components receive change notifications
         // Could have whatever granularity you want (more events, hierarchy...)
         public event Action OnChange;
@@ -21,6 +21,11 @@ namespace ProductivitySite.App.Services
             
         }
         
+        public void SetEmail(string data)
+        {
+            userEmail = data;
+            NotifyStateChanged();
+        }
 
         public void ExampleAction()
         {
