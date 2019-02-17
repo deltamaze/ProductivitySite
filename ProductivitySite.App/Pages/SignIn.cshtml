@@ -18,10 +18,11 @@
 </div>
 
 @functions {
-string Email { get; set; } = "test";
+string Email { get; set; } = state.userEmail;
 string Password { get; set; } = "";
 private void SubmitForm()
 {
     Console.WriteLine($"{Email} and {Password}");
+        state.SetEmail(Email);
 }
 }
