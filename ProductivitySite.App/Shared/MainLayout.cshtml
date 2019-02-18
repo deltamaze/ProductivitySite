@@ -1,4 +1,7 @@
 ﻿@inherits BlazorLayoutComponent
+@using ProductivitySite.App.Services
+@inject AppState state
+
 
 <div class="sidebar">
     <NavMenu />
@@ -6,7 +9,7 @@
 
 <div class="main">
     <div class="top-row px-4">
-        <a href="#" target="_blank" class="ml-md-auto">Login</a>
+        <a href="#" target="_blank" class="ml-md-auto">Email: @state.userEmail</a>
     </div>
 
     <div class="content px-4">

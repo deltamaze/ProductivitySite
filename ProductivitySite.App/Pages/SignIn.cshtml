@@ -14,15 +14,15 @@
         <label for="password">Password</label>
         <input type="password" name="password" class="form-control" placeholder="Password" bind="Password" />
     </div>
-    <button onclick="SubmitForm">Submit</button>
+    <button onclick="SubmitForm()">Submit</button>
 </div>
 
 @functions {
-string Email { get; set; } = state.userEmail;
-string Password { get; set; } = "";
-private void SubmitForm()
-{
-    Console.WriteLine($"{Email} and {Password}");
-        state.SetEmail(Email);
-}
+    string Email { get; set; } = "";
+    string Password { get; set; } = "";
+    private void SubmitForm()
+    {
+        //state.SignIn(Email);
+        Email = "submitwork";
+    }
 }

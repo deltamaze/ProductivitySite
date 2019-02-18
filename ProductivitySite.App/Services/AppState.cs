@@ -18,9 +18,13 @@ namespace ProductivitySite.App.Services
         // Receive 'http' instance from DI
         public AppState()
         {
-            
+
         }
-        
+        public void SignIn(string email,string pw = "")
+        {
+            userEmail = email;
+            NotifyStateChanged();
+        }
         public void SetEmail(string data)
         {
             userEmail = data;
