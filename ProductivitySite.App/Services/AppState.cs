@@ -20,7 +20,7 @@ namespace ProductivitySite.App.Services
         {
 
         }
-        public void SignIn(string email,string pw = "")
+        public void SignIn(string email, string pw = "")
         {
             userEmail = email;
             NotifyStateChanged();
@@ -39,4 +39,8 @@ namespace ProductivitySite.App.Services
 
         private void NotifyStateChanged() => OnChange?.Invoke();
     }
+    //public class AppProps
+    //{
+    //    public string userEmail { get; private set; }
+    //}
 }
