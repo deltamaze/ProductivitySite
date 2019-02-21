@@ -16,3 +16,11 @@
         @Body
     </div>
 </div>
+
+@functions
+{
+protected override void OnInit()
+{
+    state.OnChange += StateHasChanged;
+}
+}
