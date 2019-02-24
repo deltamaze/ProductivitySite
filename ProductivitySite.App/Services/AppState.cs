@@ -25,6 +25,11 @@ namespace ProductivitySite.App.Services
             userEmail = email;
             NotifyStateChanged();
         }
+        public void SignOut()
+        {
+            userEmail = "";
+            NotifyStateChanged();
+        }
         public void SetEmail(string data)
         {
             userEmail = data;
