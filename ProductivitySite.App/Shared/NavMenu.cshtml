@@ -19,16 +19,21 @@
                 <span class="oi oi-plus" aria-hidden="true"></span> Sign In
             </NavLink>
         </li>
-        <li class="nav-item px-3" style = "@(String.IsNullOrWhiteSpace(state.userEmail)  ? "display:none" :  "")">
+        <li class="nav-item px-3" style="@(String.IsNullOrWhiteSpace(state.userEmail)  ? "display:none" :  "")">
             <a onclick=@(()=>state.SignOut() ) class="nav-link" href="signin">
                 <span class="oi oi-plus" aria-hidden="true"></span> Sign Out
             </a>
         </li>
+        <li class="nav-item px-3">
+                <a class="nav-link" onclick=@(()=>state.SignOut() )  href="javascript:">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Modal Test
+                </a>
+        </li>
         @*<li class="nav-item px-3">
-                <NavLink class="nav-link" href="fetchdata">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-                </NavLink>
-            </li>*@
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            </NavLink>
+        </li>*@
     </ul>
 </div>
 
