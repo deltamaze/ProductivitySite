@@ -7,6 +7,9 @@
     <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/site.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
     <app>Loading...</app>
@@ -15,31 +18,33 @@
     <script>
         window.jsFunction = {
             triggerModal: function () {
-                $('#myModal').modal('show');
-
-                return true;
+                $("#my-modal").modal('show');
             }
         };
 
     </script>
-    <div class="modal" id="myModal">
+    <div id="my-modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-
-                <!-- Modal Header -->
                 <div class="modal-header">
-                    Test Header
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
                 </div>
-
-                <!-- Modal body -->
                 <div class="modal-body">
-                    Test Body
+                    <p>Contents go here...</p>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        $(".modal").on("hidden.bs.modal", function () {
+            window.location = "https://www.google.com/";
+        });
+
+    </script>
 
 </body>
 </html>
