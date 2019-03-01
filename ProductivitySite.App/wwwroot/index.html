@@ -9,18 +9,23 @@
     <link href="css/site.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/css/bootstrap/bootstrap-native.min.js"></script>
 </head>
 <body>
-    <app>Loading...</app>
-
+    <!--<app>Loading...</app>-->
+    test
     <script src="_framework/blazor.server.js"></script>
     <script>
         window.jsFunction = {
             triggerModal: function () {
+                console.log("test1");
+                var test = $("#my-modal");
+                console.log(test);
                 $("#my-modal").modal('show');
+                console.log($("#my-modal"));
             }
         };
+        $("#my-modal").modal('show');
 
     </script>
     <div id="my-modal" class="modal fade" role="dialog">
