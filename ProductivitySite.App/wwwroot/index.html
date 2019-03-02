@@ -9,10 +9,11 @@
     <link href="css/site.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/css/bootstrap/bootstrap-native.min.js"></script>
+    <script src="/css/bootstrap/modal.js"></script>
+    <script src="/css/bootstrap/util.js"></script>
 </head>
 <body>
-    <!--<app>Loading...</app>-->
+    <app>Loading...</app>
     test
     <script src="_framework/blazor.server.js"></script>
     <script>
@@ -21,35 +22,32 @@
                 console.log("test1");
                 var test = $("#my-modal");
                 console.log(test);
-                $("#my-modal").modal('show');
+                test.modal('show');
                 console.log($("#my-modal"));
             }
         };
-        $("#my-modal").modal('show');
 
     </script>
-    <div id="my-modal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+
+    <div class="modal fade bd-example-modal-lg" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Contents go here...</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
+                ...
             </div>
         </div>
     </div>
-    <script>
-        $(".modal").on("hidden.bs.modal", function () {
-            window.location = "https://www.google.com/";
-        });
 
-    </script>
+    <!-- Small modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                ...
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
