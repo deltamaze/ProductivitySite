@@ -9,18 +9,12 @@ namespace ProductivitySite.App.Services
     public class FirebaseDataAccess : IDataAccess 
     {
         [FirestoreData]
-        public class Employee
+        public class FirebaseAppState
         {
-            public string EmployeeId { get; set; }
-            public DateTime date { get; set; }
             [FirestoreProperty]
-            public string EmployeeName { get; set; }
+            public string userId { get; set; }
             [FirestoreProperty]
-            public string CityName { get; set; }
-            [FirestoreProperty]
-            public string Designation { get; set; }
-            [FirestoreProperty]
-            public string Gender { get; set; }
+            public string ToDo { get; set; }
         }
 
     }
