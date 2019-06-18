@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import PageRouter from './pages/router';
 import store from './store';
 import NavBar from './layouts/navbar';
-
+import firebaseConfig from '../secrets/firebaseCred';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -15,3 +15,4 @@ ReactDOM.render(
     </BrowserRouter>
   </Provider>, document.querySelector('.container')
 );
+
