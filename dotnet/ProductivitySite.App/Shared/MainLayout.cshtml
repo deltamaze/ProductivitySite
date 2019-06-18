@@ -1,0 +1,26 @@
+﻿@inherits BlazorLayoutComponent
+@using ProductivitySite.App.Services
+@inject AppState state
+
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="top-row px-4">
+        <a href="#" target="_blank" class="ml-md-auto">Email: @state.userEmail</a>
+    </div>
+
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
+
+@functions
+{
+protected override void OnInit()
+{
+    state.OnChange += StateHasChanged;
+}
+}
