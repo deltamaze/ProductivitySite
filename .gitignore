@@ -21,6 +21,8 @@ platforms
 #secrets
 /secrets
 
+/shelf
+
 # misc
 .DS_Store
 .env.local
