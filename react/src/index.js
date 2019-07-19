@@ -6,6 +6,7 @@ import PageRouter from './pages/router';
 import store from './store';
 import NavBar from './layouts/navbar';
 
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
