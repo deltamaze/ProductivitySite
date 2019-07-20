@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout, fetchAuth } from '../services/auth/action';
+import { logout } from '../services/auth/action';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class NavBar extends React.Component {
@@ -9,7 +9,7 @@ class NavBar extends React.Component {
   //   super(props);
   // }
   componentDidMount() {
-    this.props.fetchAuth();
+    // this.props.fetchAuth();
   }
 
   render() {
@@ -46,6 +46,6 @@ class NavBar extends React.Component {
 export default connect(
   state => ({ auth: state.auth }),
   ({
-    logout, fetchAuth
+    logout
   })
 )(NavBar);
