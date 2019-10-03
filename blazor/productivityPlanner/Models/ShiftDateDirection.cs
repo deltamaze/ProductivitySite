@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace productivityPlanner.Services
+namespace productivityPlanner.Models
 {
-    public enum DatePart
+    public enum ShiftDateDirection
     {
-        Month = 1,
-        Year = 2,
-        Day = 3
+        Forward = 1,
+        Back = -1
 
     };
 }
