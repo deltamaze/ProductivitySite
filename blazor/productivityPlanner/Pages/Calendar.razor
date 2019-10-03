@@ -1,4 +1,7 @@
 ﻿@page "/calendar"
+@using productivityPlanner.Services;
+@inject AppState state
+
 
 <h1>Calendar</h1>
 <br />
@@ -66,7 +69,7 @@
         }
 
             .days li .active {
-                display:block;
+                display: block;
                 padding: 5px;
                 background-image: linear-gradient(180deg, rgb(6, 119, 130) 0%, #011435 70%);
                 color: white !important
@@ -91,7 +94,7 @@
 <div class="" style="min-width:300px; float:left;margin-right:10px">
     <div class="month">
         <ul>
-            <li class="prev">&#10094;</li>
+            <li class="prev" @onclick="()=>state.ShiftTargetMonth(ShiftDateDirection.Back,DatePart.Month)">&#10094;</li>
             <li class="next">&#10095;</li>
             <li>
                 August
@@ -149,3 +152,6 @@
     </ul>
 </div>
 
+@code {
+     //public EventCallback<ShiftDateDirection,DatePart> OnRemoveItinerary { get; set; }
+}
