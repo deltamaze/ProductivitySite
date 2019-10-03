@@ -23,21 +23,21 @@
     {
         // Subscribe to the StateChanged EventHandler
         state.OnChange +=
-        OnCounterStateAdvancedStateChanged;
+        InvokeStateHasChanged;
     }
     // This method is fired when the CounterState object
     // invokes its StateHasChanged() method
     // This will cause this control to invoke its own
     // StateHasChanged() method refreshing the page
     // and displaying the updated counter value
-    void OnCounterStateAdvancedStateChanged(
+    void InvokeStateHasChanged(
         object sender, EventArgs e) => StateHasChanged();
     void IDisposable.Dispose()
     {
         // When this control is disposed of
         // unsubscribe from the StateChanged EventHandler
         state.OnChange -=
-        OnCounterStateAdvancedStateChanged;
+        InvokeStateHasChanged;
     }
 
 }
