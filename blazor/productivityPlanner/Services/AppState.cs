@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using productivityPlanner.Models
+using productivityPlanner.Models;
+
 namespace productivityPlanner.Services
 {
     public class AppState
@@ -17,6 +18,7 @@ namespace productivityPlanner.Services
         // Could have whatever granularity you want (more events, hierarchy...)
         public event EventHandler OnChange;
         // Receive 'http' instance from DI
+
         
         public void ShiftTargetMonth(ShiftDateDirection direction, DatePart datePart)
         {
@@ -38,6 +40,9 @@ namespace productivityPlanner.Services
         }
         private void NotifyStateChanged() {
             OnChange?.Invoke(this,EventArgs.Empty);
+            //if (OnChange != null) {
+            //    OnChange(this, EventArgs.Empty);
+            //}
         }
     }
 }
