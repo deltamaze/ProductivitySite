@@ -1,16 +1,36 @@
 ﻿@page "/signup"
+@using productivityPlanner.Models;
+@using productivityPlanner.Shared;
 
-<h1>Logon</h1>
+<h1>Sign Up</h1>
 
-<p>Current count: @currentCount</p>
+<EditForm Model="@signUpModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+    <p>
+        <label for="Email">Email: </label>
+        <InputText id="Email" @bind-Value="@signUpModel.Email" />
+    </p>
+    <p>
+        <label for="Password">Password: </label>
+        <MyInput Type="password" Id="Password" @bind-Value="@signUpModel.Password" />
+    </p>
+    <p>
+        <label for="ConfirmPassword">Confirm Password: </label>
+        <InputText id="ConfirmPassword" @bind-Value="@signUpModel.ConfirmPassword" />
+    </p>
+    <button type="submit">Submit</button>
+</EditForm>
+
 
 @code {
-    int currentCount = 0;
+    SignUpModel signUpModel = new SignUpModel();
 
-    void IncrementCount()
+
+    void HandleValidSubmit()
     {
-        currentCount++;
+        string test = "BreakpointTest";
     }
 }
