@@ -15,11 +15,12 @@ namespace productivityPlanner.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        //Retest in 3.1 DotNet
+        //[Required]
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Confirm password")]
+        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        //public string ConfirmPassword { get; set; }
 
 
     }

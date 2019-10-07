@@ -1,6 +1,8 @@
 ﻿@page "/signup"
 @using productivityPlanner.Models;
 @using productivityPlanner.Shared;
+@using System.Net.Http
+@inject HttpClient Http
 
 <h1>Sign Up</h1>
 
@@ -17,10 +19,10 @@
         <label for="Password">Password: </label>
         <MyInput Type="password" Id="Password" @bind-Value="@signUpModel.Password" />
     </p>
-    <p>
-        <label for="ConfirmPassword">Confirm Password: </label>
-        <InputText id="ConfirmPassword" @bind-Value="@signUpModel.ConfirmPassword" />
-    </p>
+    @*<p>
+            <label for="ConfirmPassword">Confirm Password: </label>
+            <InputText id="ConfirmPassword" @bind-Value="@signUpModel.ConfirmPassword" />
+        </p>*@
     <button type="submit">Submit</button>
 </EditForm>
 
@@ -29,7 +31,8 @@
     SignUpModel signUpModel = new SignUpModel();
 
 
-    void HandleValidSubmit()
+    void HandleValidSubmit() //known issue, data annotation validator comparer issue with onvalidsubmit, re-test on 3.1
+                             //https://github.com/aspnet/AspNetCore/issues/10526
     {
         string test = "BreakpointTest";
     }
