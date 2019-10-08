@@ -29,7 +29,8 @@ namespace productivityPlanner
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddScoped<AppState>();
+            services.AddSingleton<AppState>();
+            services.AddScoped<FirebaseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,9 +1,9 @@
 ﻿@page "/signup"
 @using productivityPlanner.Models;
 @using productivityPlanner.Shared;
-@using System.Net.Http
-@inject HttpClient Http
-
+@using productivityPlanner.Services;
+@inject AppState state
+@inject FirebaseService fb
 <h1>Sign Up</h1>
 
 <EditForm Model="@signUpModel" OnValidSubmit="@HandleValidSubmit">
@@ -25,15 +25,17 @@
         </p>*@
     <button type="submit">Submit</button>
 </EditForm>
-
+<p>@displayResult</p>
 
 @code {
     SignUpModel signUpModel = new SignUpModel();
-
+    string displayResult = "";
 
     void HandleValidSubmit() //known issue, data annotation validator comparer issue with onvalidsubmit, re-test on 3.1
                              //https://github.com/aspnet/AspNetCore/issues/10526
     {
         string test = "BreakpointTest";
+        Task<string> task = Task.Run<string>(async () => await fb.SignUp(signUpModel)).ContinueWith(task => displayResult = task.Result);
+
     }
 }
