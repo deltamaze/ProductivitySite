@@ -24,13 +24,21 @@ class SideBar extends React.Component {
 
         <div className="">
           <ul className="nav flex-column">
-            <NavListItem route="planner" label="Planner" icon="list" />
-            <NavListItem route="calendar" label="Calendar" icon="calendar" />
-            <NavListItem route="recurring" label="Recurring" icon="reload" />
-            <NavListItem route="event" label="Events" icon="flag" />
-            <NavListItem route="project" label="Project Tracker" icon="project" />
-            <NavListItem route="note" label="Notes" icon="align-left" />
-            <NavListItem route="journal" label="Journal" icon="book" />
+            {(this.props.auth.uid == 'Connecting' ||this.props.auth.uid == 'NotLoggedIn'  ) ? (
+              <NavListItem route="signin" label="Log In" icon="account-login" />
+            ) : (
+              <React.Fragment>
+                <NavListItem route="planner" label="Planner" icon="list" />
+                <NavListItem route="calendar" label="Calendar" icon="calendar" />
+                <NavListItem route="recurring" label="Recurring" icon="reload" />
+                <NavListItem route="event" label="Events" icon="flag" />
+                <NavListItem route="project" label="Project Tracker" icon="project" />
+                <NavListItem route="note" label="Notes" icon="align-left" />
+                <NavListItem route="journal" label="Journal" icon="book" />
+                <NavListItem route="logoff" label="LogOff" icon="account-logout" />
+              </React.Fragment>
+              )}
+            
           </ul>
         </div>
       </div>

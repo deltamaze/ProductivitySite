@@ -2,10 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
-import SignInPage from './signin';
+import SignInPage from '../pages/signin';
 import PrivateRoute from './privateRoute';
 import Home from './home';
-import CreatePrivateGame from './createPrivateGame';
 import CalendarPage from '../pages/calander';
 import EventPage from '../pages/event';
 import JournalPage from '../pages/journal';
@@ -46,18 +45,17 @@ class PageRouter extends React.Component {
 
 
   renderSwitch() {
-    if (this.props.auth.uid === '') {
+    if (this.props.auth.uid === 'Connecting') {
       return (
         <div>Loading...</div>
       );
-    } if (this.props.auth.uid !== '') {
+    } if (this.props.auth.uid !== 'Connecting') {
       return (
         <div className="content px-4">
           <Switch>
             <PrivateRoute path="/" exact component={Home} />
             <PrivateRoute path="/counter" component={CounterScreen} />
             <Route path="/signin" component={SignInPage} />
-            <PrivateRoute path="/createPrivateGame" component={CreatePrivateGame} />
             <PrivateRoute path="/calendar" component={CalendarPage} />
             <PrivateRoute path="/event" component={EventPage} />
             <PrivateRoute path="/journal" component={JournalPage} />

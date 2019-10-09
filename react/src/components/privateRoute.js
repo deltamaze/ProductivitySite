@@ -9,18 +9,14 @@ import { connect } from 'react-redux';
 
 
 class PrivateRoute extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
 
   componentDidMount() {
-    // this.props.fetchAuth();
   }
 
   render() {
     return (
       <Route
-        render={props => ((this.props.auth.uid !== '' && this.props.auth.username !== '') ? (
+        render={props => ((this.props.auth.uid !== 'NotLoggedIn' ) ? (
           <this.props.component {...props} />
         ) : (
           <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
@@ -31,18 +27,6 @@ class PrivateRoute extends React.Component {
   }
 }
 
-
-// let PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={props => (rest.auth.uid != '' ? (
-//       <Component {...props} />
-//     ) : (
-//         <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
-//       ))
-//     }
-//   />
-// );
 
 export default connect(
   state => ({ auth: state.auth })
