@@ -1,15 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { logout } from '../services/auth/action';
 
-class SignInPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+class SignOffPage extends React.Component {
   componentDidMount() {
+    // this component is in a private route,
+    // so logging off should make private route send user to signin pagel
     this.props.logout();
   }
-
-
 
   render() {
     return (
@@ -22,8 +20,8 @@ class SignInPage extends React.Component {
 
 
 export default connect(
-  state => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth }),
   ({
     logout
   })
-)(SignInPage);
+)(SignOffPage);

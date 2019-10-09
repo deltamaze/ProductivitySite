@@ -19,7 +19,7 @@ class FirebaseServiceStarter extends React.Component {
 }
 
 export default connect(
-  state => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth }),
   ({
     fetchAuth
   })

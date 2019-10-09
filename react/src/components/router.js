@@ -12,13 +12,14 @@ import NotePage from '../pages/note';
 import PlannerPage from '../pages/planner';
 import ProjectPage from '../pages/project';
 import RecurringPage from '../pages/recurring';
+import SignOffPage from '../pages/signoff';
 
 // 404Screen
 const NotFoundScreen = () => <h1>404</h1>;
 // Counter
 
 
-let CounterScreen = props => (
+let CounterScreen = (props) => (
   <div>
     <h1>Counter: {props.counter}</h1>
     <button onClick={props.increment}>Increment</button>
@@ -26,8 +27,8 @@ let CounterScreen = props => (
   </div>
 );
 CounterScreen = connect(
-  state => ({ counter: state.counter }),
-  dispatch => ({
+  (state) => ({ counter: state.counter }),
+  (dispatch) => ({
     increment: () => dispatch({ type: 'INC' }),
     decrement: () => dispatch({ type: 'DEC' })
   })
@@ -56,6 +57,7 @@ class PageRouter extends React.Component {
             <PrivateRoute path="/" exact component={Home} />
             <PrivateRoute path="/counter" component={CounterScreen} />
             <Route path="/signin" component={SignInPage} />
+            <PrivateRoute path="/signoff" component={SignOffPage} />
             <PrivateRoute path="/calendar" component={CalendarPage} />
             <PrivateRoute path="/event" component={EventPage} />
             <PrivateRoute path="/journal" component={JournalPage} />
@@ -81,7 +83,7 @@ class PageRouter extends React.Component {
 
 
 export default connect(
-  state => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth }),
   ({
   })
 )(PageRouter);

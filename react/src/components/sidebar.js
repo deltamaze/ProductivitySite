@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import NavListItem from './navListItem';
 // eslint-disable-next-line react/prefer-stateless-function
@@ -24,9 +23,9 @@ class SideBar extends React.Component {
 
         <div className="">
           <ul className="nav flex-column">
-            {(this.props.auth.uid == 'Connecting' ||this.props.auth.uid == 'NotLoggedIn'  ) ? (
+            {(this.props.auth.uid == 'Connecting' || this.props.auth.uid == 'NotLoggedIn') ? (
               <NavListItem route="signin" label="Log In" icon="account-login" />
-            ) : (
+            ) : (// react fragment shorthand below,update babel first...
               <React.Fragment>
                 <NavListItem route="planner" label="Planner" icon="list" />
                 <NavListItem route="calendar" label="Calendar" icon="calendar" />
@@ -35,10 +34,10 @@ class SideBar extends React.Component {
                 <NavListItem route="project" label="Project Tracker" icon="project" />
                 <NavListItem route="note" label="Notes" icon="align-left" />
                 <NavListItem route="journal" label="Journal" icon="book" />
-                <NavListItem route="logoff" label="LogOff" icon="account-logout" />
+                <NavListItem route="signoff" label="LogOff" icon="account-logout" />
               </React.Fragment>
-              )}
-            
+            )}
+
           </ul>
         </div>
       </div>
@@ -47,7 +46,7 @@ class SideBar extends React.Component {
 }
 
 export default connect(
-  state => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth }),
   ({
   })
 )(SideBar);
