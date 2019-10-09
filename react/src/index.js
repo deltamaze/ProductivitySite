@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import PageRouter from './components/router';
 import store from './store';
 import NavBar from './components/navbar';
+import SideBar from './components/sidebar';
 import FirebaseServiceStarter from './components/firebaseServiceStarter';
 import AlertBanner from './components/alert';
 
@@ -13,9 +14,12 @@ ReactDOM.render(
     <BrowserRouter>
       <AlertBanner>
         <FirebaseServiceStarter />
-        <NavBar />
-        <PageRouter />
+        <SideBar />
+        <div className="main">
+          <NavBar />
+          <PageRouter />
+        </div>
       </AlertBanner>
     </BrowserRouter>
-  </Provider>, document.querySelector('.container')
+  </Provider>, document.querySelector('.appContainer')
 );

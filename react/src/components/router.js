@@ -45,7 +45,7 @@ class PageRouter extends React.Component {
       );
     } if (this.props.auth.uid !== '') {
       return (
-        <div>
+        <div className="content px-4">
           <Switch>
             <PrivateRoute path="/" exact component={Home} />
             <PrivateRoute path="/counter" component={CounterScreen} />
