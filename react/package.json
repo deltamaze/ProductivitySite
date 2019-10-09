@@ -1,5 +1,5 @@
 {
-  "name": "reactreduxstarter",
+  "name": "simpleplanner",
   "version": "1.0.0",
   "description": "",
   "main": "public\\index.html",
@@ -23,7 +23,7 @@
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^5.16.0",
+    "eslint": "^6.2.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",

@@ -4,6 +4,6 @@ import * as firebase from 'firebase';
 import firebaseConfig from '../../../secrets/firebaseConfig';
 
 firebase.initializeApp(firebaseConfig);
-firebase.firestore().settings({ });
+export const db = firebase.firestore();
 
 export default firebase;

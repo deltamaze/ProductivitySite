@@ -7,20 +7,43 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-let PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props => (rest.auth.userToken != '' ? (
-      <Component {...props} />
-    ) : (
-      <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
-    ))
-    }
-  />
-);
 
-PrivateRoute = connect(
+class PrivateRoute extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  componentDidMount() {
+    // this.props.fetchAuth();
+  }
+
+  render() {
+    return (
+      <Route
+        render={props => ((this.props.auth.uid !== '' && this.props.auth.username !== '') ? (
+          <this.props.component {...props} />
+        ) : (
+          <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
+        ))
+        }
+      />
+    );
+  }
+}
+
+
+// let PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route
+//     {...rest}
+//     render={props => (rest.auth.uid != '' ? (
+//       <Component {...props} />
+//     ) : (
+//         <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
+//       ))
+//     }
+//   />
+// );
+
+export default connect(
   state => ({ auth: state.auth })
 )(PrivateRoute);
-
-export default PrivateRoute;

@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import counterReducer from './services/counter/reducer';
 import authReducer from './services/auth/reducer';
+import alertReducer from './services/alerts/reducer';
 
 const reducers = combineReducers({
   counter: counterReducer,
-  auth: authReducer
+  auth: authReducer,
+  alert: alertReducer
 
 });
 
