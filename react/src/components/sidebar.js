@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import NavListItem from './navListItem';
 // eslint-disable-next-line react/prefer-stateless-function
 class SideBar extends React.Component {
   // constructor(props) {
@@ -24,42 +24,13 @@ class SideBar extends React.Component {
 
         <div className="">
           <ul className="nav flex-column">
-
-            <li className="nav-item px-3">
-              <Link className="nav-link" to="planner">
-                <span className="oi oi-list" aria-hidden="true" /> Planner
-              </Link>
-            </li>
-            <li className="nav-item px-3">
-              <Link className="nav-link" to="calendar">
-                <span className="oi oi-calendar" aria-hidden="true" /> Calendar
-              </Link>
-            </li>
-            <li className="nav-item px-3">
-              <Link className="nav-link" to="recurring">
-                <span className="oi oi-reload" aria-hidden="true" /> Recurring
-              </Link>
-            </li>
-            <li className="nav-item px-3">
-              <Link className="nav-link" to="flaggedEvents">
-                <span className="oi oi-flag" aria-hidden="true" /> Flagged Events
-              </Link>
-            </li>
-            <li className="nav-item px-3">
-              <Link className="nav-link" to="projects">
-                <span className="oi oi-project" aria-hidden="true" />Project Tracker
-              </Link>
-            </li>
-            <li className="nav-item px-3">
-              <Link className="nav-link" to="notes">
-                <span className="oi oi-align-left" aria-hidden="true" />Notes
-              </Link>
-            </li>
-            <li className="nav-item px-3">
-              <Link className="nav-link" to="journal">
-                <span className="oi oi-book" aria-hidden="true" />Journal
-              </Link>
-            </li>
+            <NavListItem route="planner" label="Planner" icon="list" />
+            <NavListItem route="calendar" label="Calendar" icon="calendar" />
+            <NavListItem route="recurring" label="Recurring" icon="reload" />
+            <NavListItem route="event" label="Events" icon="flag" />
+            <NavListItem route="project" label="Project Tracker" icon="project" />
+            <NavListItem route="note" label="Notes" icon="align-left" />
+            <NavListItem route="journal" label="Journal" icon="book" />
           </ul>
         </div>
       </div>

@@ -6,6 +6,13 @@ import SignInPage from './signin';
 import PrivateRoute from './privateRoute';
 import Home from './home';
 import CreatePrivateGame from './createPrivateGame';
+import CalendarPage from '../pages/calander';
+import EventPage from '../pages/event';
+import JournalPage from '../pages/journal';
+import NotePage from '../pages/note';
+import PlannerPage from '../pages/planner';
+import ProjectPage from '../pages/project';
+import RecurringPage from '../pages/recurring';
 
 // 404Screen
 const NotFoundScreen = () => <h1>404</h1>;
@@ -51,6 +58,13 @@ class PageRouter extends React.Component {
             <PrivateRoute path="/counter" component={CounterScreen} />
             <Route path="/signin" component={SignInPage} />
             <PrivateRoute path="/createPrivateGame" component={CreatePrivateGame} />
+            <PrivateRoute path="/calendar" component={CalendarPage} />
+            <PrivateRoute path="/event" component={EventPage} />
+            <PrivateRoute path="/journal" component={JournalPage} />
+            <PrivateRoute path="/planner" component={PlannerPage} />
+            <PrivateRoute path="/recurring" component={RecurringPage} />
+            <PrivateRoute path="/project" component={ProjectPage} />
+            <PrivateRoute path="/note" component={NotePage} />
             <Route path="*" component={NotFoundScreen} />
           </Switch>
         </div>
