@@ -39,9 +39,13 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            babelrc: false,
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
         }
       }
     ]
