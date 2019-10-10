@@ -27,7 +27,7 @@ class Home extends React.Component {
 }
 
 export default connect(
-  state => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth }),
   ({
   })
 )(Home);

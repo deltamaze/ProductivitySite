@@ -6,28 +6,6 @@ import { dismissAlert, setAlert } from '../services/alerts/action';
 class AlertBanner extends React.Component {
   componentDidMount() {
     window.onerror = (message, file, line, column, errorObject) => {
-      // column = column || (window.event && window.event.errorCharacter);
-      // let stack = errorObject ? errorObject.stack : null;
-
-      // // trying to get stack from IE
-      // if (!stack) {
-      //   let stack = [];
-      //   let f = arguments.callee.caller;
-      //   while (f) {
-      //     stack.push(f.name);
-      //     f = f.caller;
-      //   }
-      //   errorObject.stack = stack;
-      // }
-
-      // let data = {
-      //   message,
-      //   file,
-      //   line,
-      //   column,
-      //   errorStack: stack,
-      // };
-
       const errorMessage = `Error =>${message}    Info => ${errorObject}`;
       this.props.setAlert(errorMessage);
       // the error can still be triggered as usual
@@ -38,7 +16,6 @@ class AlertBanner extends React.Component {
 
   componentDidCatch(error, info) { // catches rendering errors
     // Display fallback UI
-    console.log('checkpoint6563');
     const errorMessage = `Error =>${error}    Info => ${info}`;
     this.props.setAlert(errorMessage);
   }
@@ -60,7 +37,7 @@ class AlertBanner extends React.Component {
   }
 }
 export default connect(
-  state => ({ alert: state.alert }),
+  (state) => ({ alert: state.alert }),
   ({
     dismissAlert, setAlert
   })

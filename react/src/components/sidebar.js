@@ -26,7 +26,7 @@ class SideBar extends React.Component {
             {(this.props.auth.uid == 'Connecting' || this.props.auth.uid == 'NotLoggedIn') ? (
               <NavListItem route="signin" label="Log In" icon="account-login" />
             ) : (// react fragment shorthand below,update babel first...
-              <React.Fragment>
+              <>
                 <NavListItem route="planner" label="Planner" icon="list" />
                 <NavListItem route="calendar" label="Calendar" icon="calendar" />
                 <NavListItem route="recurring" label="Recurring" icon="reload" />
@@ -35,7 +35,7 @@ class SideBar extends React.Component {
                 <NavListItem route="note" label="Notes" icon="align-left" />
                 <NavListItem route="journal" label="Journal" icon="book" />
                 <NavListItem route="signoff" label="LogOff" icon="account-logout" />
-              </React.Fragment>
+              </>
             )}
 
           </ul>
