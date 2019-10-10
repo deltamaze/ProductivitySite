@@ -15,8 +15,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="top-row px-4">
-        <span className="left-justify">[TargetDate]</span>
-        <span className="right-justify">[CurrentDate][Weather]</span>
+        <span className="left-justify">[CurrentDate] Random Quote....</span>
       </div>
     );
   }

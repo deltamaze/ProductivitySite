@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 
 import SignInPage from '../pages/signin';
 import PrivateRoute from './privateRoute';
-import Home from './home';
 import CalendarPage from '../pages/calander';
 import EventPage from '../pages/event';
 import JournalPage from '../pages/journal';
@@ -17,22 +16,6 @@ import SignOffPage from '../pages/signoff';
 // 404Screen
 const NotFoundScreen = () => <h1>404</h1>;
 // Counter
-
-
-let CounterScreen = (props) => (
-  <div>
-    <h1>Counter: {props.counter}</h1>
-    <button onClick={props.increment}>Increment</button>
-    <button onClick={props.decrement}>Decrement</button>
-  </div>
-);
-CounterScreen = connect(
-  (state) => ({ counter: state.counter }),
-  (dispatch) => ({
-    increment: () => dispatch({ type: 'INC' }),
-    decrement: () => dispatch({ type: 'DEC' })
-  })
-)(CounterScreen);
 
 // pagesrouter
 
@@ -54,8 +37,7 @@ class PageRouter extends React.Component {
       return (
         <div className="content px-4">
           <Switch>
-            <PrivateRoute path="/" exact component={Home} />
-            <PrivateRoute path="/counter" component={CounterScreen} />
+            <PrivateRoute path="/" exact component={SignInPage} />
             <Route path="/signin" component={SignInPage} />
             <PrivateRoute path="/signoff" component={SignOffPage} />
             <PrivateRoute path="/calendar" component={CalendarPage} />
