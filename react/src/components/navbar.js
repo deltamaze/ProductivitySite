@@ -14,14 +14,14 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="top-row px-4">
-        <span className="left-justify">[CurrentDate] Random Quote....</span>
+        <span className="left-justify">[{this.props.targetDate.date.toString()}] Random Quote....</span>
       </div>
     );
   }
 }
 
 export default connect(
-  (state) => ({ auth: state.auth, date: state.date }),
+  (state) => ({ auth: state.auth, targetDate: state.targetDate }),
   ({
   })
 )(NavBar);

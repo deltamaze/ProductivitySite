@@ -4,11 +4,26 @@
 import { setAlertWithDispath } from '../alerts/action';
 import firebase, { db } from '../firebase/firebase';
 
-export const UPSERTCURRENTPLANNER = 'UPSERTCURRENTPLANNER';
+export const FETCHCALENDAR = 'FETCHCALENDAR';
 
-let plannerRef; //= db.collection('users').doc('0'); // default unset value
+export function fetchCalendar(uid,date) { //test for now, later change to be more like fetchAuth
+  console.log(`fetchCalendar called, uid`)
+  return (
+    {
+      type: FETCHCALENDAR,
+      payload: { uid,date }
+    });
+}
 
-let plannerListener ;
+export function updateTargetDateReference(date,prevDate) {
+  // firebase collection using yearmonth granularity
+  // only update reference if yearmonth changed
+  // compare date/prevDate to do this.
+}
+
+// let plannerRef; //= db.collection('users').doc('0'); // default unset value
+
+// let plannerListener ;
 // = usernameRef.onSnapshot((doc) => {
 //   // eslint-disable-next-line no-console
 //   console.log('Current data: ', doc.data());

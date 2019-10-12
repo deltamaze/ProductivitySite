@@ -4,13 +4,13 @@ import thunk from 'redux-thunk';
 import counterReducer from './services/counter/reducer';
 import authReducer from './services/auth/reducer';
 import alertReducer from './services/alerts/reducer';
-import dateReducer from './services/date/reducer';
+import targetDateReducer from './services/targetDate/reducer';
 
 const reducers = combineReducers({
   counter: counterReducer,
   auth: authReducer,
   alert: alertReducer,
-  date: dateReducer
+  targetDate: targetDateReducer
 
 });
 
