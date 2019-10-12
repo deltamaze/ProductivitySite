@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -22,7 +21,7 @@ class NavBar extends React.Component {
 }
 
 export default connect(
-  state => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth, date: state.date }),
   ({
   })
 )(NavBar);

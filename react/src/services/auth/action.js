@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable */
 import { setAlertWithDispath } from '../alerts/action';
 import firebase from '../firebase/firebase';
 
