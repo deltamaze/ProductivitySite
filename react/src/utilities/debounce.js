@@ -5,6 +5,7 @@ function debounce(func, wait, immediate) {
 
   return function executedFunction() {
     const context = this;
+    // eslint-disable-next-line prefer-rest-params
     const args = arguments;
 
     const later = () => {
