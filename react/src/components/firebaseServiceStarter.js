@@ -12,8 +12,9 @@ class FirebaseServiceStarter extends React.Component {
 
   componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
-    console.log('test that this gets called after date changes');
-    if (this.props.date !== prevProps.date) {
+    if (this.props.targetDate !== prevProps.targetDate.date) {
+      console.log(`prevVal=${prevProps.date}`);
+      console.log(`curVal=${this.props.date}`)
       this.fetchData(this.props.userID);
     }
   }
@@ -26,7 +27,7 @@ class FirebaseServiceStarter extends React.Component {
 }
 
 export default connect(
-  (state) => ({ date: state.date }),
+  (state) => ({ targetDate: state.targetDate }),
   ({
     fetchAuth, fetchCalendar
   })
