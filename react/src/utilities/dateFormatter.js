@@ -1,7 +1,7 @@
 
 export function getMonthYear(ms) {
   const date = new Date(ms);
-  const returnVal = (date.getFullYear() * 100) + (date.getMonth);
+  const returnVal = (date.getFullYear() * 100) + (date.getMonth());
   return returnVal.toString();
 }
 export function getFormattedDate(ms) {

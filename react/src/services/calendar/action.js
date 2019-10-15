@@ -6,46 +6,38 @@ import firebase, { db } from '../firebase/firebase';
 
 export const FETCHCALENDAR = 'FETCHCALENDAR';
 
-export function fetchCalendar(uid,date) { //test for now, later change to be more like fetchAuth
-  console.log(`fetchCalendar called, uid`)
-  return (
-    {
-      type: FETCHCALENDAR,
-      payload: { uid,date }
-    });
+let calRef = db.collection('users').doc('0').collection('yearmonth').doc('0'); // default unset value
+console.log(calRef);
+let calListener = calRef.onSnapshot((doc) => {
+  console.log('Current data: ', doc.data());
+});
+console.log(calListener);
+
+export function fetchCalendar(uid, yearMonth) { //test for now, later change to be more like fetchAuth
+  return (dispatch) => {
+    calListener(); // Remove previous listener
+    usernameRef = db.collection('users').doc(uid).collection('yearmonth').doc(yearMonth); // default unset value
+    calListener = usernameRef // default unset value
+      .onSnapshot((doc) => {
+        if (doc.data() === undefined) {
+          dispatch({
+            type: FETCHCALENDAR,
+            payload: { calendar: null } // username not set yet
+          });
+        } else { // username set, push to state
+          dispatch({
+            type: FETCHCALENDAR,
+            payload: { username: doc.data() }
+          });
+        }
+      });
+  }
 }
 
-export function updateTargetDateReference(date,prevDate) {
-  // firebase collection using yearmonth granularity
-  // only update reference if yearmonth changed
-  // compare date/prevDate to do this.
+export function setUsername(username) {
+  const data = {
+    username // shorthand for username: username
+  };
+  calRef.set(data).catch(err => setAlertWithDispath(JSON.stringify(err)));
+  return () => { };
 }
-
-// let plannerRef; //= db.collection('users').doc('0'); // default unset value
-
-// let plannerListener ;
-// = usernameRef.onSnapshot((doc) => {
-//   // eslint-disable-next-line no-console
-//   console.log('Current data: ', doc.data());
-// });
-
-
-// export function fetchPlanner() {
-//   return (dispatch) => {
-//     firebase.auth().onAuthStateChanged((user) => {
-//       if (user) {
-//         dispatch({
-//           type: UPSERTUSERINFO,
-//           payload: { uid: user.uid }
-//         });
-//       } else {
-//         // let state know that not logged in
-//         dispatch({
-//           type: UPSERTUSERINFO,
-//           payload: { uid: 'NotLoggedIn' }
-//         });
-//       }
-//     });
-//   };
-// }
-

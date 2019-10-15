@@ -11,10 +11,8 @@ class FirebaseServiceStarter extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    console.log(getMonthYear(this.props.targetDate));
-    console.log(getMonthYear(prevProps.targetDate.date));
-    if (getMonthYear(this.props.targetDate) !== getMonthYear(prevProps.targetDate.date)) {
+    if (getMonthYear(this.props.targetDate.date) !== getMonthYear(prevProps.targetDate.date)) {
+      // TODO update firebase ref when month change happens
       console.log('month change detected');
     }
   }
