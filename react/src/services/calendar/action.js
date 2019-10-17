@@ -6,38 +6,41 @@ import firebase, { db } from '../firebase/firebase';
 
 export const FETCHCALENDAR = 'FETCHCALENDAR';
 
-let calRef = db.collection('users').doc('0').collection('yearmonth').doc('0'); // default unset value
-console.log(calRef);
-let calListener = calRef.onSnapshot((doc) => {
-  console.log('Current data: ', doc.data());
-});
-console.log(calListener);
+let calRef = db.collection('users').doc('0').collection('months').doc('0'); // default unset value
+let calListener = undefined;
 
 export function fetchCalendar(uid, yearMonth) { //test for now, later change to be more like fetchAuth
+  console.log('fetchCalled');
   return (dispatch) => {
-    calListener(); // Remove previous listener
-    usernameRef = db.collection('users').doc(uid).collection('yearmonth').doc(yearMonth); // default unset value
-    calListener = usernameRef // default unset value
+    if (calListener != undefined) {
+      calListener(); // Remove previous listener
+    }
+    try {
+    calRef = db.collection('users').doc(uid).collection('months').doc(yearMonth); // default unset value
+    calListener = calRef // default unset value
       .onSnapshot((doc) => {
+        console.log('cal snapshot');
+        console.log(doc.data());
         if (doc.data() === undefined) {
           dispatch({
             type: FETCHCALENDAR,
-            payload: { calendar: null } // username not set yet
+            payload: { calendar: null } // calendar item not set yet
           });
-        } else { // username set, push to state
+        } else { // cal item set, push to state
           dispatch({
             type: FETCHCALENDAR,
             payload: { username: doc.data() }
           });
         }
       });
+    }
+    catch(err){
+      setAlertWithDispath(JSON.stringify(err));
+    }
   }
 }
 
-export function setUsername(username) {
-  const data = {
-    username // shorthand for username: username
-  };
-  calRef.set(data).catch(err => setAlertWithDispath(JSON.stringify(err)));
+export function setCalendar(calendar) {
+  calRef.set(calendar).catch(err => setAlertWithDispath(JSON.stringify(err)));
   return () => { };
 }
