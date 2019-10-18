@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setDate } from '../services/targetDate/action';
-import { getFormattedDate } from '../utilities/dateFormatter';
+import { getFormattedDate, getDay } from '../utilities/dateFormatter';
 import { setMonth } from '../services/months/action';
 import debounce from '../utilities/debounce';
-import { getDay } from '../utilities/';
+import { generateNewMonth, getDayPlanner } from '../utilities/monthHelper';
 // eslint-disable-next-line react/prefer-stateless-function
 class PlannerPage extends React.Component {
   constructor(props) {
@@ -21,22 +21,33 @@ class PlannerPage extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.fetchAuth();
+    this.syncLocalPlannerToStore();
+  }
+
+  componentDidUpdate(prevProps) {
+    // change of month
+    if (getMonthYear(this.props.targetDate.date) !== getMonthYear(prevProps.targetDate.date)
+    || this.props.auth.uid != prevProps.auth.uid) { // , or change of uid status, fetch month
+      this.updateMonth();
+    }
+    // TODO set inital month state as loading, then if prevProps = loaded, call syncLocalPlanner
   }
 
   handleChange(event) {
     this.setState({
       plannerTextBox: event.target.value // handle input and update textbox
     });
+    const day = getDay(this.props.targetDate.date);
+    const newMonth = generateNewMonth(day, event.target.value, this.props.month);
     // package us a new month object to post back to firebase
-    this.setMonthWithDebouce(event.target.value);
+    this.setMonthWithDebouce(newMonth);
   }
 
-  syncLocalPlannerToStore(date) {
-    const day = this.props.getDay(date);
-    
+  syncLocalPlannerToStore() {
+    const day = getDay(this.props.targetDate.date);
+
     this.setState({
-      plannerTextBox: event.target.value // handle input and update textbox
+      plannerTextBox: getDayPlanner(day, this.props.month) // handle input and update textbox
     });
   }
 

@@ -10,3 +10,12 @@ export function getDayPlanner(day, month) {
   }
   return month[day].planner;
 }
+export function generateNewMonth(day, planner, month) {
+  const returnMonth = month;
+  if (returnMonth[day] === undefined) {
+    returnMonth[day] = { planner, journal: '' };
+    return returnMonth;
+  }
+  returnMonth[day].planner = planner;
+  return month[day].planner;
+}
