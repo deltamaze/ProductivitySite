@@ -18,3 +18,7 @@ export function getFormattedDate(ms) {
   }
   return `${mm}/${dd}/${yyyy}`;
 }
+export function getDay(ms) {
+  const date = new Date(ms);
+  return date.getDay().toString();
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCalendar } from '../services/calendar/action';
+import { setMonth } from '../services/months/action';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class CalendarPage extends React.Component {
@@ -15,7 +15,7 @@ class CalendarPage extends React.Component {
     return (
       <div>
         CalendarPage
-        <button onClick={() => (this.props.setCalendar({ test: 'test' }))}>test</button>
+        <button onClick={() => (this.props.setMonth({ test: 'test' }))}>test</button>
       </div>
     );
   }
@@ -24,6 +24,6 @@ class CalendarPage extends React.Component {
 export default connect(
   (state) => ({ auth: state.auth }),
   ({
-    setCalendar
+    setMonth
   })
 )(CalendarPage);
