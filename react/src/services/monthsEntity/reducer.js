@@ -1,4 +1,4 @@
-const monthReducer = (state = { month: undefined, monthRef: 0 }, action) => {
+const monthReducer = (state = { monthData: undefined, monthRef: 0 }, action) => {
   switch (action.type) {
   case 'FETCHMONTH':
     return {

@@ -2,7 +2,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getFormattedDate } from '../utilities/dateFormatter';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class NavBar extends React.Component {
@@ -36,7 +35,6 @@ class NavBar extends React.Component {
     return (
       <div className="top-row px-4">
         <span className="left-justify">{this.formatPathDate(this.props.location.pathname)}
-        [Todays date=&gt;{getFormattedDate(Date.now())}]
         </span>
       </div>
     );
@@ -44,7 +42,7 @@ class NavBar extends React.Component {
 }
 
 export default connect(
-  (state) => ({ auth: state.auth, targetDate: state.targetDate }),
+  () => ({ }),
   ({
   })
 )(withRouter(NavBar));

@@ -1,4 +1,4 @@
-const targetDateReducer = (state = { date: Date.now() }, action) => {
+const selectedDateReducer = (state = { date: Date.now() }, action) => {
   switch (action.type) {
   case 'SETDATE':
     return {
@@ -9,4 +9,4 @@ const targetDateReducer = (state = { date: Date.now() }, action) => {
   }
 };
 
-export default targetDateReducer;
+export default selectedDateReducer;

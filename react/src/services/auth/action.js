@@ -1,5 +1,5 @@
 import { setAlertWithDispath } from '../alerts/action';
-import firebase from '../firebase/firebase';
+import firebase from '../firebaseContext/firebaseInitializer';
 
 export const UPSERTUSERINFO = 'UPSERTUSERINFO';
 

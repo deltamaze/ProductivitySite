@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setDate } from '../services/targetDate/action';
-import { getFormattedDate, getDay } from '../utilities/dateFormatter';
-import { setMonth } from '../services/months/action';
+import { setDate } from '../services/selectedDate/action';
+import { getFormattedShortDate, getDay } from '../utilities/dateHelper';
+import { setMonth } from '../services/monthsEntity/action';
 import debounce from '../utilities/debounce';
 import { generateNewMonth, getDayPlanner } from '../utilities/monthHelper';
 // eslint-disable-next-line react/prefer-stateless-function
@@ -27,7 +27,7 @@ class PlannerPage extends React.Component {
   componentDidUpdate(prevProps) {
     // change of day, or uid, do a local state sync to firebase,
     // or when firebase month ref gets updated
-    if (this.props.targetDate.date !== prevProps.targetDate.date
+    if (this.props.selectedDate.date !== prevProps.selectedDate.date
       || this.props.auth.uid != prevProps.auth.uid
       || this.props.month.monthRef !== prevProps.month.monthRef) {
       this.syncLocalPlannerToStore();
@@ -39,20 +39,20 @@ class PlannerPage extends React.Component {
     this.setState({
       plannerTextBox: event.target.value // handle input and update textbox
     });
-    const day = getDay(this.props.targetDate.date);
-    const newMonth = generateNewMonth(day, event.target.value, this.props.month.month);
+    const day = getDay(this.props.selectedDate.date);
+    const newMonth = generateNewMonth(day, event.target.value, this.props.month.monthData);
     // package us a new month object to post back to firebase
     this.setMonthWithDebouce(newMonth, this.props.month.monthRef, this.props.auth.uid);
   }
 
   syncLocalPlannerToStore() {
-    const day = getDay(this.props.targetDate.date);
+    const day = getDay(this.props.selectedDate.date);
 
     this.setState({
-      plannerTextBox: getDayPlanner(day, this.props.month.month) // handle input and update textbox
+      plannerTextBox:
+        getDayPlanner(day, this.props.month.monthData) // handle input and update textbox
     });
   }
-
 
   incrementDate(direction, date) {
     // TODO if local state differs from firebase snapshot, sync without delay
@@ -60,7 +60,7 @@ class PlannerPage extends React.Component {
     let newDate = parseInt(date, 10);
     newDate += day;
 
-    // update state for targetDate
+    // update state for selectedDate
     this.props.setDate(newDate);
   }
 
@@ -68,9 +68,9 @@ class PlannerPage extends React.Component {
     return (
       <>
         <ul className="list-group list-group-horizontal dateControl">
-          <li className="list-group-item  dateControl"><button onClick={() => this.incrementDate(this.direction.backwords, this.props.targetDate.date)}>&lt;&lt;</button></li>
-          <li className="list-group-item  dateControl">{getFormattedDate(this.props.targetDate.date)}</li>
-          <li className="list-group-item  dateControl"><button onClick={() => this.incrementDate(this.direction.forward, this.props.targetDate.date)}>&gt;&gt;</button></li>
+          <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.backwords, this.props.selectedDate.date)}>&lt;&lt;</button></li>
+          <li className="list-group-item  dateControl"><h4>{getFormattedShortDate(this.props.selectedDate.date)}</h4></li>
+          <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.forward, this.props.selectedDate.date)}>&gt;&gt;</button></li>
         </ul>
         <textarea
           id="plannerInput"
@@ -83,7 +83,7 @@ class PlannerPage extends React.Component {
 }
 
 export default connect(
-  (state) => ({ auth: state.auth, targetDate: state.targetDate, month: state.month }),
+  (state) => ({ auth: state.auth, selectedDate: state.selectedDate, month: state.month }),
   ({
     setDate, setMonth
   })

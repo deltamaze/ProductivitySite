@@ -2,7 +2,7 @@
 //placeholders stuff, enable eslint when i get back to this file.
 
 import { setAlertWithDispath } from '../alerts/action';
-import firebase, { db } from '../firebase/firebase';
+import firebase, { db } from '../firebaseContext/firebaseInitializer';
 
 export const FETCHMONTH = 'FETCHMONTH';
 // TODO make dispatch to set monthRef to Loading when Ref updated
@@ -24,12 +24,12 @@ export function fetchMonth(uid, yearMonth) { //test for now, later change to be 
         if (doc.data() === undefined) {
           dispatch({
             type: FETCHMONTH,
-            payload: { month: undefined,monthRef:yearMonth } // month item not set yet
+            payload: { monthData: undefined,monthRef:yearMonth } // month item not set yet
           });
         } else { // cal item set, push to state
           dispatch({
             type: FETCHMONTH,
-            payload: { month: doc.data(),monthRef:yearMonth }
+            payload: { monthData: doc.data(),monthRef:yearMonth }
           });
         }
       });

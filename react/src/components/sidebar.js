@@ -26,7 +26,7 @@ class SideBar extends React.Component {
     return (
       <div className="sidebar">
         <div className="top-row pl-4 navbar navbar-dark">
-          <a className="navbar-brand" id="mainLogo" to="">Planner</a>
+          <a className="navbar-brand" id="mainLogo" to="">SimplePlanner</a>
           <button className="navbar-toggler" onClick={() => this.toggleCollapse()}>
             <span className="navbar-toggler-icon" />
           </button>
