@@ -67,13 +67,12 @@ class PlannerPage extends React.Component {
   render() {
     return (
       <>
-        <ul className="list-group list-group-horizontal">
-          <li className="list-group-item"><button onClick={() => this.incrementDate(this.direction.backwords, this.props.targetDate.date)}>&lt;&lt;</button></li>
-          <li className="list-group-item">{getFormattedDate(this.props.targetDate.date)}</li>
-          <li className="list-group-item"><button onClick={() => this.incrementDate(this.direction.forward, this.props.targetDate.date)}>&gt;&gt;</button></li>
+        <ul className="list-group list-group-horizontal dateControl">
+          <li className="list-group-item  dateControl"><button onClick={() => this.incrementDate(this.direction.backwords, this.props.targetDate.date)}>&lt;&lt;</button></li>
+          <li className="list-group-item  dateControl">{getFormattedDate(this.props.targetDate.date)}</li>
+          <li className="list-group-item  dateControl"><button onClick={() => this.incrementDate(this.direction.forward, this.props.targetDate.date)}>&gt;&gt;</button></li>
         </ul>
-        <input
-          type="text"
+        <textarea
           id="plannerInput"
           value={this.state.plannerTextBox}
           onChange={this.handleChange}
