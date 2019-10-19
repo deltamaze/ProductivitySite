@@ -1,14 +1,25 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { connect } from 'react-redux';
 import NavListItem from './navListItem';
 // eslint-disable-next-line react/prefer-stateless-function
 class SideBar extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      collapseMenu: true
+    };
+  }
+
   componentDidMount() {
     // this.props.fetchAuth();
+  }
+
+  toggleCollapse() {
+    this.setState((prevState) => ({ collapseMenu: !prevState.collapseMenu }));
   }
 
   render() {
@@ -16,12 +27,12 @@ class SideBar extends React.Component {
       <div className="sidebar">
         <div className="top-row pl-4 navbar navbar-dark">
           <a className="navbar-brand" id="mainLogo" to="">Planner</a>
-          <button className="navbar-toggler">
+          <button className="navbar-toggler" onClick={() => this.toggleCollapse()}>
             <span className="navbar-toggler-icon" />
           </button>
         </div>
 
-        <div className="">
+        <div className={this.state.collapseMenu ? 'collapse' : ''} onClick={() => this.toggleCollapse()}>
           <ul className="nav flex-column">
             {(this.props.auth.uid == 'Connecting' || this.props.auth.uid == 'NotLoggedIn') ? (
               <NavListItem route="signin" label="Log In" icon="account-login" />

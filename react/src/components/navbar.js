@@ -12,13 +12,14 @@ class NavBar extends React.Component {
   componentDidMount() {
     // this.props.fetchAuth();
   }
+  // TODO, rename and get rid of all these eslint disables
 
   // eslint-disable-next-line class-methods-use-this
   formatPathDate(path) {
     let returVal = path;
     // if at root, set as Home
     if (returVal === '/') {
-      return 'Home';
+      return 'Home ';
     }
     // remove initial slash
     returVal = returVal.substr(1);

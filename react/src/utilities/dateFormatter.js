@@ -20,5 +20,5 @@ export function getFormattedDate(ms) {
 }
 export function getDay(ms) {
   const date = new Date(ms);
-  return date.getDay().toString();
+  return date.getDate().toString();
 }

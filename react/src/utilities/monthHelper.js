@@ -11,11 +11,15 @@ export function getDayPlanner(day, month) {
   return month[day].planner;
 }
 export function generateNewMonth(day, planner, month) {
-  const returnMonth = month;
+  let returnMonth = month;
+  if (returnMonth === undefined) {
+    returnMonth = { [day]: { planner, journal: '' } };
+    return returnMonth;
+  }
   if (returnMonth[day] === undefined) {
     returnMonth[day] = { planner, journal: '' };
     return returnMonth;
   }
   returnMonth[day].planner = planner;
-  return month[day].planner;
+  return returnMonth;
 }
