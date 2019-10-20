@@ -1,3 +1,7 @@
+const days = ['Sunday', 'Monday', 'Tuesday',
+  'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+// const months = ['January', 'February', 'March', 'April',
+//  'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export function getMonthYear(ms) {
   const date = new Date(ms);
@@ -33,7 +37,15 @@ export function getFormattedShortDate(ms) {
   }
   return `${mm}/${dd}/${yyyy}`;
 }
-export function getDay(ms) {
+export function getDayNumber(ms) {
   const date = new Date(ms);
   return date.getDate().toString();
+}
+export function getDayOfWeek(ms) {
+  const date = new Date(ms);
+  return days[date.getDay()];
+}
+export function getDayOfWeekShort(ms) {
+  const date = new Date(ms);
+  return days[date.getDay()].substring(0, 3);
 }

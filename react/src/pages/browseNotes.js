@@ -13,7 +13,7 @@ class NotePage extends React.Component {
   render() {
     return (
       <div>
-        NotePage
+        BrowseNotePage
       </div>
     );
   }

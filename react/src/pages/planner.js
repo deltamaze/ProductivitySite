@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setDate } from '../services/selectedDate/action';
-import { getFormattedShortDate, getDay } from '../utilities/dateHelper';
+import { getFormattedShortDate, getDayNumber, getDayOfWeekShort } from '../utilities/dateHelper';
 import { setMonth } from '../services/monthsEntity/action';
 import debounce from '../utilities/debounce';
 import { generateNewMonth, getDayPlanner } from '../utilities/monthHelper';
@@ -39,14 +39,14 @@ class PlannerPage extends React.Component {
     this.setState({
       plannerTextBox: event.target.value // handle input and update textbox
     });
-    const day = getDay(this.props.selectedDate.date);
+    const day = getDayNumber(this.props.selectedDate.date);
     const newMonth = generateNewMonth(day, event.target.value, this.props.month.monthData);
     // package us a new month object to post back to firebase
     this.setMonthWithDebouce(newMonth, this.props.month.monthRef, this.props.auth.uid);
   }
 
   syncLocalPlannerToStore() {
-    const day = getDay(this.props.selectedDate.date);
+    const day = getDayNumber(this.props.selectedDate.date);
 
     this.setState({
       plannerTextBox:
@@ -69,7 +69,16 @@ class PlannerPage extends React.Component {
       <>
         <ul className="list-group list-group-horizontal dateControl">
           <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.backwords, this.props.selectedDate.date)}>&lt;&lt;</button></li>
-          <li className="list-group-item  dateControl"><h4>{getFormattedShortDate(this.props.selectedDate.date)}</h4></li>
+          <li className="list-group-item  dateControl">
+            <table className="dateControl">
+              <tr>
+                <th>{getFormattedShortDate(this.props.selectedDate.date)}</th>
+              </tr>
+              <tr>
+                <th>{getDayOfWeekShort(this.props.selectedDate.date)}</th>
+              </tr>
+            </table>
+          </li>
           <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.forward, this.props.selectedDate.date)}>&gt;&gt;</button></li>
         </ul>
         <textarea
