@@ -8,6 +8,7 @@ import CalendarPage from '../pages/calander';
 import EventPage from '../pages/event';
 import JournalPage from '../pages/journal';
 import BrowseNotePage from '../pages/browseNotes';
+import NotePage from '../pages/note';
 import PlannerPage from '../pages/planner';
 import ProjectPage from '../pages/project';
 import RecurringPage from '../pages/recurring';
@@ -45,8 +46,9 @@ class PageRouter extends React.Component {
             <PrivateRoute path="/journal" component={JournalPage} />
             <PrivateRoute path="/planner" component={PlannerPage} />
             <PrivateRoute path="/recurring" component={RecurringPage} />
-            <PrivateRoute path="/project" component={ProjectPage} />
-            <PrivateRoute path="/note" component={BrowseNotePage} />
+            <PrivateRoute path="/projects" component={ProjectPage} />
+            <PrivateRoute path="/notes" component={BrowseNotePage} />
+            <PrivateRoute path="/note" component={NotePage} />
             <Route path="*" component={NotFoundScreen} />
           </Switch>
         </div>
