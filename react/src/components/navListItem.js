@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class NavListItem extends React.Component {
   // constructor(props) {
   //   super(props);

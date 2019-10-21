@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { dismissAlert, setAlert } from '../services/alerts/action';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class AlertBanner extends React.Component {
   componentDidMount() {
     window.onerror = (message, file, line, column, errorObject) => {

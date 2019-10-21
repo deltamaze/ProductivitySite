@@ -5,7 +5,7 @@ import { getFormattedShortDate, getDayNumber, getDayOfWeekShort } from '../utili
 import { setMonth } from '../services/monthsEntity/action';
 import debounce from '../utilities/debounce';
 import { generateNewMonth, getDayPlanner } from '../utilities/monthHelper';
-// eslint-disable-next-line react/prefer-stateless-function
+
 class PlannerPage extends React.Component {
   constructor(props) {
     super(props);
@@ -67,25 +67,33 @@ class PlannerPage extends React.Component {
   render() {
     return (
       <>
-        <ul className="list-group list-group-horizontal dateControl">
-          <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.backwords, this.props.selectedDate.date)}>&lt;&lt;</button></li>
-          <li className="list-group-item  dateControl">
-            <table className="dateControl">
-              <tr>
-                <th>{getFormattedShortDate(this.props.selectedDate.date)}</th>
-              </tr>
-              <tr>
-                <th>{getDayOfWeekShort(this.props.selectedDate.date)}</th>
-              </tr>
-            </table>
-          </li>
-          <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.forward, this.props.selectedDate.date)}>&gt;&gt;</button></li>
-        </ul>
-        <textarea
-          id="plannerInput"
-          value={this.state.plannerTextBox}
-          onChange={this.handleChange}
-        />
+        {(this.props.month.monthData === 'Loading') ? (
+          <div>Loading...</div>
+        ) : (
+          <>
+            <ul className="list-group list-group-horizontal dateControl">
+              <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.backwords, this.props.selectedDate.date)}>&lt;&lt;</button></li>
+              <li className="list-group-item  dateControl">
+                <table className="dateControl">
+                  <thead>
+                    <tr>
+                      <th>{getFormattedShortDate(this.props.selectedDate.date)}</th>
+                    </tr>
+                    <tr>
+                      <th>{getDayOfWeekShort(this.props.selectedDate.date)}</th>
+                    </tr>
+                  </thead>
+                </table>
+              </li>
+              <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.forward, this.props.selectedDate.date)}>&gt;&gt;</button></li>
+            </ul>
+            <textarea
+              id="plannerInput"
+              value={this.state.plannerTextBox}
+              onChange={this.handleChange}
+            />
+          </>
+        )}
       </>
     );
   }

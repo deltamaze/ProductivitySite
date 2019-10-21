@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class NavBar extends React.Component {
   // constructor(props) {
   //   super(props);

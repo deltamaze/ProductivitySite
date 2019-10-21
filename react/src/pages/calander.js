@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setMonth } from '../services/monthsEntity/action';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class CalendarPage extends React.Component {
   // constructor(props) {
   //   super(props);

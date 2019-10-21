@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { connect } from 'react-redux';
 import NavListItem from './navListItem';
-// eslint-disable-next-line react/prefer-stateless-function
+
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +25,7 @@ class SideBar extends React.Component {
     return (
       <div className="sidebar">
         <div className="top-row pl-4 navbar navbar-dark">
-          <a className="navbar-brand" id="mainLogo" to="">SimplePlanner</a>
+          <a className="navbar-brand" id="mainLogo" to="/">SimplePlanner</a>
           <button className="navbar-toggler" onClick={() => this.toggleCollapse()}>
             <span className="navbar-toggler-icon" />
           </button>
@@ -43,7 +42,7 @@ class SideBar extends React.Component {
                 <NavListItem route="recurring" label="Recurring" icon="reload" />
                 <NavListItem route="event" label="Events" icon="flag" />
                 <NavListItem route="project" label="Project Tracker" icon="project" />
-                <NavListItem route="note" label="Notes" icon="align-left" />
+                <NavListItem route="notes" label="Notes" icon="align-left" />
                 <NavListItem route="journal" label="Journal" icon="book" />
                 <NavListItem route="signoff" label="LogOff" icon="account-logout" />
               </>

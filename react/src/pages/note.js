@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// eslint-disable-next-line react/prefer-stateless-function
+
 class NotePage extends React.Component {
   // constructor(props) {
   //   super(props);

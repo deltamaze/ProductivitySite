@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// eslint-disable-next-line react/prefer-stateless-function
+
 class ProjectPage extends React.Component {
   // constructor(props) {
   //   super(props);
@@ -20,7 +20,7 @@ class ProjectPage extends React.Component {
 }
 
 export default connect(
-  state => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth }),
   ({
   })
 )(ProjectPage);

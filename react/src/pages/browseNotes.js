@@ -1,26 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import BrowseItems from '../components/browseItems';
 
-// eslint-disable-next-line react/prefer-stateless-function
-class BrowseNotePage extends React.Component {
+class BrowseNotesPage extends React.Component {
   // constructor(props) {
   //   super(props);
   // }
   componentDidMount() {
-    // this.props.fetchAuth();
   }
 
   render() {
     return (
-      <div>
-        BrowseNotePage
-      </div>
+      <BrowseItems itemType="Notes" />
     );
   }
 }
 
-export default connect(
-  (state) => ({ auth: state.auth }),
-  ({
-  })
-)(BrowseNotePage);
+export default BrowseNotesPage;

@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { fetchAuth } from '../services/auth/action';
 import { fetchMonth } from '../services/monthsEntity/action';
 import { getMonthYear } from '../utilities/dateHelper';
+import { fetchItemIndex } from '../services/itemIndexEntity/action';
 
 class FirebaseServiceStarter extends React.Component {
   componentDidMount() {
     this.props.fetchAuth();
     this.updateMonth();
+    this.fetchAuthorizedServices();
   }
 
   componentDidUpdate(prevProps) {
@@ -25,6 +27,13 @@ class FirebaseServiceStarter extends React.Component {
     this.props.fetchMonth(this.props.auth.uid, getMonthYear(this.props.selectedDate.date));
   }
 
+  fetchAuthorizedServices() {
+    if (this.props.auth.uid == 'Connecting' || this.props.auth.uid == 'NotLoggedIn') {
+      return;
+    }
+    this.props.fetchItemIndex(this.props.auth.uid);
+  }
+
   render() {
     return (
       null
@@ -35,6 +44,6 @@ class FirebaseServiceStarter extends React.Component {
 export default connect(
   (state) => ({ auth: state.auth, selectedDate: state.selectedDate }),
   ({
-    fetchAuth, fetchMonth
+    fetchAuth, fetchMonth, fetchItemIndex
   })
 )(FirebaseServiceStarter);

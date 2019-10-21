@@ -21,6 +21,10 @@ platforms
 #secrets
 /secrets
 
+#firebase deployInfo
+.firebaserc
+firebase.json
+
 # misc
 .DS_Store
 .env.local
