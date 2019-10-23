@@ -18,18 +18,11 @@ export function fetchItemIndex(uid) { // test for now, later change to be more l
     try {
       itemIndexRef = db.collection('users').doc(uid).collection('itemIndex'); // default unset value
       itemIndexListener = itemIndexRef // default unset value
-        .onSnapshot((doc) => {
-          if (doc.data() === undefined) {
-            dispatch({
-              type: SETITEMINDEX,
-              payload: { items: undefined } // item not set yet
-            });
-          } else { // cal item set, push to state
-            dispatch({
-              type: SETITEMINDEX,
-              payload: { items: doc.data() }
-            });
-          }
+        .onSnapshot((results) => {
+          dispatch({
+            type: SETITEMINDEX,
+            payload: { items: results.docs }
+          });
         });
     } catch (err) {
       setAlertWithDispath(JSON.stringify(err));

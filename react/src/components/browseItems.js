@@ -7,13 +7,21 @@ class BrowseItems extends React.Component {
 
 
   render() {
-    return (<>BrowseItems, {this.props.itemType}</>
+    return (
+      <>BrowseItems, {this.props.itemType}
+        Files:
+        {
+          this.props.itemIndex.items
+            .filter((value) => value.data().itemType === this.props.itemType)
+            .map((value) => <li key={value.id}>{value.data().itemTitle}</li>)
+        }
+      </>
     );
   }
 }
 
 export default connect(
-  () => ({ }),
+  (state) => ({ itemIndex: state.itemIndex }),
   ({
   })
 )(BrowseItems);
