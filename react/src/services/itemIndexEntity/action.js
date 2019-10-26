@@ -16,7 +16,7 @@ export function fetchItemIndex(uid) { // test for now, later change to be more l
       });// notify view that new month will be loading
     }
     try {
-      itemIndexRef = db.collection('users').doc(uid).collection('itemIndex'); // default unset value
+      itemIndexRef = db.collection('users').doc(uid).collection('itemIndex').orderBy('itemTitle'); // default unset value
       itemIndexListener = itemIndexRef // default unset value
         .onSnapshot((results) => {
           dispatch({
