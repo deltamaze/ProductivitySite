@@ -20,7 +20,7 @@ class BrowseItems extends React.Component {
               this.props.auth.uid
             )}
           >
-            Add New {this.props.itemType.charAt(0).toUpperCase() + this.props.itemType.slice(1)};
+            Add New {this.props.itemType.charAt(0).toUpperCase() + this.props.itemType.slice(1)}
           </button>
 
         </div>

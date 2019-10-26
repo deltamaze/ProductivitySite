@@ -31,8 +31,8 @@ export function fetchItemIndex(uid) { // test for now, later change to be more l
 }
 
 export function addItem(item, uid) {
-  db.collection('users').doc(uid).collection('itemIndex').add
-    .set(item)
+  db.collection('users').doc(uid).collection('itemIndex')
+    .add(item)
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
   return () => { };
 }
