@@ -48,7 +48,7 @@ class PageRouter extends React.Component {
             <PrivateRoute path="/recurring" component={RecurringPage} />
             <PrivateRoute path="/projects" component={ProjectPage} />
             <PrivateRoute path="/notes" component={BrowseNotesPage} />
-            <PrivateRoute path="/note" component={NotePage} />
+            <PrivateRoute path="/notes/:noteId" component={NotePage} />
             <Route path="*" component={NotFoundScreen} />
           </Switch>
         </div>

@@ -14,7 +14,6 @@ class CalendarPage extends React.Component {
     return (
       <div>
         CalendarPage
-        <button onClick={() => (this.props.setMonth({ test: 'test' }))}>test</button>
       </div>
     );
   }
