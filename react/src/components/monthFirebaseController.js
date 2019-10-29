@@ -4,7 +4,7 @@ import { getDayNumber } from '../utilities/dateHelper';
 import { setMonth } from '../services/monthsEntity/action';
 import debounce from '../utilities/debounce';
 import { generateNewMonth, getDayPlanner } from '../utilities/monthHelper';
-import DaySelector from '../components/daySelector';
+import DaySelector from './daySelector';
 
 class PlannerPage extends React.Component {
   constructor(props) {
