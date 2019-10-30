@@ -6,9 +6,6 @@ class BrowseItems extends React.Component {
   componentDidMount() {
   }
 
-
-  // TODO make onClick for Add New Item create the item,
-  // auto generate a Title, and navigate user to that item page
   render() {
     return (
       <>

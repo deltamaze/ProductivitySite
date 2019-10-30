@@ -15,7 +15,6 @@ class DaySelector extends React.Component {
 
 
   incrementDate(direction, date) {
-    // TODO if local state differs from firebase snapshot, sync without delay
     const day = direction * (1000 * 60 * 60 * 24);
     let newDate = parseInt(date, 10);
     newDate += day;

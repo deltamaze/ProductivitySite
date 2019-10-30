@@ -6,19 +6,19 @@ import debounce from '../utilities/debounce';
 import { generateNewMonth, getDayPlanner } from '../utilities/monthHelper';
 import DaySelector from './daySelector';
 
-class PlannerPage extends React.Component {
+class DayController extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this); // to grab event data, need to bind
     this.setMonthWithDebouce = debounce(this.props.setMonth, 1000);
     this.state = {
-      plannerTextBox: ''
+      mainTextArea: ''
     };
   }
 
   componentDidMount() {
-    this.syncLocalPlannerToStore();
+    this.syncLocalStateToStore();
   }
 
   componentDidUpdate(prevProps) {
@@ -29,12 +29,11 @@ class PlannerPage extends React.Component {
       || this.props.month.monthRef !== prevProps.month.monthRef) {
       this.syncLocalPlannerToStore();
     }
-    // TODO set inital month state as loading, then if prevProps = loaded, call syncLocalPlanner
   }
 
   handleChange(event) {
     this.setState({
-      plannerTextBox: event.target.value // handle input and update textbox
+      mainTextArea: event.target.value // handle input and update textbox
     });
     const day = getDayNumber(this.props.selectedDate.date);
     const newMonth = generateNewMonth(day, event.target.value, this.props.month.monthData);
@@ -46,7 +45,7 @@ class PlannerPage extends React.Component {
     const day = getDayNumber(this.props.selectedDate.date);
 
     this.setState({
-      plannerTextBox:
+      mainTextArea:
         getDayPlanner(day, this.props.month.monthData) // handle input and update textbox
     });
   }
@@ -61,7 +60,7 @@ class PlannerPage extends React.Component {
             <DaySelector />
             <textarea
               id="mainTextAreaInput"
-              value={this.state.plannerTextBox}
+              value={this.state.mainTextArea}
               onChange={this.handleChange}
             />
           </>
@@ -76,4 +75,4 @@ export default connect(
   ({
     setMonth
   })
-)(PlannerPage);
+)(DayController);
