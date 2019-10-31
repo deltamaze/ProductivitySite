@@ -18,7 +18,7 @@ class DayController extends React.Component {
   }
 
   componentDidMount() {
-    this.syncLocalStateToStore();
+    this.syncLocalStateToFirebaseData();
   }
 
   componentDidUpdate(prevProps) {
@@ -27,7 +27,7 @@ class DayController extends React.Component {
     if (this.props.selectedDate.date !== prevProps.selectedDate.date
       || this.props.auth.uid != prevProps.auth.uid
       || this.props.month.monthRef !== prevProps.month.monthRef) {
-      this.syncLocalPlannerToStore();
+      this.syncLocalStateToFirebaseData();
     }
   }
 
@@ -41,7 +41,7 @@ class DayController extends React.Component {
     this.setMonthWithDebouce(newMonth, this.props.month.monthRef, this.props.auth.uid);
   }
 
-  syncLocalPlannerToStore() {
+  syncLocalStateToFirebaseData() {
     const day = getDayNumber(this.props.selectedDate.date);
 
     this.setState({
