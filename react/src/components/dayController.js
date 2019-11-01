@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getDayNumber } from '../utilities/dateHelper';
 import { setMonth } from '../services/monthsEntity/action';
 import debounce from '../utilities/debounce';
-import { generateNewMonth, getDayPlanner } from '../utilities/monthHelper';
+import { generateNewMonth, getDayElement } from '../utilities/monthHelper';
 import DaySelector from './daySelector';
 
 class DayController extends React.Component {
@@ -46,7 +46,9 @@ class DayController extends React.Component {
 
     this.setState({
       mainTextArea:
-        getDayPlanner(day, this.props.month.monthData) // handle input and update textbox
+        getDayElement(day,
+          this.props.month.monthData,
+          this.props.dayTargetElement) // handle input and update textbox
     });
   }
 
