@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getDayNumber } from '../utilities/dateHelper';
 import { setMonth } from '../services/monthsEntity/action';
 import debounce from '../utilities/debounce';
-import { generateNewMonth, getDayElement } from '../utilities/monthHelper';
+import { generateMonthPayload, getDayElement } from '../utilities/monthHelper';
 import DaySelector from './daySelector';
 
 class DayController extends React.Component {
@@ -36,7 +36,10 @@ class DayController extends React.Component {
       mainTextArea: event.target.value // handle input and update textbox
     });
     const day = getDayNumber(this.props.selectedDate.date);
-    const newMonth = generateNewMonth(day, event.target.value, this.props.month.monthData);
+    const newMonth = generateMonthPayload(day,
+      this.props.element,
+      event.target.value,
+      this.props.month.monthData);
     // package us a new month object to post back to firebase
     this.setMonthWithDebouce(newMonth, this.props.month.monthRef, this.props.auth.uid);
   }
@@ -48,7 +51,7 @@ class DayController extends React.Component {
       mainTextArea:
         getDayElement(day,
           this.props.month.monthData,
-          this.props.dayTargetElement) // handle input and update textbox
+          this.props.element) // handle input and update textbox
     });
   }
 

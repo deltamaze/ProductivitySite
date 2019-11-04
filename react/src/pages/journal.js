@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import DayController from '../components/dayController';
 
 
 class JournalPage extends React.Component {
@@ -12,9 +13,7 @@ class JournalPage extends React.Component {
 
   render() {
     return (
-      <div>
-        JournalPage
-      </div>
+      <DayController element="journal" />
     );
   }
 }
