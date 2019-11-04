@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { setDate } from '../services/selectedDate/action';
 import { getFormattedShortDate, getDayOfWeekShort } from '../utilities/dateHelper';
 import { setMonth } from '../services/monthsEntity/action';
@@ -11,6 +12,11 @@ class DaySelector extends React.Component {
       forward: 1,
       backwords: -1,
     };
+  }
+
+  routeChange() {
+    const path = 'calendar';
+    this.props.history.push(path);
   }
 
 
@@ -29,6 +35,7 @@ class DaySelector extends React.Component {
         <ul className="list-group list-group-horizontal dateControl">
           <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.backwords, this.props.selectedDate.date)}>&lt;&lt;</button></li>
           <li className="list-group-item  dateControl">
+            <button onClick={() => this.routeChange()} />
             <table className="dateControl">
               <thead>
                 <tr>
@@ -52,4 +59,4 @@ export default connect(
   ({
     setDate, setMonth
   })
-)(DaySelector);
+)(withRouter(DaySelector));
