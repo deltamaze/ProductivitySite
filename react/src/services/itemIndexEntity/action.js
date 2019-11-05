@@ -43,3 +43,10 @@ export function setItem(item, itemId, uid) {
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
   return () => { };
 }
+
+export function deleteItem(item, itemId, uid) {
+  db.collection('users').doc(uid).collection('itemIndex').doc(itemId)
+    .set(item)
+    .catch((err) => setAlertWithDispath(JSON.stringify(err)));
+  return () => { };
+}
