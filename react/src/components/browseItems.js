@@ -9,27 +9,35 @@ class BrowseItems extends React.Component {
   render() {
     return (
       <>
-        <div>
-          <button
-            className="btn btn-sm btn-success "
-            onClick={() => this.props.addItem(
-              { itemPath: '/', itemTitle: 'NewItem', itemType: this.props.itemType },
-              this.props.auth.uid
-            )}
-          >
+        {(this.props.itemIndex.items === 'Loading') ? (
+          <div>Loading...</div>
+        ) : (
+          <>
+            <div>
+              <button
+                className="btn btn-sm btn-success "
+                onClick={() => this.props.addItem(
+                  { itemPath: '/', itemTitle: 'NewItem', itemType: this.props.itemType },
+                  this.props.auth.uid
+                )}
+              >
             Add New {this.props.itemType.charAt(0).toUpperCase() + this.props.itemType.slice(1)}
-          </button>
+              </button>
 
-        </div>
-        <br />
+            </div>
+            <br />
         BrowseItems, {this.props.itemType}
         Files:
-        {
-          this.props.itemIndex.items
-            .filter((value) => value.data().itemType === this.props.itemType)
-            .map((value) => <li key={value.id}>{value.data().itemTitle}</li>)
-        }
+            {
+              this.props.itemIndex.items
+                .filter((value) => value.data().itemType === this.props.itemType)
+                .map((value) => <li key={value.id}>{value.data().itemTitle}</li>)
+            }
+          </>
+        )}
       </>
+
+
     );
   }
 }
