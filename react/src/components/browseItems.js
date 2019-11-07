@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addItem } from '../services/itemIndexEntity/action';
 
@@ -31,7 +32,7 @@ class BrowseItems extends React.Component {
             {
               this.props.itemIndex.items
                 .filter((value) => value.data().itemType === this.props.itemType)
-                .map((value) => <li key={value.id}>{value.data().itemTitle}</li>)
+                .map((value) => <li key={value.id}><Link to="note">{value.data().itemTitle}</Link><button type="button" className="btn btn-sm" onClick={this.props.dismissAlert}>delete</button></li>)
             }
           </>
         )}
