@@ -36,17 +36,33 @@ class Note extends React.Component {
     if (this.props.auth.uid == 'Connecting' || this.props.auth.uid == 'NotLoggedIn') {
       return;
     }
-    this.props.fetchNote(this.props.auth.uid, this.props.match.noteId);
+    this.props.fetchNote(this.props.auth.uid, this.props.match.params.itemId);
     this.syncLocalStateToFirebaseData();
   }
 
 
   handleChange(event) {
     this.setState({
+      titleTextBox: event.target.value // handle input and update textbox
+    });
+
+    this.setNoteWithDebouce(
+      event.target.value,
+      this.props.match.params.itemId,
+      this.props.auth.uid
+    );
+  }
+
+  handleTitleChange(event) {
+    this.setState({
       mainTextArea: event.target.value // handle input and update textbox
     });
 
-    this.setNoteWithDebouce(event.target.value, this.props.itemId, this.props.auth.uid);
+    this.setTitleWithDebouce(
+      event.target.value,
+      this.props.match.params.itemId,
+      this.props.auth.uid
+    );
   }
 
   syncLocalStateToFirebaseData() {
@@ -63,9 +79,10 @@ class Note extends React.Component {
         ) : (
           <>
             <input
-              id="titleTextBox"
+              id="mainTexBoxInput"
               type="text"
               value={this.state.titleTextBox}
+              onChange={this.handleTitleChange}
             />
             <textarea
               id="mainTextAreaInput"

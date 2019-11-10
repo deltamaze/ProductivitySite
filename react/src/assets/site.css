@@ -153,6 +153,10 @@ a, .btn-link {
     width: 100%;
     height: 50vh;
 }
+#mainTexBoxInput{
+    width: 100%;
+    height: 10vh;
+}
 ul.dateControl{
     width: 100%;
 }

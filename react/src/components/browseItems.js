@@ -23,8 +23,8 @@ class BrowseItems extends React.Component {
     });
   }
 
-  redirectToNewItem(itemId){
-    console.log("called");
+  redirectToNewItem(itemId) {
+    console.log('called');
     console.log(itemId);
   }
 
@@ -56,7 +56,7 @@ class BrowseItems extends React.Component {
                 .filter((value) => value.data().itemType === this.props.itemType)
                 .map((value) => (
                   <li key={value.id}>
-                    <Link to="note">{value.data().itemTitle}</Link>
+                    <Link to={`${this.props.itemType}/${value.id}`}>{value.data().itemTitle}</Link>
                     <button
                       type="button"
                       className="btn btn-sm"

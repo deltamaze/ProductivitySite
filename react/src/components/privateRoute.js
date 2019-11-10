@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prefer-stateless-function */
 // This is used to determine if a user is authenticated and
 // if they are allowed to visit the page they navigated to.
 
@@ -8,24 +10,51 @@ import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-class PrivateRoute extends React.Component {
-  componentDidMount() {
-  }
+// class PrivateRoute extends React.Component {
+//   componentDidMount() {
+//   }
 
+//   render() {
+//     console.log(this.props);
+//     return (
+//       <Route
+//         render={(props) => ((this.props.auth.uid !== 'NotLoggedIn') ? (
+//           // eslint-disable-next-line react/jsx-props-no-spreading
+//           <this.props.component {...props} />
+//         ) : (
+//           <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
+//         ))}
+//       />
+//     );
+//   }
+// }
+
+class PrivateRoute extends React.Component {
   render() {
+    const { component: Component, ...rest } = this.props;
+
+    const renderRoute = (props) => {
+      if (this.props.auth.uid !== 'NotLoggedIn') {
+        return (
+          <Component {...props} />
+        );
+      }
+
+      const to = {
+        pathname: '/signin',
+        state: { from: props.location }
+      };
+
+      return (
+        <Redirect to={to} />
+      );
+    };
+
     return (
-      <Route
-        render={(props) => ((this.props.auth.uid !== 'NotLoggedIn') ? (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <this.props.component {...props} />
-        ) : (
-          <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
-        ))}
-      />
+      <Route {...rest} render={renderRoute} />
     );
   }
 }
-
 
 export default connect(
   (state) => ({ auth: state.auth })
