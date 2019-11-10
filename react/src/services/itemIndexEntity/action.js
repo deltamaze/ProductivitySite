@@ -43,16 +43,32 @@ export function setItem(item, itemId, uid) {
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
   return () => { };
 }
-export function softDeleteItem(item, itemId, uid) {
+export function setNoteContent(item, itemId, uid) {
+  db.collection('users').doc(uid).collection('itemIndex').doc(itemId)
+    .set(item)
+    .catch((err) => setAlertWithDispath(JSON.stringify(err)));
+  return () => { };
+}
+export function setProjectContent(item, itemId, uid) {
   db.collection('users').doc(uid).collection('itemIndex').doc(itemId)
     .set(item)
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
   return () => { };
 }
 
-export function deleteItem(item, itemId, uid) {
+export function deleteItem(itemId, uid) {
+  // delete content if exist
+  db.collection('users').doc(uid).collection('noteContent').doc(itemId)
+    .delete()
+    .catch((err) => setAlertWithDispath(JSON.stringify(err)));
+
+  db.collection('users').doc(uid).collection('projectContent').doc(itemId)
+    .delete()
+    .catch((err) => setAlertWithDispath(JSON.stringify(err)));
+
+  // delete index
   db.collection('users').doc(uid).collection('itemIndex').doc(itemId)
-    .set(item)
+    .delete()
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
   return () => { };
 }

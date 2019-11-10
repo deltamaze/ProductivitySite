@@ -35,7 +35,7 @@ class DaySelector extends React.Component {
         <ul className="list-group list-group-horizontal dateControl">
           <li className="list-group-item  dateControl"><button className="btn btn-outline-dark dateControl" onClick={() => this.incrementDate(this.direction.backwords, this.props.selectedDate.date)}>&lt;&lt;</button></li>
           <li className="list-group-item  dateControl">
-            <button className="btn btn-outline-dark dateControl" onClick={() => this.routeChange()}>
+            <button className="btn btn-light dateControl" onClick={() => this.routeChange()}>
               <table className="dateControl">
                 <thead>
                   <tr>

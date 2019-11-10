@@ -18,7 +18,10 @@ class FirebaseServiceStarter extends React.Component {
     || this.props.auth.uid != prevProps.auth.uid) { // , or change of uid status, fetch month
       this.updateMonth();
     }
-    this.fetchAuthorizedServices();
+    if (this.props.auth.uid != prevProps.auth.uid) {
+      this.fetchAuthorizedServices(); // logged in
+    }
+    // TODO determine if user logged out, clear all listeners if so
   }
 
   updateMonth() {
