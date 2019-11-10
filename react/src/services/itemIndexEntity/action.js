@@ -36,6 +36,15 @@ export function addItem(item, uid) {
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
   return () => { };
 }
+export function addItemWithRedirect(item, uid, callback) {
+  db.collection('users').doc(uid).collection('itemIndex')
+    .add(item)
+    .then((docRef) => {
+      callback(docRef.id);
+    })
+    .catch((err) => setAlertWithDispath(JSON.stringify(err)));
+  return () => { };
+}
 
 export function setItem(item, itemId, uid) {
   db.collection('users').doc(uid).collection('itemIndex').doc(itemId)

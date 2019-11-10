@@ -36,7 +36,7 @@ class Note extends React.Component {
     if (this.props.auth.uid == 'Connecting' || this.props.auth.uid == 'NotLoggedIn') {
       return;
     }
-    this.props.fetchItemIndex(this.props.auth.uid);
+    this.props.fetchNote(this.props.auth.uid, this.props.match.noteId);
     this.syncLocalStateToFirebaseData();
   }
 
