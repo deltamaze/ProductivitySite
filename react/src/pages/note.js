@@ -20,12 +20,19 @@ class Note extends React.Component {
 
   componentDidMount() {
     this.fetchAuthorizedServices();
+    this.syncNoteTextToFirebaseData();
   }
 
   componentDidUpdate(prevProps) {
+    // change in login
     if (this.props.auth.uid != prevProps.auth.uid) {
-      this.fetchAuthorizedServices(); // logged in
+      this.fetchAuthorizedServices();
     }
+    // firebase notes loaded
+    if (prevProps.note.noteData === 'Loading' && prevProps.note.noteData != this.props.note.noteData) {
+      this.syncNoteTextToFirebaseData();
+    }
+    // itemIndex loaded
   }
 
   componentWillUnmount() {
@@ -37,7 +44,6 @@ class Note extends React.Component {
       return;
     }
     this.props.fetchNote(this.props.auth.uid, this.props.match.params.itemId);
-    this.syncLocalStateToFirebaseData();
   }
 
 
@@ -65,7 +71,10 @@ class Note extends React.Component {
     );
   }
 
-  syncLocalStateToFirebaseData() {
+  syncNoteTextToFirebaseData() {
+    if (this.props.note.noteData === 'Loading') {
+      return;
+    }
     this.setState({
       mainTextArea: ''
     });
