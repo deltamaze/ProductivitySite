@@ -12,7 +12,7 @@ class NavListItem extends React.Component {
   render() {
     return (
       <li className="nav-item px-3">
-        <Link className="nav-link" to={this.props.route}>
+        <Link className="nav-link" to={`/${this.props.route}`}>
           <span className={`oi oi-${this.props.icon}`} aria-hidden="true" />{this.props.label}
         </Link>
       </li>

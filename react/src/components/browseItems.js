@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addItemWithRedirect, deleteItem } from '../services/itemIndexEntity/action';
 import ConfirmModal from './confirmModal';
@@ -23,11 +23,6 @@ class BrowseItems extends React.Component {
     });
   }
 
-  redirectToNewItem(itemId) {
-    console.log('called');
-    console.log(itemId);
-  }
-
   render() {
     return (
       <>
@@ -41,16 +36,15 @@ class BrowseItems extends React.Component {
                 onClick={() => this.props.addItemWithRedirect(
                   { itemPath: '/', itemTitle: 'NewItem', itemType: this.props.itemType },
                   this.props.auth.uid,
-                  this.redirectToNewItem
+                  (newId) => {
+                    this.props.history.push(`note/${newId}`);
+                  }
                 )}
               >
             Add New {this.props.itemType.charAt(0).toUpperCase() + this.props.itemType.slice(1)}
               </button>
 
             </div>
-            <br />
-        BrowseItems, {this.props.itemType}
-        Files:
             {
               this.props.itemIndex.items
                 .filter((value) => value.data().itemType === this.props.itemType)
@@ -92,4 +86,4 @@ export default connect(
   ({
     addItemWithRedirect, deleteItem
   })
-)(BrowseItems);
+)(withRouter(BrowseItems));
