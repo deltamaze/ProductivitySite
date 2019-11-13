@@ -12,8 +12,8 @@ export function removeNoteListener() { // test for now, later change to be more 
       noteListener(); // Remove previous listener
       dispatch({
         type: SETNOTE,
-        payload: { noteData: 'Loading' } // month item not set yet
-      });// notify view that new month will be loading
+        payload: { noteData: 'Loading' } // note item not set yet
+      });// notify view that new note will be loading
     }
   };
 }
@@ -29,7 +29,7 @@ export function fetchNote(uid, itemId) { // test for now, later change to be mor
           if (doc.data() === undefined) {
             dispatch({
               type: SETNOTE,
-              payload: { noteData: undefined } // month item not set yet
+              payload: { noteData: undefined } // note item not set yet
             });
           } else { // cal item set, push to state
             dispatch({

@@ -16,6 +16,8 @@ class Note extends React.Component {
       mainTextArea: '',
       titleTextBox: ''
     };
+
+    this.handleChange = this.handleChange.bind(this); // to grab event data, need to bind
   }
 
   componentDidMount() {
@@ -75,6 +77,7 @@ class Note extends React.Component {
     if (this.props.note.noteData === 'Loading') {
       return;
     }
+    console.log(this.props.note.noteData);
     this.setState({
       mainTextArea: ''
     });
