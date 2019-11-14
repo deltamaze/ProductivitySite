@@ -18,6 +18,7 @@ class Note extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this); // to grab event data, need to bind
+    this.handleTitleChange = this.handleTitleChange.bind(this);
   }
 
   componentDidMount() {
