@@ -3,7 +3,6 @@ const noteReducer = (state = { noteData: 'Loading' }, action) => {
   case 'SETNOTE':
     return {
       noteData: action.payload.noteData
-      
     };
   default:
     return state;
