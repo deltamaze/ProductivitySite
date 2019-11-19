@@ -6,7 +6,7 @@ export const SETNOTE = 'SETNOTE';
 let noteRef;
 let noteListener;
 
-export function removeNoteListener() { // test for now, later change to be more like fetchAuth
+export function removeNoteListener() {
   return (dispatch) => {
     if (noteListener != undefined) {
       noteListener(); // Remove previous listener
@@ -46,7 +46,7 @@ export function fetchNote(uid, itemId) { // test for now, later change to be mor
 
 
 export function setNoteContent(note, itemId, uid) {
-  db.collection('users').doc(uid).collection('itemIndex').doc(itemId)
+  db.collection('users').doc(uid).collection('noteContent').doc(itemId)
     .set(note)
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
   return () => { };

@@ -10,7 +10,7 @@ class Note extends React.Component {
     this.noteRef = undefined;
     this.noteListener = undefined;
 
-    this.setNoteWithDebouce = debounce(this.props.setMonth, 1000);
+    this.setNoteWithDebouce = debounce(this.props.setNoteContent, 1000);
 
     this.state = {
       mainTextArea: '',
@@ -52,11 +52,11 @@ class Note extends React.Component {
 
   handleChange(event) {
     this.setState({
-      titleTextBox: event.target.value // handle input and update textbox
+      mainTextArea: event.target.value // handle input and update textbox
     });
 
     this.setNoteWithDebouce(
-      event.target.value,
+      { content: event.target.value },
       this.props.match.params.itemId,
       this.props.auth.uid
     );
@@ -78,9 +78,11 @@ class Note extends React.Component {
     if (this.props.note.noteData === 'Loading') {
       return;
     }
-    console.log(this.props.note.noteData);
+    if (this.props.note.noteData === undefined) {
+      return;
+    }
     this.setState({
-      mainTextArea: ''
+      mainTextArea: this.props.note.noteData.content
     });
   }
 
