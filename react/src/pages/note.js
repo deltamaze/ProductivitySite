@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { removeNoteListener, fetchNote, setNoteContent } from '../services/noteEntity/action';
+import { setItem } from '../services/itemIndexEntity/action';
 import debounce from '../utilities/debounce';
 
 class Note extends React.Component {
@@ -11,7 +12,7 @@ class Note extends React.Component {
     this.noteListener = undefined;
 
     this.setNoteWithDebouce = debounce(this.props.setNoteContent, 1000);
-
+    this.setTitleWithDebouce = debounce(this.props.setItem, 1000);
     this.state = {
       mainTextArea: '',
       titleTextBox: ''
@@ -24,6 +25,7 @@ class Note extends React.Component {
   componentDidMount() {
     this.fetchAuthorizedServices();
     this.syncNoteTextToFirebaseData();
+    this.syncTitleTextToFirebaseData();
   }
 
   componentDidUpdate(prevProps) {
@@ -36,10 +38,23 @@ class Note extends React.Component {
       this.syncNoteTextToFirebaseData();
     }
     // itemIndex loaded
+    if (prevProps.itemIndex.items === 'Loading' && prevProps.itemIndex.items != this.props.itemIndex.items) {
+      this.syncTitleTextToFirebaseData();
+    }
   }
 
   componentWillUnmount() {
     this.props.removeNoteListener();
+  }
+
+  getThisItem() {
+    const thisItem = this.props.itemIndex.items
+      .filter((value) => value.id === this.props.match.params.itemId);
+    // if undefined then navigate back to item list
+    if (thisItem.length === 0) {
+      console.log('TODO');
+    }
+    return thisItem[0];
   }
 
   fetchAuthorizedServices() {
@@ -64,11 +79,17 @@ class Note extends React.Component {
 
   handleTitleChange(event) {
     this.setState({
-      mainTextArea: event.target.value // handle input and update textbox
+      titleTextBox: event.target.value // handle input and update textbox
     });
+    const thisItem = this.getThisItem();
+    const itemPayload = {
+      itemPath: thisItem.data().itemPath,
+      itemTitle: event.target.value,
+      itemType: 'note'
+    };
 
     this.setTitleWithDebouce(
-      event.target.value,
+      itemPayload,
       this.props.match.params.itemId,
       this.props.auth.uid
     );
@@ -83,6 +104,21 @@ class Note extends React.Component {
     }
     this.setState({
       mainTextArea: this.props.note.noteData.content
+    });
+  }
+
+  syncTitleTextToFirebaseData() {
+    if (this.props.itemIndex.items === 'Loading') {
+      return;
+    }
+    if (this.props.itemIndex.items === undefined) {
+      return;
+    }
+    const thisItem = this.getThisItem();
+    const thisItemTitle = thisItem.data().itemTitle;
+
+    this.setState({
+      titleTextBox: thisItemTitle
     });
   }
 
@@ -111,8 +147,8 @@ class Note extends React.Component {
   }
 }
 export default connect(
-  (state) => ({ auth: state.auth, note: state.note }),
+  (state) => ({ auth: state.auth, note: state.note, itemIndex: state.itemIndex }),
   ({
-    removeNoteListener, fetchNote, setNoteContent
+    removeNoteListener, fetchNote, setNoteContent, setItem
   })
 )(Note);

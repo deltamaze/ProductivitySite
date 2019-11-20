@@ -20,10 +20,10 @@ function ConfirmModal(props) {
         <p>
           Are you sure you would like to delete: <strong>{props.itemTitle}</strong>
           <br /><br /><br />
-          <Button variant="primary" size="lg" block onClick={props.onHideWithDelete}>
+          <Button variant="danger" size="lg" block onClick={props.onHideWithDelete}>
             Yes, Delete
           </Button>
-          <Button variant="secondary" size="lg" block onClick={props.onHide}>
+          <Button variant="primary" size="lg" block onClick={props.onHide}>
             No, Cancel
           </Button>
         </p>

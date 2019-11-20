@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 import { addItemWithRedirect, deleteItem } from '../services/itemIndexEntity/action';
 import ConfirmModal from './confirmModal';
 
@@ -23,6 +24,10 @@ class BrowseItems extends React.Component {
     });
   }
 
+  // todo, convert addItem button to react-bootstrap
+  // todo, disable add item button for few seconds
+  // todo, add trash-icon to delete button
+  // todo, change from list to table, to have delete buttons inline
   render() {
     return (
       <>
@@ -49,15 +54,16 @@ class BrowseItems extends React.Component {
               this.props.itemIndex.items
                 .filter((value) => value.data().itemType === this.props.itemType)
                 .map((value) => (
-                  <li key={value.id}>
+                  <li className="marginBottom15" key={value.id}>
                     <Link to={`${this.props.itemType}/${value.id}`}>{value.data().itemTitle}</Link>
-                    <button
-                      type="button"
-                      className="btn btn-sm"
+                    <Button
+                      className="marginLeft20"
+                      variant="outline-danger"
+                      size="sm"
                       onClick={() => this.showConfirmDeleteModal(value.id, value.data().itemTitle)}
                     >
-                        delete
-                    </button>
+                      Delete
+                    </Button>
                   </li>
                 ))
             }
