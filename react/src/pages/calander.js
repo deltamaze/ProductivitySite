@@ -9,14 +9,20 @@ class CalendarPage extends React.Component {
   componentDidMount() {
     // this.props.fetchAuth();
   }
-  renderCalendarDays() {
-    let row = 1
-    let col = 1
-    //5 rows
-    //7 days
-    //make prop drill into td, so map the td to the actual date
-    //if selected date = td then circle the day value in td, similar to google cal
-  }
+
+  // renderCalendarDays() {
+  //   const row = 1;
+  //   const col = 1;
+  //   // 5 rows
+  //   // 7 days
+  //   // make prop drill into td, so map the td to the actual date
+  //   // if selected date = td then circle the day value in td, similar to google cal
+
+  // calculate first day of selected date month
+  // get date part , so for nov 2019, start is friday, so dayOfWeekInt is 6
+  // double loop inner count starts at 1. which should represents oct 27
+  // so display day should be dateadd(day,(innerLoopCount-dayOfWeekInt),firstDateOfMonth)
+  // }
 
   render() {
     return (
