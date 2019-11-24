@@ -49,3 +49,9 @@ export function getDayOfWeekShort(ms) {
   const date = new Date(ms);
   return days[date.getDay()].substring(0, 3);
 }
+export function getFirstDayOfMonth(ms) {
+  const date = new Date(ms);
+  const y = date.getFullYear();
+  const m = date.getMonth();
+  return new Date(y, m, 1);
+}

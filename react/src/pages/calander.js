@@ -1,28 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setMonth } from '../services/monthsEntity/action';
+import CalendarDay from '../components/calendarDay';
+import { getFirstDayOfMonth } from '../utilities/dateHelper';
 
 class CalendarPage extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
   componentDidMount() {
-    // this.props.fetchAuth();
   }
 
-  // renderCalendarDays() {
-  //   const row = 1;
-  //   const col = 1;
-  //   // 5 rows
-  //   // 7 days
-  //   // make prop drill into td, so map the td to the actual date
-  //   // if selected date = td then circle the day value in td, similar to google cal
-
-  // calculate first day of selected date month
-  // get date part , so for nov 2019, start is friday, so dayOfWeekInt is 6
-  // double loop inner count starts at 1. which should represents oct 27
-  // so display day should be dateadd(day,(innerLoopCount-dayOfWeekInt),firstDateOfMonth)
-  // }
+  renderCalendarDays() {
+    // calculate first day of selected date month
+    const firstDayOfMonth = getFirstDayOfMonth(this.props.selectedDate.date);
+    const dayOfWeek = firstDayOfMonth.getDay() + 1; // start at 1 instead of 0
+    // loop through to create calendar
+    // first loop is rows, 6 total
+    let cellCounter = 1;
+    const calendarRows = [];
+    for (let calRow = 1; calRow <= 6; calRow += 1) {
+      const calendarDays = [];
+      for (let calCol = 1; calCol <= 7; calCol += 1) {
+        // get date part , so for nov 2019, start is friday, so dayOfWeekInt is 6
+        // double loop inner count starts at 1. which should represents oct 27
+        // so display day should be dateadd(day,(innerLoopCount-dayOfWeekInt),firstDateOfMonth)
+        const calDay = new Date(firstDayOfMonth);
+        calDay.setDate(calDay.getDate() + (cellCounter - dayOfWeek));
+        calendarDays.push(<CalendarDay key={cellCounter} calDay={calDay} />);
+        cellCounter += 1;
+      }
+      calendarRows.push(<tr key={cellCounter * 100}>{calendarDays}</tr>);
+    }
+    return (<tbody>{calendarRows}</tbody>);
+  }
 
   render() {
     return (
@@ -30,7 +37,7 @@ class CalendarPage extends React.Component {
         CalendarPage <br />
         TODO Month Selector <br />
         TODO Year Selector <br />
-        <table id="calendarTable" className="table">
+        <table id="calendarTable" className="table table-bordered">
           <thead>
             <tr>
               <th>Sun</th>
@@ -42,62 +49,7 @@ class CalendarPage extends React.Component {
               <th>Sat</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-          </tbody>
+          {this.renderCalendarDays()}
         </table>
       </div>
     );
@@ -105,9 +57,9 @@ class CalendarPage extends React.Component {
 }
 
 export default connect(
-  (state) => ({ auth: state.auth }),
+  (state) => ({ selectedDate: state.selectedDate, month: state.month }),
   ({
-    setMonth
+
   })
 )(CalendarPage);
 

@@ -157,6 +157,22 @@ a, .btn-link {
     width: 100%;
     height: 80vh;
 }
+.calendarDay{
+    font-size: 14px;
+    font-weight: bold;
+}
+.adjacentMonth{
+    color:rgba(141, 141, 141, 0.678);
+    font-weight: normal;
+}
+.calendarTd{
+    padding: 0px;
+    font-size: 10px;
+}
+/* override bootstrap for a more compact table */
+.table td, .table th {
+    padding: 0px;
+}
 #mainTextAreaInput{
     width: 100%;
     height: 50vh;
