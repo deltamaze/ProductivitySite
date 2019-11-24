@@ -110,3 +110,8 @@ export default connect(
     setMonth
   })
 )(CalendarPage);
+
+
+// todo
+// set month
+// set year
