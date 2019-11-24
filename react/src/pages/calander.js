@@ -88,6 +88,15 @@ class CalendarPage extends React.Component {
               <td>0</td>
               <td>0</td>
             </tr>
+            <tr>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
           </tbody>
         </table>
       </div>
