@@ -26,13 +26,10 @@ class CalendarDay extends React.Component {
     const planner = getDayElement(this.dayNumber, this.props.month.monthData, 'planner');
     const journal = getDayElement(this.dayNumber, this.props.month.monthData, 'journal');
     if (planner != '') {
-      items.push(<>Planner✔️ </>);
+      items.push(<div key={`plan${this.props.key}`}><span style={{ fontsize: '20px' }} className="oi oi-list" aria-hidden="true" /><br /></div>);
     }
     if (journal != '') {
-      items.push(<>Journal✔️ </>);
-    }
-    if (journal != '' || planner != '') {
-      items.push(<br />);
+      items.push(<div key={`journ${this.props.key}`}><span style={{ fontsize: '20px' }} className="oi oi-book" aria-hidden="true" /><br /></div>);
     }
     return items;
   }

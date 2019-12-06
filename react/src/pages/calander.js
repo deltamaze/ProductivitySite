@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CalendarDay from '../components/calendarDay';
 import { getFirstDayOfMonth } from '../utilities/dateHelper';
+import MonthSelector from '../components/monthSelector';
 
 class CalendarPage extends React.Component {
   componentDidMount() {
@@ -23,35 +24,40 @@ class CalendarPage extends React.Component {
         // so display day should be dateadd(day,(innerLoopCount-dayOfWeekInt),firstDateOfMonth)
         const calDay = new Date(firstDayOfMonth);
         calDay.setDate(calDay.getDate() + (cellCounter - dayOfWeek));
-        calendarDays.push(<CalendarDay key={cellCounter} calDay={calDay} />);
+        calendarDays.push(<CalendarDay key={cellCounter.toString()} calDay={calDay} />);
         cellCounter += 1;
       }
-      calendarRows.push(<tr key={cellCounter * 100}>{calendarDays}</tr>);
+      calendarRows.push(<tr key={(cellCounter * 100).toString()}>{calendarDays}</tr>);
     }
     return (<tbody>{calendarRows}</tbody>);
   }
 
   render() {
     return (
-      <div>
-        CalendarPage <br />
-        TODO Month Selector <br />
-        TODO Year Selector <br />
-        <table id="calendarTable" className="table table-bordered">
-          <thead>
-            <tr>
-              <th>Sun</th>
-              <th>Mon</th>
-              <th>Tue</th>
-              <th>Wen</th>
-              <th>Thu</th>
-              <th>Fri</th>
-              <th>Sat</th>
-            </tr>
-          </thead>
-          {this.renderCalendarDays()}
-        </table>
-      </div>
+      <>
+        {(this.props.month.monthData === 'Loading') ? (
+          <div>Loading...</div>
+        ) : (
+          <div>
+            <MonthSelector />
+
+            <table id="calendarTable" className="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Sun</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wen</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                </tr>
+              </thead>
+              {this.renderCalendarDays()}
+            </table>
+          </div>
+        )}
+      </>
     );
   }
 }

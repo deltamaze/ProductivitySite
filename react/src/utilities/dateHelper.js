@@ -1,3 +1,6 @@
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
 const days = ['Sunday', 'Monday', 'Tuesday',
   'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 // const months = ['January', 'February', 'March', 'April',
@@ -54,4 +57,14 @@ export function getFirstDayOfMonth(ms) {
   const y = date.getFullYear();
   const m = date.getMonth();
   return new Date(y, m, 1);
+}
+export function getMonthName(ms) {
+  const date = new Date(ms);
+  return `${monthNames[date.getMonth()]}`;
+  // return `${monthNames[date.getMonth()].substring(0, 3)} ${date.getFullYear().toString()}`;
+}
+export function getYear(ms) {
+  const date = new Date(ms);
+  // return `${monthNames[date.getMonth()]}`;
+  return `${date.getFullYear().toString()}`;
 }
