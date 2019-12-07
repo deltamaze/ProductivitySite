@@ -161,6 +161,26 @@ a, .btn-link {
     font-size: 14px;
     font-weight: bold;
 }
+.calendarToday{
+    width:30px;
+    height:30px;
+    border-radius:20px;
+    font-size:14px;
+    color:#fff;
+    line-height:30px;
+    text-align:center;
+    background:rgb(0, 52, 119)
+}
+.calendarActiveDay{
+    width:30px;
+    height:30px;
+    border-radius:20px;
+    font-size:14px;
+    color:#fff;
+    line-height:30px;
+    text-align:center;
+    background:rgba(0, 52, 119, 0.705)
+}
 .adjacentMonth{
     color:rgba(141, 141, 141, 0.678);
     font-weight: normal;

@@ -2,8 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getDayNumber, getMonthYear } from '../utilities/dateHelper';
+import { getDayNumber, getMonthYear, getFormattedDate } from '../utilities/dateHelper';
 import { getDayElement } from '../utilities/monthHelper';
+import { setDate } from '../services/selectedDate/action';
 
 class CalendarDay extends React.Component {
   constructor(props) {
@@ -12,10 +13,23 @@ class CalendarDay extends React.Component {
     this.dayNumber = getDayNumber(this.intDate);
     this.isActiveMonth = (getMonthYear(this.intDate)
       === getMonthYear(this.props.selectedDate.date));
+    this.isToday = (getMonthYear(this.intDate)
+    === getMonthYear(this.props.selectedDate.date));
+    this.isActiveDay = (getMonthYear(this.intDate)
+    === getMonthYear(this.props.selectedDate.date));
     this.classAppliedToDisplayDay = 'calendarDay';
     if (!this.isActiveMonth) {
       this.classAppliedToDisplayDay = 'calendarDay adjacentMonth';
+    } else if (getFormattedDate(this.intDate) === getFormattedDate(new Date().getTime())) {
+      this.classAppliedToDisplayDay = 'calendarDay calendarToday';
+    } else if (this.isActiveMonth
+      && getFormattedDate(this.intDate) === getFormattedDate(this.props.selectedDate.date)) {
+      this.classAppliedToDisplayDay = 'calendarDay calendarActiveDay';
     }
+  }
+
+  calendarClick() {
+    this.props.setDate(this.intDate);
   }
 
   renderMonthStatus() {
@@ -40,7 +54,8 @@ class CalendarDay extends React.Component {
         {(this.props.month.monthData === 'Loading') ? (
           <div>Loading...</div>
         ) : (
-          <td className="calendarTd">
+          // eslint-disable-next-line
+          <td className="calendarTd" onClick={() => { this.calendarClick(); }}>
             <div className={this.classAppliedToDisplayDay}>{this.dayNumber}</div>
             <br />
             {this.renderMonthStatus()}
@@ -55,6 +70,7 @@ class CalendarDay extends React.Component {
 export default connect(
   (state) => ({ selectedDate: state.selectedDate, month: state.month }),
   ({
+    setDate
   })
 )(withRouter(CalendarDay));
 

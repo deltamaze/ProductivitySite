@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setDate } from '../services/selectedDate/action';
 import { getMonthName, getYear } from '../utilities/dateHelper';
-import { setMonth } from '../services/monthsEntity/action';
 
 class MonthSelector extends React.Component {
   constructor(props) {
@@ -55,6 +54,6 @@ class MonthSelector extends React.Component {
 export default connect(
   (state) => ({ auth: state.auth, selectedDate: state.selectedDate }),
   ({
-    setDate, setMonth
+    setDate
   })
 )(withRouter(MonthSelector));
