@@ -27,7 +27,7 @@ class CalendarDay extends React.Component {
     const items = [];
     const planner = getDayElement(this.dayNumber, this.props.month.monthData, 'planner');
     const journal = getDayElement(this.dayNumber, this.props.month.monthData, 'journal');
-    const plannerPreview = planner.length > 15 ? (`${planner.substring(0, 15).trim()}...`) : planner.substring(0, 15).trim();
+    const plannerPreview = planner.length > 100 ? (`${planner.substring(0, 100).trim()}...`) : planner.substring(0, 100).trim();
 
     if (planner != '') {
       items.push(
