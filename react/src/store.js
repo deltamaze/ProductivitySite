@@ -7,6 +7,7 @@ import alertReducer from './services/alerts/reducer';
 import selectedDateReducer from './services/selectedDate/reducer';
 import itemIndexReducer from './services/itemIndexEntity/reducer';
 import noteReducer from './services/noteEntity/reducer';
+import eventReducer from './services/eventsEntity/reducer';
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -14,7 +15,8 @@ const reducers = combineReducers({
   alert: alertReducer,
   selectedDate: selectedDateReducer,
   itemIndex: itemIndexReducer,
-  note: noteReducer
+  note: noteReducer,
+  events: eventReducer
 
 });
 

@@ -160,6 +160,7 @@ a, .btn-link {
 .calendarDay{
     font-size: 14px;
     font-weight: bold;
+    
 }
 .calendarToday{
     width:30px;
@@ -188,6 +189,7 @@ a, .btn-link {
 .calendarTd{
     padding: 0px;
     font-size: 10px;
+    width: 14.285%
 }
 /* override bootstrap for a more compact table */
 .table td, .table th {
