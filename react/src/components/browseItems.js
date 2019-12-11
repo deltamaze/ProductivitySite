@@ -42,7 +42,7 @@ class BrowseItems extends React.Component {
                   { itemPath: '/', itemTitle: 'NewItem', itemType: this.props.itemType },
                   this.props.auth.uid,
                   (newId) => {
-                    this.props.history.push(`note/${newId}`);
+                    this.props.history.push(`${this.props.itemType}/${newId}`);
                   }
                 )}
               >
