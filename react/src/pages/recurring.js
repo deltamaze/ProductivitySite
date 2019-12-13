@@ -9,26 +9,31 @@ class RecurringPage extends React.Component {
 
     this.state = {
       eventModalShow: false,
+      eventDeleteModalShow: false,
       targetRecurEventId: '',
       targetRecurEventTitle: ''
     };
   }
+
   componentDidMount() {
     // this.props.fetchAuth();
   }
 
-  showEventModal(eventId, itemTitle) {
+  showEventModal(eventId, eventTitle) {
     this.setState({
-      modalShow: true,
-      targetItemId: itemId,
-      targetItemTitle: itemTitle
+      eventModalShow: true,
+      eventDeleteModalShow: false,
+      targetRecurEventId: eventId,
+      targetRecurEventTitle: eventTitle
     });
   }
-  showEventModal(itemId, itemTitle) {
+
+  showDeleteEventModal(eventId, eventTitle) {
     this.setState({
-      modalShow: true,
-      targetItemId: itemId,
-      targetItemTitle: itemTitle
+      eventModalShow: false,
+      eventDeleteModalShow: true,
+      targetRecurEventId: eventId,
+      targetRecurEventTitle: eventTitle
     });
   }
 
@@ -40,10 +45,31 @@ class RecurringPage extends React.Component {
           className=""
           variant="outline-danger"
           size="sm"
-          onClick={() => this.showConfirmDeleteModal(value.id, value.data().itemTitle)}
+          onClick={() => this.showDeleteEventModal('0', "New Event")}
         >
-                      New Recursive Event
+                      New Recurring Event
         </Button>
+        {/* <Button
+          className=""
+          variant="outline-danger"
+          size="sm"
+          onClick={() => this.showDeleteEventModal(value.id, value.data().itemTitle)}
+        >
+                      Delete
+        </Button> */}
+
+        <ConfirmModal
+          show={this.state.eventModalShow}
+          onHide={() => this.setState({ eventModalShow: false })}
+          onHideWithDelete={
+            () => {
+              this.setState({ eventModalShow: false });
+              // this.props.deleteItem(this.state.targetRecurEventId, this.props.auth.uid);
+            }
+          }
+          eventTitle={this.state.targetRecurEventTitle}
+        />
+
       </div>
     );
   }
