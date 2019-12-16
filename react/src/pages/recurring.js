@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-
+import RecurringEventModal from '../components/recurringEventModal';
 
 class RecurringPage extends React.Component {
   constructor(props) {
@@ -40,12 +40,11 @@ class RecurringPage extends React.Component {
   render() {
     return (
       <div>
-        RecurringPage
         <Button
           className=""
-          variant="outline-danger"
+          variant="success"
           size="sm"
-          onClick={() => this.showDeleteEventModal('0', "New Event")}
+          onClick={() => this.showEventModal('0', 'New Event')}
         >
                       New Recurring Event
         </Button>
@@ -58,16 +57,17 @@ class RecurringPage extends React.Component {
                       Delete
         </Button> */}
 
-        <ConfirmModal
+        <RecurringEventModal
           show={this.state.eventModalShow}
           onHide={() => this.setState({ eventModalShow: false })}
-          onHideWithDelete={
+          onHideWithUpsert={
             () => {
               this.setState({ eventModalShow: false });
               // this.props.deleteItem(this.state.targetRecurEventId, this.props.auth.uid);
             }
           }
           eventTitle={this.state.targetRecurEventTitle}
+          eventId={this.state.targetRecurEventId}
         />
 
       </div>
