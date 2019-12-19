@@ -11,7 +11,7 @@ class RecurringEventModal extends React.Component {
     // if event id != 0, load up default values
 
     this.state = {
-      hasLoaded : false,
+      hasLoaded: false,
       frequency: 1,
       frequencyType: 'day',
       weekPartSelection: [],
@@ -27,10 +27,12 @@ class RecurringEventModal extends React.Component {
   componentDidMount() {
     // this.props.fetchAuth();
   }
+
   componentDidUpdate() {
     // this.props.fetchAuth();
 
   }
+
   initializeState() {
 
   }
@@ -38,41 +40,38 @@ class RecurringEventModal extends React.Component {
   render() {
     return (
       <Modal
-show={this.props.show}
-onHide={this.props.onHide}
-size="lg"
-aria-labelledby="contained-modal-title-vcenter"
-centered
->
-<Modal.Header closeButton>
-  <Modal.Title id="contained-modal-title-vcenter">
-    {this.props.eventId === '0' ? 'New ' : 'Update '} Recurring Event
-  </Modal.Title>
-</Modal.Header>
-<Modal.Body>
-      <>
-        {(!this.state.hasLoaded) ? (
-          <div>Loading...</div>
-        ) : (
-          <p>
+        show={this.props.show}
+        onHide={this.props.onHide}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            {this.props.eventId === '0' ? 'New ' : 'Update '} Recurring Event
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <>
+            {(!this.state.hasLoaded) ? (
+              <div>Loading...</div>
+            ) : (
+              <p>
           Are you sure you would like to delete: <strong>{this.props.itemTitle}</strong>
-          <br /><br /><br />
-          <Button variant="danger" size="lg" block onClic k={this.onHideWithDelete}>
+                <br /><br /><br />
+                <Button variant="danger" size="lg" block onClic k={this.onHideWithDelete}>
             Yes, Delete
-          </Button>
-          <Button variant="primary" size="lg" block onClick={this.onHide}>
+                </Button>
+                <Button variant="primary" size="lg" block onClick={this.onHide}>
             No, Cancel
-          </Button>
-        </p>
-      
-        )
-      }
-      </>
-      </Modal.Body>
-</Modal>
-    )
+                </Button>
+              </p>
 
-
+            )}
+          </>
+        </Modal.Body>
+      </Modal>
+    );
   }
 }
 
