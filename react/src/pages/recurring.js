@@ -6,7 +6,7 @@ import RecurringEventModal from '../components/recurringEventModal';
 class RecurringPage extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log(props);
     this.state = {
       eventModalShow: false,
       eventDeleteModalShow: false,
@@ -14,17 +14,13 @@ class RecurringPage extends React.Component {
       targetRecurEventTitle: ''
     };
   }
-
-  componentDidMount() {
-    // this.props.fetchAuth();
-  }
-
   showEventModal(eventId, eventTitle) {
+    console.log(eventId);
     this.setState({
+      targetRecurEventId: eventId,
+      targetRecurEventTitle: eventTitle,
       eventModalShow: true,
       eventDeleteModalShow: false,
-      targetRecurEventId: eventId,
-      targetRecurEventTitle: eventTitle
     });
   }
 
@@ -58,6 +54,10 @@ class RecurringPage extends React.Component {
         </Button> */}
 
         <RecurringEventModal
+        eventId={
+          console.log(),
+          this.state.targetRecurEventId
+        }
           show={this.state.eventModalShow}
           onHide={() => this.setState({ eventModalShow: false })}
           onHideWithUpsert={
@@ -67,7 +67,7 @@ class RecurringPage extends React.Component {
             }
           }
           eventTitle={this.state.targetRecurEventTitle}
-          eventId={this.state.targetRecurEventId}
+          
         />
 
       </div>
