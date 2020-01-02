@@ -5,26 +5,22 @@ import { Modal, Button } from 'react-bootstrap';
 // import { getMonthName } from '../utilities/dateHelper';
 
 class RecurringEventModal extends React.Component {
-  constructor(props) {
-    super(props);
-    // if event id != 0, pull event data from state.
-    // check this in didMount()
-    // TODO change this to prop drilling from parent class, 
-    // get rid of cDidUp/Mount and just have render display everything
-    this.state = {
-      hasLoaded: false,
-      frequency: 1,
-      frequencyType: 'day',
-      weekPartSelection: [],
-      specifyTime: false,
-      startDate: Date.now(),
-      endDate: undefined,
-      targetRecurEventTitle: '',
-      // yearlyTargetMonth: getMonthName(new Date.now()),
-      specialStartCriteria: undefined
-    };
-  }
-  componentDidUpdate(){
+
+  //on change events for each field to update store
+  
+  componentDidUpdate() {
+    // if eventid zero, reset state to default
+    if(this.props.eventId === '0')
+    {
+      this.setState({
+        targetRecurEventId: eventId,
+        targetRecurEventTitle: eventTitle,
+        eventModalShow: true,
+        eventDeleteModalShow: false,
+      });
+
+    }
+    // else pull event data from event store
     console.log('test');
     console.log(this.props.eventId);
   }
@@ -41,8 +37,7 @@ class RecurringEventModal extends React.Component {
   }
 
   render() {
-    if (this.props.eventId !== '0' && !this.state.hasLoaded) {
-      console.log(this.props.eventId);
+    if (this.props.eventId !== '0') {
       this.setLocalState();
     }
     return (

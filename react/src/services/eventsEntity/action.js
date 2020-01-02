@@ -6,8 +6,9 @@ export const SETEVENTS = 'SETEVENTS';
 let eventsRef;
 let eventListener;
 
+// eslint-disable-next-line no-unused-vars
 export function fetchEvents(uid, startDate) {
-  const startRange = startDate;
+  // const startRange = startDate;
   return (dispatch) => {
     if (eventListener != undefined) {
       eventListener(); // Remove previous listener

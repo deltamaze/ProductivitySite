@@ -10,8 +10,18 @@ class RecurringPage extends React.Component {
     this.state = {
       eventModalShow: false,
       eventDeleteModalShow: false,
-      targetRecurEventId: '',
-      targetRecurEventTitle: ''
+      targetRecurEventId: '0',
+      title: '',
+      description: '',
+      frequency: 1,
+      frequencyType: 'day',
+      weekPartSelection: [],
+      specifyTime: false,
+      startDate: Date.now(),
+      endDate: undefined,
+      targetRecurEventTitle: '',
+      // yearlyTargetMonth: getMonthName(new Date.now()),
+      specialStartCriteria: undefined
     };
   }
   showEventModal(eventId, eventTitle) {
@@ -22,6 +32,7 @@ class RecurringPage extends React.Component {
       eventModalShow: true,
       eventDeleteModalShow: false,
     });
+    //if eventId is 
   }
 
   showDeleteEventModal(eventId, eventTitle) {
@@ -42,7 +53,7 @@ class RecurringPage extends React.Component {
           size="sm"
           onClick={() => this.showEventModal('0', 'New Event')}
         >
-                      New Recurring Event
+          New Recurring Event
         </Button>
         {/* <Button
           className=""
@@ -55,7 +66,6 @@ class RecurringPage extends React.Component {
 
         <RecurringEventModal
         eventId={
-          console.log(),
           this.state.targetRecurEventId
         }
           show={this.state.eventModalShow}
