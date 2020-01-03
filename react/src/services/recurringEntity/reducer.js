@@ -1,7 +1,10 @@
 const recurringReducer = (
   state = {
-    recurringEventData: 'Loading',
-    targetRecurEventId: '0',
+    recurringEventData: 'Loading', // pulled from Firestore
+    // below is used to modify existing items/create new items
+    upsertModalShow: false,
+    deleteModalShow: false,
+    targetEventId: '0',
     title: '',
     description: '',
     frequency: 1,
@@ -10,15 +13,27 @@ const recurringReducer = (
     specifyTime: false,
     startDate: Date.now(),
     endDate: undefined,
-    targetRecurEventTitle: '',
-    // yearlyTargetMonth: getMonthName(new Date.now()),
+    monthPartSelection: [],
     specialStartCriteria: undefined
   }, action
 ) => {
   switch (action.type) {
   case 'SETRECURRINGEVENT':
     return {
-      noteData: action.payload.noteData
+      recurringEventData: action.payload.recurringEventData,
+      upsertModalShow: state.upsertModalShow,
+      deleteModalShow: state.deleteModalShow,
+      targetEventId: state.targetEventId,
+      title: state.title,
+      description: state.description,
+      frequency: state.frequency,
+      frequencyType: state.frequency,
+      weekPartSelection: state.weekPartSelection,
+      specifyTime: state.specifyTime,
+      startDate: state.startDate,
+      endDate: state.endDate,
+      monthPartSelection: [],
+      specialStartCriteria: undefined
     };
     // add cases for updating targetRecurringEventOptions
   default:
