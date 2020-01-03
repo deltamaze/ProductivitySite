@@ -7,6 +7,11 @@ import { Modal, Button } from 'react-bootstrap';
 class RecurringEventModal extends React.Component {
   // on change events for each field to update store
 
+  componentDidUpdate() {
+
+  }
+
+
   render() {
     if (this.props.eventId !== '0') {
       this.setLocalState();
