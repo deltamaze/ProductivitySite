@@ -38,9 +38,9 @@ class RecurringPage extends React.Component {
 
         <RecurringEventModal
           eventId={
-            this.state.targetRecurEventId
+            this.props.recurringEvents.targetEventId
           }
-          show={this.state.eventModalShow}
+          show={this.props.recurringEvents.upsertModalShow}
           onHide={() => this.setState({ eventModalShow: false })}
           onHideWithUpsert={
             () => {
@@ -58,7 +58,7 @@ class RecurringPage extends React.Component {
 }
 
 export default connect(
-  (state) => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth, recurringEvents: state.recurringEvents }),
   ({
   })
 )(RecurringPage);

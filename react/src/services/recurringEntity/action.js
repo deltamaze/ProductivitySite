@@ -37,6 +37,11 @@ export function fetchRecurEvent(uid) {
   };
 }
 
+export function toggleUpsertModal(){
+}
+
+export function toggleDeleteModal(){
+}
 
 export function addRecurringEvent(event, uid) {
   db.collection('users').doc(uid).collection('recurringEvents')
