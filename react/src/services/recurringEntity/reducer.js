@@ -18,6 +18,7 @@ const recurringReducer = (
   }, action
 ) => {
   // deep copy
+  
   const newState = {
 
     recurringEventData: state.recurringEventData,
@@ -41,7 +42,11 @@ const recurringReducer = (
     return newState;
 
   case 'RECURSEVENTUPSERTMODALSHOW':
-    newState.upsertModalShow = action.payload.data;
+    newState.upsertModalShow = action.payload.isHidden;
+    return newState;
+
+  case 'RECURSEVENTDELETEMODALSHOW':
+    newState.deleteModalShow = action.payload.isHidden;
     return newState;
   default:
     return state;

@@ -4,10 +4,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import RecurringEventModal from '../components/recurringEventModal';
+import { toggleUpsertModal } from '../services/recurringEntity/action';
 
 class RecurringPage extends React.Component {
   showEventModal(eventId) {
-    // call action to update store
+    this.props.toggleUpsertModal(true);
     console.log(eventId);
   }
 
@@ -41,14 +42,14 @@ class RecurringPage extends React.Component {
             this.props.recurringEvents.targetEventId
           }
           show={this.props.recurringEvents.upsertModalShow}
-          onHide={() => this.setState({ eventModalShow: false })}
+          onHide={() => this.props.toggleUpsertModal(false)}
           onHideWithUpsert={
             () => {
-              this.setState({ eventModalShow: false });
+              this.props.toggleUpsertModal(false);
               // this.props.deleteItem(this.state.targetRecurEventId, this.props.auth.uid);
             }
           }
-          eventTitle={this.state.targetRecurEventTitle}
+          eventTitle={this.props.recurringEvents.title}
 
         />
 
@@ -60,5 +61,6 @@ class RecurringPage extends React.Component {
 export default connect(
   (state) => ({ auth: state.auth, recurringEvents: state.recurringEvents }),
   ({
+    toggleUpsertModal
   })
 )(RecurringPage);
