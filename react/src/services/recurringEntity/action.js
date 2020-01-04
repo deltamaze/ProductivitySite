@@ -2,6 +2,8 @@ import { setAlertWithDispath } from '../alerts/action';
 import { db } from '../firebaseContext/firebaseInitializer';
 
 export const SETRECURRINGEVENT = 'SETRECURRINGEVENT';
+export const RECURSEVENTUPSERTMODALSHOW = 'RECURSEVENTUPSERTMODALSHOW';
+export const RECURSEVENTDELETEMODALSHOW = 'RECURSEVENTDELETEMODALSHOW';
 
 let recurringEventRef;
 let recurringEventListener;
@@ -37,10 +39,20 @@ export function fetchRecurEvent(uid) {
   };
 }
 
-export function toggleUpsertModal(){
+export function toggleUpsertModal(isHidden) {
+  return (
+    {
+      type: RECURSEVENTUPSERTMODALSHOW,
+      payload: { isHidden }
+    });
 }
 
-export function toggleDeleteModal(){
+export function toggleDeleteModal(isHidden) {
+  return (
+    {
+      type: RECURSEVENTDELETEMODALSHOW,
+      payload: { isHidden }
+    });
 }
 
 export function addRecurringEvent(event, uid) {

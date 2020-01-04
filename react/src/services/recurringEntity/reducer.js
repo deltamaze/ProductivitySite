@@ -17,25 +17,32 @@ const recurringReducer = (
     specialStartCriteria: undefined
   }, action
 ) => {
+  // deep copy
+  const newState = {
+
+    recurringEventData: state.recurringEventData,
+    upsertModalShow: state.upsertModalShow,
+    deleteModalShow: state.deleteModalShow,
+    targetEventId: state.targetEventId,
+    title: state.title,
+    description: state.description,
+    frequency: state.frequency,
+    frequencyType: state.frequency,
+    weekPartSelection: state.weekPartSelection,
+    specifyTime: state.specifyTime,
+    startDate: state.startDate,
+    endDate: state.endDate,
+    monthPartSelection: state.monthPartSelection,
+    specialStartCriteria: state.specialStartCriteria
+  };
   switch (action.type) {
   case 'SETRECURRINGEVENT':
-    return {
-      recurringEventData: action.payload.recurringEventData,
-      upsertModalShow: state.upsertModalShow,
-      deleteModalShow: state.deleteModalShow,
-      targetEventId: state.targetEventId,
-      title: state.title,
-      description: state.description,
-      frequency: state.frequency,
-      frequencyType: state.frequency,
-      weekPartSelection: state.weekPartSelection,
-      specifyTime: state.specifyTime,
-      startDate: state.startDate,
-      endDate: state.endDate,
-      monthPartSelection: [],
-      specialStartCriteria: undefined
-    };
-    // add cases for updating targetRecurringEventOptions
+    newState.recurringEventData = action.payload.recurringEventData;
+    return newState;
+
+  case 'RECURSEVENTUPSERTMODALSHOW':
+    newState.upsertModalShow = action.payload.data;
+    return newState;
   default:
     return state;
   }

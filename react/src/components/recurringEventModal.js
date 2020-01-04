@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 // import { getMonthName } from '../utilities/dateHelper';
 
 class RecurringEventModal extends React.Component {
@@ -13,9 +13,6 @@ class RecurringEventModal extends React.Component {
 
 
   render() {
-    if (this.props.eventId !== '0') {
-      this.setLocalState();
-    }
     return (
       <Modal
         show={this.props.show}
@@ -32,14 +29,7 @@ class RecurringEventModal extends React.Component {
         <Modal.Body>
           <>
             <p>
-              Are you sure you would like to delete: <strong>{this.props.itemTitle}</strong>
-              <br /><br /><br />
-              <Button variant="danger" size="lg" block onClic k={this.onHideWithDelete}>
-                Yes, Delete
-              </Button>
-              <Button variant="primary" size="lg" block onClick={this.onHide}>
-                No, Cancel
-              </Button>
+              Todo, Modal Body...
             </p>
           </>
         </Modal.Body>
