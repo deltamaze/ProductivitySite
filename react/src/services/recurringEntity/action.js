@@ -55,7 +55,7 @@ export function toggleDeleteModal(isHidden) {
     });
 }
 
-export function addRecurringEvent(event, uid) {
+function addRecurringEvent(event, uid) {
   db.collection('users').doc(uid).collection('recurringEvents')
     .add(event)
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
@@ -63,6 +63,11 @@ export function addRecurringEvent(event, uid) {
 }
 
 export function setRecurringEvent(event, eventId, uid) {
+  // if the id = 0, then add as a new event
+  if (eventId === 0) {
+    addRecurringEvent(event, uid);
+  }
+
   db.collection('users').doc(uid).collection('recurringEvents').doc(eventId)
     .set(event)
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));

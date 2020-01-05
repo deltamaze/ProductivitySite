@@ -8,17 +8,17 @@ const recurringReducer = (
     title: '',
     description: '',
     frequency: 1,
-    frequencyType: 'day',
-    weekPartSelection: [],
-    specifyTime: false,
+    frequencyType: 'day', // week,month
+    weekPartSelection: [], // 0 = sunday, 3 = wednesday
     startDate: Date.now(),
     endDate: undefined,
-    monthPartSelection: [],
-    specialStartCriteria: undefined
+    monthTypeSelection: 'dayNumber', // 'nthDay'
+    monthPartSelection: []// 0 = jan, 4=May, would look like [0,4,etc...]
+
   }, action
 ) => {
   // deep copy
-  
+
   const newState = {
 
     recurringEventData: state.recurringEventData,
@@ -28,13 +28,12 @@ const recurringReducer = (
     title: state.title,
     description: state.description,
     frequency: state.frequency,
-    frequencyType: state.frequency,
+    frequencyType: state.frequencyType,
     weekPartSelection: state.weekPartSelection,
-    specifyTime: state.specifyTime,
     startDate: state.startDate,
     endDate: state.endDate,
     monthPartSelection: state.monthPartSelection,
-    specialStartCriteria: state.specialStartCriteria
+
   };
   switch (action.type) {
   case 'SETRECURRINGEVENT':

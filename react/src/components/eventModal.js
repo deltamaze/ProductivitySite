@@ -20,7 +20,7 @@ function EventModal(props) {
         <p>
           Are you sure you would like to delete: <strong>{props.itemTitle}</strong>
           <br /><br /><br />
-          <Button variant="danger" size="lg" block onClic k={props.onHideWithDelete}>
+          <Button variant="danger" size="lg" block onClick={props.onHideWithDelete}>
             Yes, Delete
           </Button>
           <Button variant="primary" size="lg" block onClick={props.onHide}>

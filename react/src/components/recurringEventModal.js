@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 // import { getMonthName } from '../utilities/dateHelper';
 
 class RecurringEventModal extends React.Component {
@@ -30,6 +30,25 @@ class RecurringEventModal extends React.Component {
           <>
             <p>
               Todo, Modal Body...
+              {/* Event Title */}
+              {/* Description */}
+              {/* Start Date Time */}
+              {/* Repeat Every [Frequency Nuber][Frequency Type(Day,Week,Month,Year)] */}
+              {/* WeekPart Selection (Weekly)(Sun,Mon,Tues,etc..) */}
+              {/* Month Part Selection (Jan/Feb/March) */}
+              {/* MonthType Selection (Monthly on Day (day number of startdate) / Monthly
+               on ([1st/2nd] datepart) on month) */}
+
+              {/* End Time ? Never RadioButton, or DateTime field.
+               If Never RadioButton, clear out store.EndDate to undefined, and disable field */}
+
+
+              <Button variant="success" size="lg" block onClick={this.props.onHideWithUpsert}>
+                Save
+              </Button>
+              <Button variant="danger" size="lg" block onClick={this.props.onHide}>
+                Cancel
+              </Button>
             </p>
           </>
         </Modal.Body>
