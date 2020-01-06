@@ -29,8 +29,13 @@ class RecurringEventModal extends React.Component {
         <Modal.Body>
           <>
             <p>
-              Todo, Modal Body...
               {/* Event Title */}
+              <input
+                className="mainTexBoxInput"
+                type="text"
+                value={this.props.recurringEvents.title}
+                onChange={this.handleTitleChange}
+              />
               {/* Description */}
               {/* Start Date Time */}
               {/* Repeat Every [Frequency Nuber][Frequency Type(Day,Week,Month,Year)] */}
@@ -58,7 +63,7 @@ class RecurringEventModal extends React.Component {
 }
 
 export default connect(
-  (state) => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth, recurringEvents: state.recurringEvents }),
   ({
   })
 )(RecurringEventModal);

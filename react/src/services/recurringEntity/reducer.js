@@ -5,7 +5,7 @@ const recurringReducer = (
     upsertModalShow: false,
     deleteModalShow: false,
     targetEventId: '0',
-    title: '',
+    title: 'EventTitle',
     description: '',
     frequency: 1,
     frequencyType: 'day', // week,month
