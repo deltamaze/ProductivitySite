@@ -199,6 +199,10 @@ a, .btn-link {
     width: 100%;
     height: 50vh;
 }
+.modalTextArea{
+    width: 100%;
+    height: 15vh;
+}
 #mainTexBoxInput, .mainTexBoxInput{
     font-weight: bold;
     font-size: x-large;

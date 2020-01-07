@@ -5,6 +5,12 @@ import { Modal, Button } from 'react-bootstrap';
 // import { getMonthName } from '../utilities/dateHelper';
 
 class RecurringEventModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      allDayFlag: true
+    };
+  }
   // on change events for each field to update store
 
   componentDidUpdate() {
@@ -33,11 +39,38 @@ class RecurringEventModal extends React.Component {
               <input
                 className="mainTexBoxInput"
                 type="text"
+                placeholder="Event Title"
                 value={this.props.recurringEvents.title}
                 onChange={this.handleTitleChange}
               />
               {/* Description */}
+              <textarea
+                className="modalTextArea"
+                placeholder="Description"
+                value={this.props.recurringEvents.description}
+                onChange={this.handleChange}
+              />
               {/* Start Date Time */}
+              StartTime
+              <div>
+                <input
+                  type="date"
+                  value="2018-07-22"
+                />
+                <input
+                  type="time"
+                  value="13:30"
+                />
+                <label htmlFor="allDay">
+                  <input
+                    type="checkbox"
+                    id="allDay"
+                    name="allDay"
+                    checked
+                  />
+                  All Day Event
+                </label>
+              </div>
               {/* Repeat Every [Frequency Nuber][Frequency Type(Day,Week,Month,Year)] */}
               {/* WeekPart Selection (Weekly)(Sun,Mon,Tues,etc..) */}
               {/* Month Part Selection (Jan/Feb/March) */}
