@@ -2,11 +2,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
-// import { getMonthName } from '../utilities/dateHelper';
+import { getRepeatOptions } from '../services/recurringEntity/enums';
 
 class RecurringEventModal extends React.Component {
   constructor(props) {
     super(props);
+    this.repeatOptions = getRepeatOptions();
     this.state = {
       allDayFlag: true
     };
@@ -72,6 +73,15 @@ class RecurringEventModal extends React.Component {
                 </label>
               </div>
               {/* Repeat Every [Frequency Nuber][Frequency Type(Day,Week,Month,Year)] */}
+              <select id="myList">
+                {
+                  // repeatoption.map(<option etc...>)
+                }
+                <option value="1">one</option>
+                <option value="2">two</option>
+                <option value="3">three</option>
+                <option value="4">four</option>
+              </select>
               {/* WeekPart Selection (Weekly)(Sun,Mon,Tues,etc..) */}
               {/* Month Part Selection (Jan/Feb/March) */}
               {/* MonthType Selection (Monthly on Day (day number of startdate) / Monthly
