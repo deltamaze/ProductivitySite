@@ -8,7 +8,7 @@ const recurringReducer = (
     title: 'EventTitle',
     description: '',
     frequency: 1,
-    frequencyType: 'day', // week,month
+    frequencyType: 'Day', // week,month
     weekPartSelection: [], // 0 = sunday, 3 = wednesday
     startDate: Date.now(),
     endDate: undefined,

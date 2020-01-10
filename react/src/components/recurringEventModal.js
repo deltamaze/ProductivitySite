@@ -83,6 +83,9 @@ class RecurringEventModal extends React.Component {
                 <option value="4">four</option>
               </select>
               {/* WeekPart Selection (Weekly)(Sun,Mon,Tues,etc..) */}
+              {
+                this.props.recurringEvents.frequencyType === 'Weekly' ? <div /> : null
+              }
               {/* Month Part Selection (Jan/Feb/March) */}
               {/* MonthType Selection (Monthly on Day (day number of startdate) / Monthly
                on ([1st/2nd] datepart) on month) */}
