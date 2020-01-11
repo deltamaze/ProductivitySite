@@ -1,8 +1,7 @@
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
-const days = ['Sunday', 'Monday', 'Tuesday',
-  'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+import { getDays, getMonths } from './enums';
+
+const monthNames = getMonths();
+const days = getDays();
 // const months = ['January', 'February', 'March', 'April',
 //  'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 

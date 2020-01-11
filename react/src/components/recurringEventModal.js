@@ -2,12 +2,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
-import { getRepeatOptions } from '../services/recurringEntity/enums';
+import { getRepeatOptions, getDays, getMonths } from '../utilities/enums';
 
 class RecurringEventModal extends React.Component {
   constructor(props) {
     super(props);
-    this.repeatOptions = getRepeatOptions();
+    this.repeatOptions = getRepeatOptions().map((item) => <option value={item}>{item}</option>);
+    this.daysOfWeekCheckBox = getDays().map((day) => (
+      <div>
+        <input id={`dayCheckBox${day}`} type="checkbox" />
+        <label htmlFor={`dayCheckBox${day}`}>{day}</label>
+
+      </div>
+    ));
+    this.dayOfWeekCheckBoxGroup = <div>Choose Day of Weeks {this.daysOfWeekCheckBox}</div>;
+
+    this.monthCheckBox = getMonths().map((month) => (
+      <div>
+        <input id={`monthCheckBox${month}`} type="checkbox" />
+        <label htmlFor={`monthCheckBox${month}`}>{month}</label>
+
+      </div>
+    ));
+    this.monthCheckBoxGroup = <div>Choose Month {this.monthCheckBox}</div>;
+
     this.state = {
       allDayFlag: true
     };
@@ -73,22 +91,34 @@ class RecurringEventModal extends React.Component {
                 </label>
               </div>
               {/* Repeat Every [Frequency Nuber][Frequency Type(Day,Week,Month,Year)] */}
-              <select id="myList">
-                {
-                  // repeatoption.map(<option etc...>)
-                }
-                <option value="1">one</option>
-                <option value="2">two</option>
-                <option value="3">three</option>
-                <option value="4">four</option>
-              </select>
+              <div>
+                Repeat Every
+                <select id="myList">
+                  {this.repeatOptions}
+                </select>
+              </div>
               {/* WeekPart Selection (Weekly)(Sun,Mon,Tues,etc..) */}
               {
-                this.props.recurringEvents.frequencyType === 'Weekly' ? <div /> : null
+                this.props.recurringEvents.frequencyType === 'Weekly' ? this.dayOfWeekCheckBoxGroup : null
               }
               {/* Month Part Selection (Jan/Feb/March) */}
+              {
+                this.props.recurringEvents.frequencyType === 'Monthly' ? this.monthCheckBoxGroup : null
+              }
               {/* MonthType Selection (Monthly on Day (day number of startdate) / Monthly
                on ([1st/2nd] datepart) on month) */}
+              {
+                this.props.recurringEvents.frequencyType === 'Monthly'
+                  ? (
+                    <div>
+                      Repeat on Day Number or Nth Day of Week?
+                      <select id="myList">
+                        <option>Day Number</option>
+                        <option>Nth Day of Week</option>
+                      </select>
+                    </div>
+                  ) : null
+              }
 
               {/* End Time ? Never RadioButton, or DateTime field.
                If Never RadioButton, clear out store.EndDate to undefined, and disable field */}
