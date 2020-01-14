@@ -32,10 +32,26 @@ class RecurringEventModal extends React.Component {
   }
   // on change events for each field to update store
 
-  componentDidUpdate() {
-
+  handleChange(event) {
+    // determine what is changing
+    // event title
+    // description
+    // frequency
+    // frequencyType
+    // weekPartSelection
+    // endDate
+    // monthPartSelection
+    this.setState({
+      mainTextArea: event.target.value // handle input and update textbox
+    });
+    const day = getDayNumber(this.props.selectedDate.date);
+    const newMonth = generateMonthPayload(day,
+      this.props.element,
+      event.target.value,
+      this.props.month.monthData);
+    // package us a new month object to post back to firebase
+    this.setMonthWithDebouce(newMonth, this.props.month.monthRef, this.props.auth.uid);
   }
-
 
   render() {
     return (
