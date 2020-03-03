@@ -39,12 +39,11 @@ class SideBar extends React.Component {
               <>
                 <NavListItem route="planner" label="Planner" icon="list" />
                 <NavListItem route="calendar" label="Calendar" icon="calendar" />
-                <NavListItem route="recurring" label="Recurring" icon="reload" />
                 <NavListItem route="event" label="Events" icon="flag" />
-                <NavListItem route="projects" label="Project Tracker" icon="project" />
+                {/* <NavListItem route="projects" label="Project Tracker" icon="project" /> */}
                 <NavListItem route="notes" label="Notes" icon="align-left" />
                 <NavListItem route="journal" label="Journal" icon="book" />
-                <NavListItem route="settings" label="Settings" icon="cog" />
+                {/* <NavListItem route="settings" label="Settings" icon="cog" /> */}
                 <NavListItem route="signoff" label="LogOff" icon="account-logout" />
               </>
             )}

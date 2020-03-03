@@ -1,6 +1,6 @@
-const recurringReducer = (
+const eventReducer = (
   state = {
-    recurringEventData: 'Loading', // pulled from Firestore
+    eventData: 'Loading', // pulled from Firestore
     // below is used to modify existing items/create new items
     upsertModalShow: false,
     deleteModalShow: false,
@@ -8,7 +8,7 @@ const recurringReducer = (
     title: 'EventTitle',
     description: '',
     frequency: 1,
-    frequencyType: 'Daily', // week,month
+    frequencyType: 'Daily', // week,month,just once
     weekPartSelection: [], // 0 = sunday, 3 = wednesday
     startDate: Date.now(),
     endDate: undefined,
@@ -21,7 +21,7 @@ const recurringReducer = (
 
   const newState = {
 
-    recurringEventData: state.recurringEventData,
+    eventData: state.eventData,
     upsertModalShow: state.upsertModalShow,
     deleteModalShow: state.deleteModalShow,
     targetEventId: state.targetEventId,
@@ -36,15 +36,15 @@ const recurringReducer = (
 
   };
   switch (action.type) {
-  case 'SETRECURRINGEVENT':
-    newState.recurringEventData = action.payload.recurringEventData;
+  case 'SETEVENT':
+    newState.eventData = action.payload.eventData;
     return newState;
 
-  case 'RECURSEVENTUPSERTMODALSHOW':
+  case 'EVENTUPSERTMODALSHOW':
     newState.upsertModalShow = action.payload.isHidden;
     return newState;
 
-  case 'RECURSEVENTDELETEMODALSHOW':
+  case 'EVENTDELETEMODALSHOW':
     newState.deleteModalShow = action.payload.isHidden;
     return newState;
   default:
@@ -52,4 +52,4 @@ const recurringReducer = (
   }
 };
 
-export default recurringReducer;
+export default eventReducer;

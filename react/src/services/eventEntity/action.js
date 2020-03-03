@@ -1,28 +1,35 @@
 import { setAlertWithDispath } from '../alerts/action';
 import { db } from '../firebaseContext/firebaseInitializer';
 
-export const SETEVENTS = 'SETEVENTS';
+export const SETEVENT = 'SETEVENT';
+export const EVENTUPSERTMODALSHOW = 'EVENTUPSERTMODALSHOW';
+export const EVENTDELETEMODALSHOW = 'EVENTDELETEMODALSHOW';
 
-let eventsRef;
+let eventRef;
 let eventListener;
 
-// eslint-disable-next-line no-unused-vars
-export function fetchEvents(uid, startDate) {
-  // const startRange = startDate;
+export function removeEventListener() {
   return (dispatch) => {
     if (eventListener != undefined) {
       eventListener(); // Remove previous listener
       dispatch({
-        type: SETEVENTS,
-        payload: { eventData: 'Loading' } // month item not set yet
-      });// notify view that new month will be loading
+        type: SETEVENT,
+        payload: { eventData: 'Loading' } // Event item not set yet
+      });// notify view that new Event will be loading
     }
+  };
+}
+
+
+export function fetchEvents(uid) {
+  return (dispatch) => {
+    removeEventListener();
     try {
-      eventsRef = db.collection('users').doc(uid).collection('events'); // default unset value
-      eventListener = eventsRef.where('targetDate', '>=', 0).where('targetDate', '<=', 0) // grab events 30 days before, and 60 days after startDate
+      eventRef = db.collection('users').doc(uid).collection('events'); // default unset value
+      eventListener = eventRef // default unset value
         .onSnapshot((results) => {
           dispatch({
-            type: SETEVENTS,
+            type: SETEVENT,
             payload: { eventData: results.docs }
           });
         });
@@ -32,7 +39,23 @@ export function fetchEvents(uid, startDate) {
   };
 }
 
-export function addEvent(event, uid) {
+export function toggleUpsertModal(isHidden) {
+  return (
+    {
+      type: EVENTUPSERTMODALSHOW,
+      payload: { isHidden }
+    });
+}
+
+export function toggleDeleteModal(isHidden) {
+  return (
+    {
+      type: EVENTDELETEMODALSHOW,
+      payload: { isHidden }
+    });
+}
+
+function addEvent(event, uid) {
   db.collection('users').doc(uid).collection('events')
     .add(event)
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
@@ -40,6 +63,11 @@ export function addEvent(event, uid) {
 }
 
 export function setEvent(event, eventId, uid) {
+  // if the id = 0, then add as a new event
+  if (eventId === 0) {
+    addEvent(event, uid);
+  }
+
   db.collection('users').doc(uid).collection('events').doc(eventId)
     .set(event)
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));
@@ -47,6 +75,7 @@ export function setEvent(event, eventId, uid) {
 }
 
 export function deleteEvent(eventId, uid) {
+  // delete index
   db.collection('users').doc(uid).collection('events').doc(eventId)
     .delete()
     .catch((err) => setAlertWithDispath(JSON.stringify(err)));

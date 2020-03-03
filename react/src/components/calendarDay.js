@@ -98,5 +98,4 @@ export default connect(
 
 // toBeImplementedLater:
 // event data
-// recurring event data
 //

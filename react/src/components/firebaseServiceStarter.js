@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAuth } from '../services/auth/action';
 import { fetchMonth } from '../services/monthsEntity/action';
-import { fetchEvents } from '../services/eventsEntity/action';
-import { getMonthYear, getFirstDayOfMonth } from '../utilities/dateHelper';
+import { fetchEvents } from '../services/eventEntity/action';
+import { getMonthYear } from '../utilities/dateHelper';
 import { fetchItemIndex } from '../services/itemIndexEntity/action';
 
 class FirebaseServiceStarter extends React.Component {
@@ -30,7 +30,6 @@ class FirebaseServiceStarter extends React.Component {
       return;
     }
     this.props.fetchMonth(this.props.auth.uid, getMonthYear(this.props.selectedDate.date));
-    this.props.fetchEvents(this.props.auth.uid, getFirstDayOfMonth(this.props.selectedDate.date));
   }
 
   fetchAuthorizedServices() {
@@ -38,6 +37,7 @@ class FirebaseServiceStarter extends React.Component {
       return;
     }
     this.props.fetchItemIndex(this.props.auth.uid);
+    this.props.fetchEvents(this.props.auth.uid);
   }
 
   render() {

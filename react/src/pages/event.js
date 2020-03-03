@@ -1,77 +1,59 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-console */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import ConfirmModal from '../components/confirmModal';
+import EventModal from '../components/eventModal';
+import { toggleUpsertModal } from '../services/eventEntity/action';
 
 class EventPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      modalShow: false,
-      targetItemId: '',
-      targetItemTitle: ''
-    };
+  showEventModal(eventId) {
+    this.props.toggleUpsertModal(true);
+    console.log(eventId);
   }
 
-  componentDidMount() {
-    // this.props.fetchAuth();
-    // console.log(this.props);
+  showDeleteEventModal(eventId) {
+    // call action to update store
+    console.log(eventId);
   }
 
   render() {
     return (
-      <>
-        {(this.props.events.eventData === 'Loading') ? (
-          <div>Loading...</div>
-        ) : (
-          <>
-            <div>
-              {/* <button
-                className="btn btn-sm btn-success "
-                onClick={() => this.props.addItemWithRedirect(
-                  { itemPath: '/', itemTitle: 'NewItem', itemType: this.props.itemType },
-                  this.props.auth.uid,
-                  (newId) => {
-                    this.props.history.push(`note/${newId}`);
-                  }
-                )}
-              >
-            Add New {this.props.itemType.charAt(0).toUpperCase() + this.props.itemType.slice(1)}
-              </button> */}
-
-            </div>
-            {
-              this.props.events.eventData
-                .map((value) => (
-                  <li className="marginBottom15" key={value.id}>
-                    <Button
-                      className="marginLeft20"
-                      variant="outline-danger"
-                      size="sm"
-                      onClick={() => this.showConfirmDeleteModal(value.id, value.data().eventTitle)}
-                    >
+      <div>
+        <Button
+          className=""
+          variant="success"
+          size="sm"
+          onClick={() => this.showEventModal('0', 'New Event')}
+        >
+          New Event
+        </Button>
+        {/* <Button
+          className=""
+          variant="outline-danger"
+          size="sm"
+          onClick={() => this.showDeleteEventModal(value.id, value.data().itemTitle)}
+        >
                       Delete
-                    </Button>
-                  </li>
-                ))
-            }
-          </>
-        )}
-        <ConfirmModal
-          show={this.state.modalShow}
-          onHide={() => this.setState({ modalShow: false })}
-          onHideWithDelete={
+        </Button> */}
+
+        <EventModal
+          eventId={
+            this.props.events.targetEventId
+          }
+          show={this.props.events.upsertModalShow}
+          onHide={() => this.props.toggleUpsertModal(false)}
+          onHideWithUpsert={
             () => {
-              this.setState({ modalShow: false });
-              this.props.deleteItem(this.state.targetItemId, this.props.auth.uid);
+              this.props.toggleUpsertModal(false);
+              // this.props.deleteItem(this.state.targetRecurEventId, this.props.auth.uid);
             }
           }
-          itemTitle={this.state.targetItemTitle}
+          eventTitle={this.props.events.title}
+
         />
-      </>
 
-
+      </div>
     );
   }
 }
@@ -79,5 +61,6 @@ class EventPage extends React.Component {
 export default connect(
   (state) => ({ auth: state.auth, events: state.events }),
   ({
+    toggleUpsertModal
   })
 )(EventPage);
