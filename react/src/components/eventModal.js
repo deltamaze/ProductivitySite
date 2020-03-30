@@ -30,6 +30,7 @@ class EventModal extends React.Component {
     this.state = {
       allDayFlag: true
     };
+    this.handleTitleChange = this.handleTitleChange.bind(this); // to grab event data, need to bind
   }
   // on change events for each field to update store
 
@@ -46,6 +47,9 @@ class EventModal extends React.Component {
   //   // endDate
   //   // monthPartSelection
   // }
+  handleTitleChange(event) {
+    this.setEventTitle(event);
+  }
 
   render() {
     return (
@@ -69,7 +73,7 @@ class EventModal extends React.Component {
               type="text"
               placeholder="Event Title"
               value={this.props.events.title}
-              onChange={this.handleChange}
+              onChange={this.handleTitleChange}
             />
             {/* Description */}
             <textarea
