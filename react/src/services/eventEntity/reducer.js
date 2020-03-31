@@ -47,6 +47,36 @@ const eventReducer = (
   case 'EVENTDELETEMODALSHOW':
     newState.deleteModalShow = action.payload.isHidden;
     return newState;
+
+  case 'EVENTSETTITLE':
+    newState.title = action.payload.newVal;
+    return newState;
+
+  case 'EVENTSETDESCRIPTION':
+    newState.description = action.payload.newVal;
+    return newState;
+
+  case 'EVENTSETFREQUENCY':
+    newState.frequency = action.payload.newVal;
+    return newState;
+  case 'EVENTSETFREQUENCYTYPE':
+    newState.frequencyType = action.payload.newVal;
+    return newState;
+  case 'EVENTSETWEEKPARTSELECTION':
+    newState.weekPartSelection = action.payload.newVal;
+    return newState;
+  case 'EVENTSETSTARTDATE':
+    newState.startDate = action.payload.newVal;
+    return newState;
+  case 'EVENTSETENDDATE':
+    newState.endDate = action.payload.newVal;
+    return newState;
+  case 'EVENTSETMONTHTYPESELECTION':
+    newState.monthTypeSelection = action.payload.newVal;
+    return newState;
+  case 'EVENTSETMONTHPARTSELECTION':
+    newState.monthPartSelection = action.payload.newVal;
+    return newState;
   default:
     return state;
   }

@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Modal, Button } from 'react-bootstrap';
 import { getRepeatOptions, getDays, getMonths } from '../utilities/enums';
+import * as eventAction from '../services/eventEntity/action';
 
 class EventModal extends React.Component {
   constructor(props) {
@@ -30,25 +32,23 @@ class EventModal extends React.Component {
     this.state = {
       allDayFlag: true
     };
-    this.handleTitleChange = this.handleTitleChange.bind(this); // to grab event data, need to bind
+    this.handleChange = this.handleChange.bind(this); // to grab event data, need to bind
   }
-  // on change events for each field to update store
 
-  // handleChange(event) {
-  //   // console.log(event);
-  //   // review https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
+  handleChange(event) {
+    switch (event.target.id) {
+    case 'Title':
+      this.props.eventAction.setEventTitle(event.target.value);
+      break;
+    case 'Description':
+      this.props.eventAction.setEventDescription(event.target.value);
+      break;
+    default:
+    }
+  }
 
-  //   // determine what is changing
-  //   // event title
-  //   // description
-  //   // frequency
-  //   // frequencyType
-  //   // weekPartSelection
-  //   // endDate
-  //   // monthPartSelection
-  // }
-  handleTitleChange(event) {
-    this.setEventTitle(event);
+  handleDescriptionChange(event) {
+    this.props.eventAction.setEventTitle(event.target.value);
   }
 
   render() {
@@ -70,10 +70,11 @@ class EventModal extends React.Component {
             {/* Event Title */}
             <input
               className="mainTexBoxInput"
+              id="Title"
               type="text"
               placeholder="Event Title"
               value={this.props.events.title}
-              onChange={this.handleTitleChange}
+              onChange={this.handleChange}
             />
             {/* Description */}
             <textarea
@@ -88,12 +89,12 @@ class EventModal extends React.Component {
             <div>
               <input
                 type="date"
-                value="2018-07-22"
+                defaultValue="2018-07-22"
                 onChange={this.handleChange}
               />
               <input
                 type="time"
-                value="13:30"
+                defaultValue="13:30"
                 onChange={this.handleChange}
               />
               <label htmlFor="allDay">
@@ -101,7 +102,7 @@ class EventModal extends React.Component {
                   type="checkbox"
                   id="allDay"
                   name="allDay"
-                  checked
+                  defaultChecked
                   onChange={this.handleChange}
                 />
                   All Day Event
@@ -154,10 +155,15 @@ class EventModal extends React.Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    eventAction: bindActionCreators(eventAction, dispatch)
+  };
+}
+
 export default connect(
   (state) => ({ auth: state.auth, events: state.events }),
-  ({
-  })
+  mapDispatchToProps
 )(EventModal);
 
 // );
