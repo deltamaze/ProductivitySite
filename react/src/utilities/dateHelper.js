@@ -25,6 +25,24 @@ export function getFormattedDate(ms) {
   }
   return `${mm}/${dd}/${yyyy}`;
 }
+export function getHtmlFormattedDate(ms) {
+  const date = new Date(ms);
+  let dd = date.getDate();
+  let mm = date.getMonth() + 1; // January is 0!
+
+  const yyyy = date.getFullYear();
+  if (dd < 10) {
+    dd = `0${dd}`;
+  }
+  if (mm < 10) {
+    mm = `0${mm}`;
+  }
+  return `${yyyy}-${mm}-${dd}`;
+}
+export function getLocalTimezoneOffsetInMS() {
+  console.log(new Date().getTimezoneOffset() * 60000);
+  return (new Date().getTimezoneOffset() * 60000);
+}
 export function getFormattedShortDate(ms) {
   const date = new Date(ms);
   let dd = date.getDate();

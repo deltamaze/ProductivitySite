@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, Button } from 'react-bootstrap';
 import { getRepeatOptions, getDays, getMonths } from '../utilities/enums';
+import { getHtmlFormattedDate, getLocalTimezoneOffsetInMS } from '../utilities/dateHelper';
 import * as eventAction from '../services/eventEntity/action';
 
 class EventModal extends React.Component {
@@ -43,6 +44,20 @@ class EventModal extends React.Component {
     case 'Description':
       this.props.eventAction.setEventDescription(event.target.value);
       break;
+    case 'StartDate': {
+      console.log(event.target.value);
+      console.log(getHtmlFormattedDate(this.props.events.startDate));
+      // convert to js ms format
+      // change inputted time from local, to UTC before saving to firebase
+      const newDate = new Date(event.target.value);
+      console.log(newDate.getTime() + getLocalTimezoneOffsetInMS());
+      // if all day event then remove time
+      // else keep existing set time
+      // console.log(event.target.value)
+      //
+      // this.props.eventAction.setEventStartDate(event.target.value);
+      break;
+    }
     default:
     }
   }
@@ -88,11 +103,14 @@ class EventModal extends React.Component {
               StartTime
             <div>
               <input
+                id="StartDate"
                 type="date"
-                defaultValue="2018-07-22"
+                value={getHtmlFormattedDate(this.props.events.startDate)}
+                // defaultValue="2018-07-22"
                 onChange={this.handleChange}
               />
               <input
+                id="StartTime"
                 type="time"
                 defaultValue="13:30"
                 onChange={this.handleChange}
