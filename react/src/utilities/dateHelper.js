@@ -40,7 +40,6 @@ export function getHtmlFormattedDate(ms) {
   return `${yyyy}-${mm}-${dd}`;
 }
 export function getLocalTimezoneOffsetInMS() {
-  console.log(new Date().getTimezoneOffset() * 60000);
   return (new Date().getTimezoneOffset() * 60000);
 }
 export function getFormattedShortDate(ms) {

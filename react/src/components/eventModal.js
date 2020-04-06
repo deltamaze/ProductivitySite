@@ -55,7 +55,7 @@ class EventModal extends React.Component {
       // else keep existing set time
       // console.log(event.target.value)
       //
-      // this.props.eventAction.setEventStartDate(event.target.value);
+      this.props.eventAction.setEventStartDate(newDate.getTime() + getLocalTimezoneOffsetInMS());
       break;
     }
     default:

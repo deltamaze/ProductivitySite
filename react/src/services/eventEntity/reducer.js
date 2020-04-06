@@ -12,6 +12,7 @@ const eventReducer = (
     weekPartSelection: [], // 0 = sunday, 3 = wednesday
     startDate: Date.now(),
     endDate: undefined,
+    allDay: true,
     monthTypeSelection: 'dayNumber', // 'nthDay'
     monthPartSelection: []// 0 = jan, 4=May, would look like [0,4,etc...]
 
