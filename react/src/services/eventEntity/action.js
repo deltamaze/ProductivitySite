@@ -10,7 +10,9 @@ export const EVENTSETFREQUENCY = 'EVENTSETFREQUENCY';
 export const EVENTSETFREQUENCYTYPE = 'EVENTSETFREQUENCYTYPE';
 export const EVENTSETWEEKPARTSELECTION = 'EVENTSETWEEKPARTSELECTION';
 export const EVENTSETSTARTDATE = 'EVENTSETSTARTDATE';
+export const EVENTSETSTARTTIME = 'EVENTSETSTARTTIME';
 export const EVENTSETENDDATE = 'EVENTSETENDDATE';
+export const EVENTSETALLDAY = 'EVENTSETALLDAY';
 export const EVENTSETMONTHTYPESELECTION = 'EVENTSETMONTHTYPESELECTION';
 export const EVENTSETMONTHPARTSELECTION = 'EVENTSETMONTHPARTSELECTION';
 
@@ -138,8 +140,23 @@ export function setEventStartDate(newVal) {
       payload: { newVal }
     });
 }
+export function setEventStartTime(newVal) {
+  return (
+    {
+      type: EVENTSETSTARTTIME,
+      payload: { newVal }
+    });
+}
 
 export function setEventEndDate(newVal) {
+  return (
+    {
+      type: EVENTSETENDDATE,
+      payload: { newVal }
+    });
+}
+
+export function setEventAllDay(newVal) {
   return (
     {
       type: EVENTSETENDDATE,

@@ -1,3 +1,7 @@
+import {
+  getHtmlFormattedDate, getHtmlFormattedTime
+} from '../../utilities/dateHelper';
+
 const eventReducer = (
   state = {
     eventData: 'Loading', // pulled from Firestore
@@ -8,13 +12,17 @@ const eventReducer = (
     title: 'EventTitle',
     description: '',
     frequency: 1,
-    frequencyType: 'Daily', // week,month,just once
+    frequencyType: 'Once', // week,month,just once
     weekPartSelection: [], // 0 = sunday, 3 = wednesday
-    startDate: Date.now(),
+    startDate: getHtmlFormattedDate(Date.now()),
+    startTime: getHtmlFormattedTime(Date.now()),
     endDate: undefined,
     allDay: true,
     monthTypeSelection: 'dayNumber', // 'nthDay'
-    monthPartSelection: []// 0 = jan, 4=May, would look like [0,4,etc...]
+    monthPartSelection: [], // 0 = jan, 4=May, would look like [0,4,etc...]
+    localTzStartDateMs: 0, // only calculate on save, for mapping to calendar
+    utcStartDate: 0, // only calculate on save, for notification service on server
+    localTzEndDateMs: 0, // only calculate on save, for mapping to calendar
 
   }, action
 ) => {
@@ -32,8 +40,13 @@ const eventReducer = (
     frequencyType: state.frequencyType,
     weekPartSelection: state.weekPartSelection,
     startDate: state.startDate,
+    startTime: state.startTime,
     endDate: state.endDate,
+    allDay: state.allDay,
     monthPartSelection: state.monthPartSelection,
+    localTzStartDateMs: state.localTzStartDateMs,
+    utcStartDate: state.utcStartDate,
+    localTzEndDateMs: state.localTzEndDateMs
 
   };
   switch (action.type) {
@@ -69,8 +82,14 @@ const eventReducer = (
   case 'EVENTSETSTARTDATE':
     newState.startDate = action.payload.newVal;
     return newState;
+  case 'EVENTSETSTARTTIME':
+    newState.startTime = action.payload.newVal;
+    return newState;
   case 'EVENTSETENDDATE':
     newState.endDate = action.payload.newVal;
+    return newState;
+  case 'EVENTSETALLDAY':
+    newState.allDay = action.payload.newVal;
     return newState;
   case 'EVENTSETMONTHTYPESELECTION':
     newState.monthTypeSelection = action.payload.newVal;

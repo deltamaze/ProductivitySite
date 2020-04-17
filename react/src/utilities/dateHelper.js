@@ -25,8 +25,42 @@ export function getFormattedDate(ms) {
   }
   return `${mm}/${dd}/${yyyy}`;
 }
+export function getTimeFromDate(ms) {
+  return ms % 86400000;
+}
+export function getLocalTimezoneOffsetInMS() {
+  return (new Date().getTimezoneOffset() * 60000);
+}
+export function getHtmlFormattedTime(ms) {
+  // ms passed in is UTC, so convert to local
+  const timezonedMs = ms - getLocalTimezoneOffsetInMS();
+  const timeMs = getTimeFromDate(timezonedMs);
+
+  let minutes = Math.floor((timeMs / (1000 * 60)) % 60);
+  let hours = Math.floor((timeMs / (1000 * 60 * 60)) % 24);
+
+  hours = (hours < 10) ? `0${hours}` : hours;
+  minutes = (minutes < 10) ? `0${minutes}` : minutes;
+
+  return `${hours}:${minutes}`;
+}
+export function getRevertedHtmlFormattedTime(formattedTime) {
+  // opposite of getHtmlFormattedTime
+  // parse out hours and minutes
+  // determine if string has ":" if not return 0
+  if (!formattedTime.includes(':')) {
+    return 0;
+  }
+  const hours = formattedTime.split(':')[0];
+  const minutes = formattedTime.split(':')[1];
+  let msTime = (hours * 1000 * 60 * 60) + (minutes * 1000 * 60);
+  msTime += getLocalTimezoneOffsetInMS();
+  return msTime;
+}
 export function getHtmlFormattedDate(ms) {
-  const date = new Date(ms);
+  // ms passed in is UTC, so convert to local
+  const timezonedMs = ms - getLocalTimezoneOffsetInMS();
+  const date = new Date(timezonedMs);
   let dd = date.getDate();
   let mm = date.getMonth() + 1; // January is 0!
 
@@ -39,8 +73,14 @@ export function getHtmlFormattedDate(ms) {
   }
   return `${yyyy}-${mm}-${dd}`;
 }
-export function getLocalTimezoneOffsetInMS() {
-  return (new Date().getTimezoneOffset() * 60000);
+export function getSwappedTimePortionOfDate(originalDate, newTime) {
+  // get time portion of original date
+  const timeFromOriginalDate = getTimeFromDate(originalDate);
+  // negate from date
+  let updatedDate = originalDate - timeFromOriginalDate;
+  // add in new time
+  updatedDate += newTime;// return
+  return updatedDate;
 }
 export function getFormattedShortDate(ms) {
   const date = new Date(ms);

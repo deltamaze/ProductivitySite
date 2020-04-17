@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, Button } from 'react-bootstrap';
 import { getRepeatOptions, getDays, getMonths } from '../utilities/enums';
-import { getHtmlFormattedDate, getLocalTimezoneOffsetInMS } from '../utilities/dateHelper';
 import * as eventAction from '../services/eventEntity/action';
 
 class EventModal extends React.Component {
@@ -19,7 +18,7 @@ class EventModal extends React.Component {
 
       </div>
     ));
-    this.dayOfWeekCheckBoxGroup = <div key="weeks">Choose Day of Weeks {this.daysOfWeekCheckBox}</div>;
+    this.dayOfWeekCheckBoxGroup = <div key="weeks">Choose Days of Week {this.daysOfWeekCheckBox}</div>;
 
     this.monthCheckBox = getMonths().map((month) => (
       <div key={`monthCheckBox${month}`}>
@@ -37,6 +36,8 @@ class EventModal extends React.Component {
   }
 
   handleChange(event) {
+    console.log(event.target.id);
+    console.log(event.target.checked);
     switch (event.target.id) {
     case 'Title':
       this.props.eventAction.setEventTitle(event.target.value);
@@ -45,25 +46,22 @@ class EventModal extends React.Component {
       this.props.eventAction.setEventDescription(event.target.value);
       break;
     case 'StartDate': {
-      console.log(event.target.value);
-      console.log(getHtmlFormattedDate(this.props.events.startDate));
-      // convert to js ms format
-      // change inputted time from local, to UTC before saving to firebase
-      const newDate = new Date(event.target.value);
-      console.log(newDate.getTime() + getLocalTimezoneOffsetInMS());
-      // if all day event then remove time
-      // else keep existing set time
-      // console.log(event.target.value)
-      //
-      this.props.eventAction.setEventStartDate(newDate.getTime() + getLocalTimezoneOffsetInMS());
+      this.props.eventAction.setEventStartDate(event.target.value);
+      // if end date is less than start date, then make end date = start date
+      // end date is phase 2
       break;
     }
+    case 'StartTime': {
+      this.props.eventAction.setEventStartTime(event.target.value);
+      break;
+    }
+    case 'FrequencyType': {
+      this.props.eventAction.setEventFrequencyType(event.target.value);
+      break;
+    }
+
     default:
     }
-  }
-
-  handleDescriptionChange(event) {
-    this.props.eventAction.setEventTitle(event.target.value);
   }
 
   render() {
@@ -105,14 +103,13 @@ class EventModal extends React.Component {
               <input
                 id="StartDate"
                 type="date"
-                value={getHtmlFormattedDate(this.props.events.startDate)}
-                // defaultValue="2018-07-22"
+                value={this.props.events.startDate}
                 onChange={this.handleChange}
               />
               <input
                 id="StartTime"
                 type="time"
-                defaultValue="13:30"
+                value={this.props.events.startTime}
                 onChange={this.handleChange}
               />
               <label htmlFor="allDay">
@@ -129,7 +126,7 @@ class EventModal extends React.Component {
             {/* Repeat Every [Frequency Nuber][Frequency Type(Day,Week,Month,Year)] */}
             <div>
                 Repeat Every
-              <select onChange={this.handleChange} id="myList">
+              <select onChange={this.handleChange} id="FrequencyType">
                 {this.repeatOptions}
               </select>
             </div>
@@ -139,12 +136,12 @@ class EventModal extends React.Component {
             }
             {/* Month Part Selection (Jan/Feb/March) */}
             {
-              this.props.events.frequencyType === 'Monthly' ? this.monthCheckBoxGroup : null
+              this.props.events.frequencyType === 'Month/Yearly' ? this.monthCheckBoxGroup : null
             }
             {/* MonthType Selection (Monthly on Day (day number of startdate) / Monthly
                on ([1st/2nd] datepart) on month) */}
             {
-              this.props.events.frequencyType === 'Monthly'
+              this.props.events.frequencyType === 'Month/Yearly'
                 ? (
                   <div>
                       Repeat on Day Number or Nth Day of Week?

@@ -3,7 +3,7 @@ const days = ['Sunday', 'Monday', 'Tuesday',
 const months = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'
 ];
-const repeatOptions = ['Daily', 'Weekly', 'Yearly'
+const repeatOptions = ['Once', 'Daily', 'Weekly', 'Month/Yearly'
 ];
 
 
@@ -17,4 +17,5 @@ export function getDays() {
 
 export function getMonths() {
   return months;
+  
 }
