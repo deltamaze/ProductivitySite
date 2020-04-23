@@ -17,5 +17,4 @@ export function getDays() {
 
 export function getMonths() {
   return months;
-  
 }

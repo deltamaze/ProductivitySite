@@ -13,13 +13,13 @@ const eventReducer = (
     description: '',
     frequency: 1,
     frequencyType: 'Once', // week,month,just once
-    weekPartSelection: [], // 0 = sunday, 3 = wednesday
+    weekPartSelection: '', // 0 = sunday, 3 = wednesday
     startDate: getHtmlFormattedDate(Date.now()),
     startTime: getHtmlFormattedTime(Date.now()),
     endDate: undefined,
     allDay: true,
     monthTypeSelection: 'dayNumber', // 'nthDay'
-    monthPartSelection: [], // 0 = jan, 4=May, would look like [0,4,etc...]
+    monthPartSelection: '', // 0 = jan, 4=May, would look like [0,4,etc...]
     localTzStartDateMs: 0, // only calculate on save, for mapping to calendar
     utcStartDate: 0, // only calculate on save, for notification service on server
     localTzEndDateMs: 0, // only calculate on save, for mapping to calendar
