@@ -38,6 +38,8 @@ class EventModal extends React.Component {
   handleChange(event) {
     let target = event.target.id;
     console.log(target);
+    console.log(event.target.value);
+    console.log(this.props.events.monthTypeSelection);
     if (target.includes('dayCheckBox')) {
       target = 'dayCheckBox';
     }
@@ -83,6 +85,10 @@ class EventModal extends React.Component {
         const newSelection = this.props.events.monthPartSelection.replace(event.target.id, '');
         this.props.eventAction.setEventMonthPartSelection(newSelection);
       }
+      break;
+    }
+    case 'monthTypeSelection': {
+      this.props.eventAction.setEventMonthTypeSelection(event.target.value);
       break;
     }
 
@@ -194,10 +200,21 @@ class EventModal extends React.Component {
                 ? (
                   <div>
                       Repeat on Day Number or Nth Day of Week?
-                    <select onChange={this.handleChange} id="monthPartSelection">
+                    <select onChange={this.handleChange} id="monthTypeSelection" value={this.props.events.monthTypeSelection}>
                       <option>Day Number</option>
                       <option>Nth Day of Week</option>
                     </select>
+                  </div>
+                ) : null
+            }
+            {
+              this.props.events.monthTypeSelection === 'Day Number'
+              && this.props.events.frequencyType === 'Month/Yearly'
+              && this.props.events.startDate.split('-').length >= 2
+                ? (
+                  <div style={{ fontStyle: 'italic', fontSize: 'small' }}>
+                    Repeat on Selected Month,
+                    when Daynumber = {this.props.events.startDate.split('-')[2] /* Format day */}
                   </div>
                 ) : null
             }
