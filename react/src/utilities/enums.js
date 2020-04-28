@@ -6,6 +6,8 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June',
 const repeatOptions = ['Once', 'Daily', 'Weekly', 'Month/Yearly'
 ];
 
+const frequencyOptions = ['First &weekday&', 'Second &weekday&', 'Third &weekday&', 'Fourth &weekday&','Last &weekday&', 'Last day of month'
+];
 
 export function getRepeatOptions() {
   return repeatOptions;

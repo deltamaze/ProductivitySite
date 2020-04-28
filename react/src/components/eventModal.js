@@ -218,6 +218,17 @@ class EventModal extends React.Component {
                   </div>
                 ) : null
             }
+            {
+              this.props.events.monthTypeSelection === 'Nth Day of Week'
+              && this.props.events.frequencyType === 'Month/Yearly'
+              && this.props.events.startDate.split('-').length >= 2
+                ? (
+                  <div style={{ fontStyle: 'italic', fontSize: 'small' }}>
+                    Repeat on Selected Month,
+                    when Daynumber = {this.props.events.startDate.split('-')[2] /* Format day */}
+                  </div>
+                ) : null
+            }
 
             {/* End Time ? Never RadioButton, or DateTime field.
                If Never RadioButton, clear out store.EndDate to undefined, and disable field */}
