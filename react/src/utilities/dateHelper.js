@@ -97,10 +97,7 @@ export function getFormattedShortDate(ms) {
   return `${mm}/${dd}/${yyyy}`;
 }
 export function getDayNumber(ms) {
-  console.log(ms);
   const date = new Date(ms);
-  console.log(date);
-  console.log(date.getDate().toString());
   return date.getDate().toString();
 }
 export function getDayOfWeek(ms) {

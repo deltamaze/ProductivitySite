@@ -3,7 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, Button } from 'react-bootstrap';
-import { getRepeatOptions, getDays, getMonths } from '../utilities/enums';
+import {
+  getRepeatOptions, getDays, getMonths, getFrequencyOptions
+} from '../utilities/enums';
+import { getDayOfWeek } from '../utilities/dateHelper';
 import * as eventAction from '../services/eventEntity/action';
 
 class EventModal extends React.Component {
@@ -19,6 +22,13 @@ class EventModal extends React.Component {
     this.state = {
       allDayFlag: true
     };
+  }
+
+  updateFrequencyOptionTemplate(selection) {
+    // get Day of Week for current selection
+    const dow = getDayOfWeek(this.props.events.startDate);
+    return selection.replace('&weekday&', dow);
+    // replace and return
   }
 
   isDayOfWeekChecked(checkVal) {
@@ -158,7 +168,7 @@ class EventModal extends React.Component {
             </div>
             {/* Repeat Every [Frequency Nuber][Frequency Type(Day,Week,Month,Year)] */}
             <div>
-                Repeat Every
+              Repeat Every
               <select onChange={this.handleChange} id="FrequencyType">
                 {this.repeatOptions}
               </select>
@@ -199,7 +209,7 @@ class EventModal extends React.Component {
               this.props.events.frequencyType === 'Month/Yearly'
                 ? (
                   <div>
-                      Repeat on Day Number or Nth Day of Week?
+                    Repeat on Day Number or Nth Day of Week?
                     <select onChange={this.handleChange} id="monthTypeSelection" value={this.props.events.monthTypeSelection}>
                       <option>Day Number</option>
                       <option>Nth Day of Week</option>
@@ -209,8 +219,8 @@ class EventModal extends React.Component {
             }
             {
               this.props.events.monthTypeSelection === 'Day Number'
-              && this.props.events.frequencyType === 'Month/Yearly'
-              && this.props.events.startDate.split('-').length >= 2
+                && this.props.events.frequencyType === 'Month/Yearly'
+                && this.props.events.startDate.split('-').length >= 2
                 ? (
                   <div style={{ fontStyle: 'italic', fontSize: 'small' }}>
                     Repeat on Selected Month,
@@ -220,13 +230,18 @@ class EventModal extends React.Component {
             }
             {
               this.props.events.monthTypeSelection === 'Nth Day of Week'
-              && this.props.events.frequencyType === 'Month/Yearly'
-              && this.props.events.startDate.split('-').length >= 2
+                && this.props.events.frequencyType === 'Month/Yearly'
                 ? (
-                  <div style={{ fontStyle: 'italic', fontSize: 'small' }}>
-                    Repeat on Selected Month,
-                    when Daynumber = {this.props.events.startDate.split('-')[2] /* Format day */}
-                  </div>
+                  getFrequencyOptions()
+                    .map((item) => (
+                      <option
+                        key={this.updateFrequencyOptionTemplate(item)}
+                        value={this.updateFrequencyOptionTemplate(item)}
+                      >
+                        {this.updateFrequencyOptionTemplate(item)}
+                      </option>
+                    ))
+
                 ) : null
             }
 
@@ -235,10 +250,10 @@ class EventModal extends React.Component {
 
 
             <Button variant="success" size="lg" block onClick={this.props.onHideWithUpsert}>
-                Save
+              Save
             </Button>
             <Button variant="danger" size="lg" block onClick={this.props.onHide}>
-                Cancel
+              Cancel
             </Button>
           </>
         </Modal.Body>
