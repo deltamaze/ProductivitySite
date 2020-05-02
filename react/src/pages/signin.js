@@ -38,7 +38,7 @@ class SignInPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Current Token: {this.props.auth.uid}</h1>
+        <h1>Login Page</h1>
         {this.renderConnectingMsg()}
       </div>
     );

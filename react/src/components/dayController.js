@@ -67,6 +67,7 @@ class DayController extends React.Component {
               id="mainTextAreaInput"
               value={this.state.mainTextArea}
               onChange={this.handleChange}
+              placeholder="Describe the days plans here..."
             />
           </>
         )}
