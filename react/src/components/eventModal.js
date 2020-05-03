@@ -47,9 +47,6 @@ class EventModal extends React.Component {
 
   handleChange(event) {
     let target = event.target.id;
-    console.log(target);
-    console.log(event.target.value);
-    console.log(this.props.events.monthTypeSelection);
     if (target.includes('dayCheckBox')) {
       target = 'dayCheckBox';
     }

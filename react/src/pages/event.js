@@ -9,12 +9,10 @@ import { toggleUpsertModal } from '../services/eventEntity/action';
 class EventPage extends React.Component {
   showEventModal(eventId) {
     this.props.toggleUpsertModal(true);
-    console.log(eventId);
   }
 
   showDeleteEventModal(eventId) {
     // call action to update store
-    console.log(eventId);
   }
 
   render() {
