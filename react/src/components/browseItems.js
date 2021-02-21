@@ -15,7 +15,7 @@ class BrowseItems extends React.Component {
       targetItemTitle: ''
     };
   }
-
+  
   showConfirmDeleteModal(itemId, itemTitle) {
     this.setState({
       modalShow: true,

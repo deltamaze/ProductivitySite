@@ -1,45 +1,45 @@
 {
-  "name": "simpleplanner",
-  "version": "1.0.0",
-  "description": "",
-  "main": "public\\index.html",
-  "dependencies": {
-    "axios": "^0.19.0",
-    "firebase": "^6.2.0",
-    "lodash": "^4.17.0",
-    "react": "^16.6.0",
-    "react-bootstrap": "^1.0.0-beta.14",
-    "react-dom": "^16.6.0",
-    "react-redux": "^7.1.0",
-    "react-router": "5.0.0",
-    "react-router-dom": "5.0.0",
-    "redux": "4.0.1",
-    "redux-thunk": "^2.3.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.0",
-    "@babel/preset-env": "^7.6.0",
-    "@babel/preset-react": "^7.6.0",
-    "eslint": "^6.2.1",
-    "eslint-config-airbnb": "^18.0.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.16.0",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "3.7.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open",
-    "lint": "eslint src",
-    "build": "webpack --mode production"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "author": "",
-  "license": "ISC"
+    "name": "simpleplanner",
+    "version": "1.0.0",
+    "description": "",
+    "main": "public\\index.html",
+    "dependencies": {
+        "axios": "~0.21.1",
+        "firebase": "~8.2.8",
+        "lodash": "^4.17.0",
+        "react": "^16.6.0",
+        "react-bootstrap": "^1.0.0-beta.14",
+        "react-dom": "^16.6.0",
+        "react-redux": "^7.1.0",
+        "react-router": "5.0.0",
+        "react-router-dom": "5.0.0",
+        "redux": "4.0.1",
+        "redux-thunk": "^2.3.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.6.0",
+        "@babel/preset-env": "^7.6.0",
+        "@babel/preset-react": "^7.6.0",
+        "babel-eslint": "^10.0.1",
+        "babel-loader": "^8.0.0",
+        "eslint": "^6.2.1",
+        "eslint-config-airbnb": "^18.0.0",
+        "eslint-plugin-import": "^2.18.0",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-react": "^7.16.0",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.1",
+        "webpack-dev-server": "3.7.1"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "webpack-dev-server --open",
+        "lint": "eslint src",
+        "build": "webpack --mode production"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "author": "",
+    "license": "ISC"
 }
