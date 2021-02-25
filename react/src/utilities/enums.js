@@ -1,7 +1,7 @@
 const days = ['Sunday', 'Monday', 'Tuesday',
-  'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
+    'July', 'August', 'September', 'October', 'November', 'December'
 ];
 const repeatOptions = ['Once', 'Daily', 'Weekly', 'Month/Yearly'
 ];
@@ -10,17 +10,17 @@ const frequencyOptions = ['First &weekday&', 'Second &weekday&', 'Third &weekday
 ];
 
 export function getRepeatOptions() {
-  return repeatOptions;
+    return repeatOptions;
 }
 
 export function getDays() {
-  return days;
+    return days;
 }
 
 export function getMonths() {
-  return months;
+    return months;
 }
 
 export function getFrequencyOptions() {
-  return frequencyOptions;
+    return frequencyOptions;
 }

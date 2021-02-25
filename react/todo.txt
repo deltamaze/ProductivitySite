@@ -1,2 +1,0 @@
-Use global Error Message State object
-create local state object of authStatus, to display on Sign in page

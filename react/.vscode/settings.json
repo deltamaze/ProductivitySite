@@ -1,0 +1,30 @@
+{
+    "cSpell.words": [
+        "EVENTDELETEMODALSHOW",
+        "EVENTSETALLDAY",
+        "EVENTSETDESCRIPTION",
+        "EVENTSETENDDATE",
+        "EVENTSETFREQUENCYTYPE",
+        "EVENTSETMONTHPARTSELECTION",
+        "EVENTSETMONTHTYPESELECTION",
+        "EVENTSETSTARTDATE",
+        "EVENTSETSTARTTIME",
+        "EVENTSETTITLE",
+        "EVENTSETWEEKPARTSELECTION",
+        "EVENTUPSERTMODALSHOW",
+        "FETCHMONTH",
+        "NEWALERT",
+        "SETDATE",
+        "SETEVENT",
+        "SETITEMINDEX",
+        "SETNOTE",
+        "UPSERTUSERINFO",
+        "Upsert",
+        "eventsetfrequency",
+        "firestore",
+        "labelledby",
+        "signin",
+        "signoff",
+        "vcenter"
+    ]
+}
