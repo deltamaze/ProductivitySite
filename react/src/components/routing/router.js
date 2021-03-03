@@ -13,7 +13,7 @@ import PlannerPage from '../planner/plannerPage';
 // import ProjectPage from '../pages/project';
 import NotePage from '../notes/notePage';
 import SignOffPage from '../logon/signoffPage';
-// import SettingsPage from '../pages/settings';
+import SettingsPage from '../settings/settingsPage';
 
 const NotFoundScreen = () => <h1>404</h1>;
 
@@ -44,7 +44,7 @@ class PageRouter extends React.Component {
                         <PrivateRoute path="/notes" exact component={BrowseNotesPage} />
                         <PrivateRoute path="/note/:itemId" component={NotePage} />
                         {/* <PrivateRoute path="/project/:itemId" component={ProjectPage} /> */}
-                        {/* <PrivateRoute path="/settings" component={SettingsPage} /> */}
+                        <PrivateRoute path="/settings" component={SettingsPage} />
                         <Route path="*" component={NotFoundScreen} />
                     </Switch>
                 </div>

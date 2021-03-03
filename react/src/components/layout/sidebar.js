@@ -47,10 +47,11 @@ class SideBar extends React.Component {
                                     {/* <NavListItem route="event" label="Events" icon="flag" /> */}
                                     <NavListItem route="notes" label="Notes" icon="align-left" />
                                     <NavListItem route="journal" label="Journal" icon="book" />
-                                    {/* <NavListItem
+                                    <NavListItem
                                         route="settings"
                                         label="Settings"
-                                        icon="cog" /> */}
+                                        icon="cog"
+                                    />
                                     <NavListItem route="signoff" label="LogOff" icon="account-logout" />
                                 </>
                             )}
