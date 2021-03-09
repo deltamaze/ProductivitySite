@@ -1,13 +1,12 @@
-const monthReducer = (state = { settingsData: 'Loading', monthRef: 0 }, action) => {
+const settingReducer = (state = { settingsData: 'Loading' }, action) => {
     switch (action.type) {
         case 'SETTINGS':
             return {
-                monthData: action.payload.monthData,
-                monthRef: action.payload.monthRef,
+                settingsData: action.payload.settingsData,
             };
         default:
             return state;
     }
 };
 
-export default monthReducer;
+export default settingReducer;

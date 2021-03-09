@@ -5,6 +5,7 @@ import { fetchMonth } from '../../store/actions/monthCollectionActions';
 import { fetchEvents } from '../../store/actions/eventCollectionActions';
 import { getMonthYear } from '../../utilities/dateHelper';
 import { fetchItemIndex } from '../../store/actions/itemCollectionActions';
+import { fetchSettings } from '../../store/actions/settingsActions';
 
 class FirebaseServiceStarter extends React.Component {
     componentDidMount() {
@@ -38,6 +39,7 @@ class FirebaseServiceStarter extends React.Component {
         }
         this.props.fetchItemIndex(this.props.auth.uid);
         this.props.fetchEvents(this.props.auth.uid);
+        this.props.fetchSettings(this.props.auth.uid);
     }
 
     render() {
@@ -50,6 +52,6 @@ class FirebaseServiceStarter extends React.Component {
 export default connect(
     (state) => ({ auth: state.auth, selectedDate: state.selectedDate }),
     ({
-        fetchAuth, fetchMonth, fetchItemIndex, fetchEvents
+        fetchAuth, fetchMonth, fetchItemIndex, fetchEvents, fetchSettings
     })
 )(FirebaseServiceStarter);
