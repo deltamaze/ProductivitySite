@@ -25,7 +25,13 @@ export function fetchSettings(uid) {
                     if (doc.data() === undefined) {
                         dispatch({
                             type: SETTINGS,
-                            payload: { settingsData: undefined } // note item not set yet
+                            payload: {
+                                settingsData: {
+                                    theme: 'Light',
+                                    colorOne: '#6305c2',
+                                    colorTwo: '#00eeff'
+                                }
+                            } // settings collection not set
                         });
                     } else { // cal item set, push to state
                         dispatch({

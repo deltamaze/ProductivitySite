@@ -20,6 +20,9 @@ class SettingsPage extends React.Component {
             colorOne: this.props.settings.settingsData.colorOne,
             colorTwo: this.props.settings.settingsData.colorTwo
         };
+        if (firebasePackage.theme == undefined) {
+            firebasePackage.theme = '';
+        }
         if (firebasePackage.colorOne == undefined) {
             firebasePackage.colorOne = '';
         }
@@ -98,7 +101,7 @@ class SettingsPage extends React.Component {
                                     id="colorOne"
                                     name="colorOne"
                                     onChange={this.handleChange}
-                                    value={this.props.settings.settingsData.colorOne}
+                                    value={this.props.settings.settingsData.colorOne || '#000000'}
                                 />
                             </label>
                             <br />
@@ -109,7 +112,7 @@ class SettingsPage extends React.Component {
                                     id="colorTwo"
                                     name="colorTwo"
                                     onChange={this.handleChange}
-                                    value={this.props.settings.settingsData.colorTwo}
+                                    value={this.props.settings.settingsData.colorTwo || '#000000'}
                                 />
                             </label>
                         </>

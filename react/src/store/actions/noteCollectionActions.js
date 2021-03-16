@@ -22,7 +22,7 @@ export function fetchNote(uid, itemId) { // test for now, later change to be mor
     return (dispatch) => {
         removeNoteListener();
         try {
-            noteRef = db.collection('users').doc(uid).collection('noteContent').doc(itemId); // default unset value
+            noteRef = db.collection('users').doc(uid).collection('noteContent').doc(itemId);
             noteListener = noteRef // default unset value
                 .onSnapshot((doc) => {
                     if (doc.data() === undefined) {

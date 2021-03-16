@@ -12,6 +12,7 @@ class FirebaseServiceStarter extends React.Component {
         this.props.fetchAuth();
         this.updateMonth();
         this.fetchAuthorizedServices();
+        this.setTheme();
     }
 
     componentDidUpdate(prevProps) {
@@ -23,14 +24,18 @@ class FirebaseServiceStarter extends React.Component {
         if (this.props.auth.uid != prevProps.auth.uid) {
             this.fetchAuthorizedServices(); // logged in
         }
+        if (this.props.settings.settingsData.theme != prevProps.settings.settingsData.theme) {
+            this.setTheme();
+        }
         // TODO determine if user logged out, clear all listeners if so
     }
 
-    updateMonth() {
-        if (this.props.auth.uid == 'Connecting' || this.props.auth.uid == 'NotLoggedIn') {
-            return;
+    setTheme() {
+        if (this.props.settings.settingsData.theme == 'Light') {
+            document.body.classList.remove('darkMode');
+        } else {
+            document.body.classList.add('darkMode');
         }
-        this.props.fetchMonth(this.props.auth.uid, getMonthYear(this.props.selectedDate.date));
     }
 
     fetchAuthorizedServices() {
@@ -42,6 +47,13 @@ class FirebaseServiceStarter extends React.Component {
         this.props.fetchSettings(this.props.auth.uid);
     }
 
+    updateMonth() {
+        if (this.props.auth.uid == 'Connecting' || this.props.auth.uid == 'NotLoggedIn') {
+            return;
+        }
+        this.props.fetchMonth(this.props.auth.uid, getMonthYear(this.props.selectedDate.date));
+    }
+
     render() {
         return (
             null
@@ -50,7 +62,7 @@ class FirebaseServiceStarter extends React.Component {
 }
 
 export default connect(
-    (state) => ({ auth: state.auth, selectedDate: state.selectedDate }),
+    (state) => ({ auth: state.auth, selectedDate: state.selectedDate, settings: state.settings }),
     ({
         fetchAuth, fetchMonth, fetchItemIndex, fetchEvents, fetchSettings
     })
