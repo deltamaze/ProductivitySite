@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { setSettings } from '../../store/actions/settingsActions';
 
@@ -50,6 +51,15 @@ class SettingsPage extends React.Component {
         this.props.setSettings(firebasePackage, this.props.auth.uid);
     }
 
+    presetClick(theme, colorOne, colorTwo) {
+        const firebasePackage = {
+            theme,
+            colorOne,
+            colorTwo
+        };
+        this.props.setSettings(firebasePackage, this.props.auth.uid);
+    }
+
     render() {
         const colorInputMargin = { marginLeft: '10px' };
         return (
@@ -60,7 +70,82 @@ class SettingsPage extends React.Component {
                     : (
                         <>
                             <h3>
-                                Theme
+                                Themes
+                            </h3>
+                            <ul>
+                                <li style={{ marginBottom: '20px' }}>
+                                    Default
+                                    <Button
+                                        className="marginLeft20"
+                                        variant="outline-primary"
+                                        size="sm"
+                                        onClick={
+                                            () => this.presetClick(
+                                                'Light', '#0026AD', '#4B0066'
+                                            )
+                                        }
+                                    >Set
+                                    </Button>
+                                </li>
+                                <li style={{ marginBottom: '20px' }}>
+                                    Midnight
+                                    <Button
+                                        className="marginLeft20"
+                                        variant="outline-primary"
+                                        size="sm"
+                                        onClick={
+                                            () => this.presetClick(
+                                                'Dark', '#000000', '#202020'
+                                            )
+                                        }
+                                    >Set
+                                    </Button>
+                                </li>
+                                <li style={{ marginBottom: '20px' }}>
+                                    Neon Dark
+                                    <Button
+                                        className="marginLeft20"
+                                        variant="outline-primary"
+                                        size="sm"
+                                        onClick={
+                                            () => this.presetClick(
+                                                'Dark', '#6305c2', '#00eeff'
+                                            )
+                                        }
+                                    >Set
+                                    </Button>
+                                </li>
+                                <li style={{ marginBottom: '20px' }}>
+                                    Simple Light
+                                    <Button
+                                        className="marginLeft20"
+                                        variant="outline-primary"
+                                        size="sm"
+                                        onClick={
+                                            () => this.presetClick(
+                                                'Light', '#242424', '#242424'
+                                            )
+                                        }
+                                    >Set
+                                    </Button>
+                                </li>
+                                <li style={{ marginBottom: '20px' }}>
+                                    Blackout
+                                    <Button
+                                        className="marginLeft20"
+                                        variant="outline-primary"
+                                        size="sm"
+                                        onClick={
+                                            () => this.presetClick(
+                                                'Dark', '#0C0C0C', '#0C0C0C'
+                                            )
+                                        }
+                                    >Set
+                                    </Button>
+                                </li>
+                            </ul>
+                            <h3>
+                                Custom
                             </h3>
                             <div className="form-check">
 

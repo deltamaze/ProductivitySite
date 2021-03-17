@@ -94,7 +94,7 @@ body.darkMode input#mainTexBoxInput{
 .sidebar {
     /* background-image: linear-gradient(180deg, rgb(6, 119, 130) 0%, rgb(255, 255, 255) 70%); */
     /* background: linear-gradient(356deg, #244166, #4f2466, #66245d, #662445); */
-    background: linear-gradient( #6305c2, #00eeff);
+    background: linear-gradient( #0026AD, #4B0066);
     }
 
     .sidebar .top-row {

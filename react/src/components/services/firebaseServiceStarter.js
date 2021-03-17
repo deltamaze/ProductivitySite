@@ -31,10 +31,10 @@ class FirebaseServiceStarter extends React.Component {
     }
 
     setTheme() {
-        if (this.props.settings.settingsData.theme == 'Light') {
-            document.body.classList.remove('darkMode');
-        } else {
+        if (this.props.settings.settingsData.theme == 'Dark') {
             document.body.classList.add('darkMode');
+        } else {
+            document.body.classList.remove('darkMode');
         }
     }
 
