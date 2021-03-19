@@ -42,7 +42,7 @@ class BrowseItems extends React.Component {
                                     onClick={() => this.props.addItemWithRedirect(
                                         {
                                             itemPath: '/',
-                                            itemTitle: 'NewItem',
+                                            itemTitle: 'NewNoteTitle',
                                             itemType: this.props.itemType
                                         },
                                         this.props.auth.uid,

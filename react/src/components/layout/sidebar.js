@@ -22,11 +22,14 @@ class SideBar extends React.Component {
     }
 
     render() {
+        const sideBarColor = {
+            background: `linear-gradient( ${this.props.settings.settingsData.colorOne}, ${this.props.settings.settingsData.colorTwo})`
+        };
         return (
-            <div className="sidebar">
+            <div className="sidebar" style={sideBarColor}>
                 <div className="top-row pl-4 navbar navbar-dark">
                     <a className="navbar-brand" id="mainLogo" to="/">SimplePlanner</a>
-                    <button className="navbar-toggler" onClick={() => this.toggleCollapse()}>
+                    <button className="navbar-toggler" onClick={() => this.toggleCollapse()}>s
                         <span className="navbar-toggler-icon" />
                     </button>
                 </div>
@@ -47,10 +50,11 @@ class SideBar extends React.Component {
                                     {/* <NavListItem route="event" label="Events" icon="flag" /> */}
                                     <NavListItem route="notes" label="Notes" icon="align-left" />
                                     <NavListItem route="journal" label="Journal" icon="book" />
-                                    {/* <NavListItem
+                                    <NavListItem
                                         route="settings"
                                         label="Settings"
-                                        icon="cog" /> */}
+                                        icon="cog"
+                                    />
                                     <NavListItem route="signoff" label="LogOff" icon="account-logout" />
                                 </>
                             )}
@@ -63,7 +67,7 @@ class SideBar extends React.Component {
 }
 
 export default connect(
-    (state) => ({ auth: state.auth }),
+    (state) => ({ auth: state.auth, settings: state.settings }),
     ({
     })
 )(SideBar);
