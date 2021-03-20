@@ -13,6 +13,8 @@ node_modules
 
 # production
 /build
+/buildProd
+bundle.js
 
 # NativeScript application
 hooks
