@@ -36,7 +36,8 @@ class DayController extends React.Component {
         this.handleChange = this.handleChange.bind(this); // to grab event data, need to bind
         this.setMonthWithDebounce = debounce(this.props.setMonth, 1000);
         this.state = {
-            mainTextArea: ''
+            mainTextArea: '',
+            lastKeystrokeTimestamp: new Date()
         };
     }
 
@@ -52,11 +53,27 @@ class DayController extends React.Component {
             || this.props.month.monthRef !== prevProps.month.monthRef) {
             this.syncLocalStateToFirebaseData();
         }
+
+        // if day data is getting updated from another tab/device update local state to match
+        // only if this tab has been idling for more than 10 seconds
+        // whole point of this is for the debounce i have in place for component local state
+        const currTime = new Date();
+        const secondsDifference = (
+            currTime.getTime() - this.state.lastKeystrokeTimestamp.getTime()
+        ) / 1000; // convert from ms to seconds
+
+        const day = getDayNumber(this.props.selectedDate.date);
+        if (getDayElement(day,
+            this.props.month.monthData,
+            this.props.element) != this.state.mainTextArea && secondsDifference > 10) {
+            this.syncLocalStateToFirebaseData();
+        }
     }
 
     handleChange(event) {
         this.setState({
-            mainTextArea: event.target.value // handle input and update text box
+            mainTextArea: event.target.value, // handle input and update text box
+            lastKeystrokeTimestamp: new Date()
         });
         const day = getDayNumber(this.props.selectedDate.date);
         const newMonth = generateMonthPayload(day,
