@@ -32,15 +32,24 @@ class NavBar extends React.Component {
     render() {
         return (
             <div className="top-row px-4">
-                <span className="left-justify">{this.formatPathDate(this.props.location.pathname)}
+                <span className="left-justify" style={{ marginRight: 'auto' }}>
+                    {this.formatPathDate(this.props.location.pathname)}
                 </span>
+
+                <span
+                    style={{ fontsize: '20px' }}
+                    className={
+                        this.props.syncedStatus.synced ? 'oi oi-cloud' : 'oi oi-cloud-upload'
+                    }
+                    aria-hidden="true"
+                />
             </div>
         );
     }
 }
 
 export default connect(
-    () => ({}),
+    (state) => ({ syncedStatus: state.syncedStatus }),
     ({
     })
 )(withRouter(NavBar));

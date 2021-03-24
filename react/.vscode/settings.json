@@ -15,6 +15,7 @@
         "EVENTUPSERTMODALSHOW",
         "FETCHMONTH",
         "NEWALERT",
+        "NOTSYNCED",
         "SETDATE",
         "SETEVENT",
         "SETITEMINDEX",
