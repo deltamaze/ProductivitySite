@@ -35,7 +35,7 @@ class DayController extends React.Component {
         super(props);
 
         this.handleChange = this.handleChange.bind(this); // to grab event data, need to bind
-        this.setMonthWithDebounce = debounce(this.props.setMonth, 10000);
+        this.setMonthWithDebounce = debounce(this.props.setMonth, 3000);
         this.state = {
             mainTextArea: ''
         };
@@ -85,10 +85,6 @@ class DayController extends React.Component {
             this.props.setNotSyncedStatus();
         } else {
             this.props.setSyncedStatus();
-            console.log(this.state.mainTextArea);
-            console.log(getDayElement(day,
-                this.props.month.monthData,
-                this.props.element));
         }
     }
 

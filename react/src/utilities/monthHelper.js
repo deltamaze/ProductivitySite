@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export function getDayElement(day, month, element) {
     if (month === undefined) {
         return '';
@@ -39,11 +41,13 @@ function generateJournalPayload(day, journal, month) {
     return returnMonth;
 }
 export function generateMonthPayload(day, targetElement, elementData, month) {
+    const cloneDeepMonth = _.cloneDeep(month);
+
     if (targetElement === 'planner') {
-        return generatePlannerPayload(day, elementData, month);
+        return generatePlannerPayload(day, elementData, cloneDeepMonth);
     }
     if (targetElement === 'journal') {
-        return generateJournalPayload(day, elementData, month);
+        return generateJournalPayload(day, elementData, cloneDeepMonth);
     }
     return { [day]: { planner: '', journal: '' } };
 }
