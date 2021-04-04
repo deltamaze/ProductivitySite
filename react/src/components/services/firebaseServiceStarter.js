@@ -6,6 +6,7 @@ import { fetchEvents } from '../../store/actions/eventCollectionActions';
 import { getMonthYear } from '../../utilities/dateHelper';
 import { fetchItemIndex } from '../../store/actions/itemCollectionActions';
 import { fetchSettings } from '../../store/actions/settingsActions';
+import { fetchConnectedStatus } from '../../store/actions/syncedStatusAction';
 
 class FirebaseServiceStarter extends React.Component {
     componentDidMount() {
@@ -13,6 +14,7 @@ class FirebaseServiceStarter extends React.Component {
         this.updateMonth();
         this.fetchAuthorizedServices();
         this.setTheme();
+        this.props.fetchConnectedStatus();
     }
 
     componentDidUpdate(prevProps) {
@@ -64,6 +66,6 @@ class FirebaseServiceStarter extends React.Component {
 export default connect(
     (state) => ({ auth: state.auth, selectedDate: state.selectedDate, settings: state.settings }),
     ({
-        fetchAuth, fetchMonth, fetchItemIndex, fetchEvents, fetchSettings
+        fetchAuth, fetchMonth, fetchItemIndex, fetchEvents, fetchSettings, fetchConnectedStatus
     })
 )(FirebaseServiceStarter);
