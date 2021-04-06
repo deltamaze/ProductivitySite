@@ -20,27 +20,36 @@ class NavBar extends React.Component {
         }
         // remove initial slash
         returnVal = returnVal.substr(1);
-        // remove second and everything after second slash
-        // TODO add more logic to determine if it has a second slash
-        // TODO maybe breadcrumb this out https://getbootstrap.com/docs/4.3/components/breadcrumb/
-        // returnVal = returnVal.substring(0, returnVal.indexOf('/'));
-        // cap first character
+        // upper the first character
         returnVal = returnVal.charAt(0).toUpperCase() + returnVal.slice(1);
         return returnVal;
+    }
+
+    syncStatusText() {
+        if (!this.props.syncedStatus.synced) {
+            return 'Syncing ...';
+        }
+        if (!this.props.syncedStatus.connected) {
+            return 'Lost connection to the Database';
+        }
+        return 'Synced';
     }
 
     render() {
         return (
             <div className="top-row px-4">
-                <span className="left-justify">{this.formatPathDate(this.props.location.pathname)}
+                <span className="left-justify" style={{ marginRight: 'auto' }}>
+                    {this.formatPathDate(this.props.location.pathname)}
                 </span>
+
+                <span>{this.syncStatusText()}</span>
             </div>
         );
     }
 }
 
 export default connect(
-    () => ({}),
+    (state) => ({ syncedStatus: state.syncedStatus }),
     ({
     })
 )(withRouter(NavBar));

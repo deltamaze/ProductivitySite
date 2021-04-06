@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
         "Buffett",
+        "DBCONNECTED",
+        "DBNOTCONNECTED",
         "EVENTDELETEMODALSHOW",
         "EVENTSETALLDAY",
         "EVENTSETDESCRIPTION",
@@ -15,6 +17,8 @@
         "EVENTUPSERTMODALSHOW",
         "FETCHMONTH",
         "NEWALERT",
+        "NOTCONNECTED",
+        "NOTSYNCED",
         "SETDATE",
         "SETEVENT",
         "SETITEMINDEX",
@@ -25,6 +29,7 @@
         "eventsetfrequency",
         "firestore",
         "labelledby",
+        "rtdb",
         "signin",
         "signoff",
         "simpleplanner",

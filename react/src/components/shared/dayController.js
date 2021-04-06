@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getDayNumber } from '../../utilities/dateHelper';
 import { setMonth } from '../../store/actions/monthCollectionActions';
+import { setSyncedStatus, setNotSyncedStatus } from '../../store/actions/syncedStatusAction';
 import debounce from '../../utilities/debounce';
 import { generateMonthPayload, getDayElement } from '../../utilities/monthHelper';
 import DaySelector from './daySelector';
@@ -34,7 +35,7 @@ class DayController extends React.Component {
         super(props);
 
         this.handleChange = this.handleChange.bind(this); // to grab event data, need to bind
-        this.setMonthWithDebounce = debounce(this.props.setMonth, 1000);
+        this.setMonthWithDebounce = debounce(this.props.setMonth, 3000);
         this.state = {
             mainTextArea: '',
             lastKeystrokeTimestamp: new Date()
@@ -43,6 +44,7 @@ class DayController extends React.Component {
 
     componentDidMount() {
         this.syncLocalStateToFirebaseData();
+        this.setSyncedStatus();
     }
 
     componentDidUpdate(prevProps) {
@@ -53,6 +55,7 @@ class DayController extends React.Component {
             || this.props.month.monthRef !== prevProps.month.monthRef) {
             this.syncLocalStateToFirebaseData();
         }
+        this.setSyncedStatus();
 
         // if day data is getting updated from another tab/device update local state to match
         // only if this tab has been idling for more than 10 seconds
@@ -70,6 +73,10 @@ class DayController extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.setSyncedStatus();
+    }
+
     handleChange(event) {
         this.setState({
             mainTextArea: event.target.value, // handle input and update text box
@@ -80,8 +87,22 @@ class DayController extends React.Component {
             this.props.element,
             event.target.value,
             this.props.month.monthData);
+        // if local state != firebase state, notify syncedStatus
+        this.setSyncedStatus();
         // package us a new month object to post back to firebase
         this.setMonthWithDebounce(newMonth, this.props.month.monthRef, this.props.auth.uid);
+    }
+
+    setSyncedStatus() {
+        const day = getDayNumber(this.props.selectedDate.date);
+
+        if (this.state.mainTextArea != getDayElement(day,
+            this.props.month.monthData,
+            this.props.element)) {
+            this.props.setNotSyncedStatus();
+        } else {
+            this.props.setSyncedStatus();
+        }
     }
 
     syncLocalStateToFirebaseData() {
@@ -124,6 +145,6 @@ class DayController extends React.Component {
 export default connect(
     (state) => ({ auth: state.auth, selectedDate: state.selectedDate, month: state.month }),
     ({
-        setMonth
+        setMonth, setSyncedStatus, setNotSyncedStatus
     })
 )(DayController);

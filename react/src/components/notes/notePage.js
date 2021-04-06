@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { removeNoteListener, fetchNote, setNoteContent } from '../../store/actions/noteCollectionActions';
+import { setSyncedStatus, setNotSyncedStatus } from '../../store/actions/syncedStatusAction';
 import { setItem } from '../../store/actions/itemCollectionActions';
 import debounce from '../../utilities/debounce';
 
@@ -26,6 +27,7 @@ class NotePage extends React.Component {
         this.fetchAuthorizedServices();
         this.syncNoteTextToFirebaseData();
         this.syncTitleTextToFirebaseData();
+        this.setSyncedStatus();
     }
 
     componentDidUpdate(prevProps) {
@@ -41,9 +43,11 @@ class NotePage extends React.Component {
         if (prevProps.itemIndex.items === 'Loading' && prevProps.itemIndex.items != this.props.itemIndex.items) {
             this.syncTitleTextToFirebaseData();
         }
+        this.setSyncedStatus();
     }
 
     componentWillUnmount() {
+        this.props.setSyncedStatus();
         this.props.removeNoteListener();
     }
 
@@ -51,6 +55,8 @@ class NotePage extends React.Component {
         this.setState({
             mainTextArea: event.target.value // handle input and update text box
         });
+
+        this.setSyncedStatus();
 
         this.setNoteWithDebounce(
             { content: event.target.value },
@@ -70,6 +76,8 @@ class NotePage extends React.Component {
             itemType: 'note'
         };
 
+        this.setSyncedStatus();
+
         this.setTitleWithDebounce(
             itemPayload,
             this.props.match.params.itemId,
@@ -85,6 +93,16 @@ class NotePage extends React.Component {
             // TODO
         }
         return thisItem[0];
+    }
+
+    setSyncedStatus() {
+        if (this.state.mainTextArea != this.props.note.noteData.content
+            || this.state.titleTextBox != this.getThisItem().data().itemTitle
+        ) {
+            this.props.setNotSyncedStatus();
+        } else {
+            this.props.setSyncedStatus();
+        }
     }
 
     fetchAuthorizedServices() {
@@ -149,6 +167,6 @@ class NotePage extends React.Component {
 export default connect(
     (state) => ({ auth: state.auth, note: state.note, itemIndex: state.itemIndex }),
     ({
-        removeNoteListener, fetchNote, setNoteContent, setItem
+        removeNoteListener, fetchNote, setNoteContent, setItem, setSyncedStatus, setNotSyncedStatus
     })
 )(NotePage);

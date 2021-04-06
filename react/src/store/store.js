@@ -9,6 +9,7 @@ import selectedDateReducer from './reducers/dateSelectReducer';
 import itemIndexReducer from './reducers/itemCollectionReducers';
 import noteReducer from './reducers/noteCollectionReducer';
 import eventReducer from './reducers/eventCollectionReducer';
+import syncedStatusReducer from './reducers/syncedStatusReducer';
 
 const reducers = combineReducers({
     auth: authReducer,
@@ -18,7 +19,8 @@ const reducers = combineReducers({
     selectedDate: selectedDateReducer,
     itemIndex: itemIndexReducer,
     note: noteReducer,
-    events: eventReducer
+    events: eventReducer,
+    syncedStatus: syncedStatusReducer
 
 });
 

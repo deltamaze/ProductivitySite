@@ -38,7 +38,8 @@ class CalendarDay extends React.Component {
         if (journal != '') {
             items.push(
                 <div key={`journal${this.props.key}`}>
-                    <span style={{ fontsize: '20px' }} className="oi oi-book" aria-hidden="true" /><br />
+                    <span style={{ fontsize: '20px' }} className="oi oi-book" aria-hidden="true" />
+                    <br />
                 </div>
             );
         }
