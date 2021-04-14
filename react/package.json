@@ -4,7 +4,6 @@
     "description": "",
     "main": "public\\index.html",
     "dependencies": {
-        "axios": "~0.21.1",
         "firebase": "~8.2.8",
         "lodash": "^4.17.0",
         "react": "^16.6.0",
@@ -17,25 +16,32 @@
         "redux-thunk": "^2.3.0"
     },
     "devDependencies": {
-        "@babel/core": "^7.6.0",
-        "@babel/preset-env": "^7.6.0",
-        "@babel/preset-react": "^7.6.0",
-        "babel-eslint": "^10.0.1",
-        "babel-loader": "^8.0.0",
+        "@babel/core": "^7.13.15",
+        "@babel/plugin-proposal-class-properties": "^7.13.0",
+        "@babel/preset-env": "^7.13.15",
+        "@babel/preset-react": "^7.13.13",
+        "babel-loader": "^8.2.2",
+        "css-loader": "^5.2.1",
         "eslint": "^6.2.1",
         "eslint-config-airbnb": "^18.0.0",
         "eslint-plugin-import": "^2.18.0",
         "eslint-plugin-jsx-a11y": "^6.2.3",
         "eslint-plugin-react": "^7.16.0",
-        "webpack": "^4.20.2",
-        "webpack-cli": "^3.1.1",
-        "webpack-dev-server": "3.7.1"
+        "file-loader": "^6.2.0",
+        "html-webpack-plugin": "^5.3.1",
+        "path": "^0.12.7",
+        "style-loader": "^2.0.0",
+        "webpack": "^5.31.2",
+        "webpack-cli": "^4.6.0",
+        "webpack-dev-server": "^3.11.2"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "webpack-dev-server --open",
         "lint": "eslint src",
-        "build": "webpack --mode production"
+        "webpack-dev-server": "webpack-dev-server",
+        "dev": "webpack serve --mode=development",
+        "prod": "webpack --mode=production"
     },
     "eslintConfig": {
         "extends": "react-app"
