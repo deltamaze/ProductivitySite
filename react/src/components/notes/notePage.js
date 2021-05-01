@@ -96,13 +96,17 @@ class NotePage extends React.Component {
     }
 
     setSyncedStatus() {
+        if (this.props.note.noteData == null) {
+            this.props.setSyncedStatus();
+            return;
+        }
         if (this.state.mainTextArea != this.props.note.noteData.content
             || this.state.titleTextBox != this.getThisItem().data().itemTitle
         ) {
             this.props.setNotSyncedStatus();
-        } else {
-            this.props.setSyncedStatus();
+            return;
         }
+        this.props.setSyncedStatus();
     }
 
     fetchAuthorizedServices() {
