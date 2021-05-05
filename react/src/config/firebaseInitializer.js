@@ -6,9 +6,9 @@ import 'firebase/firestore';
 import 'firebase/database';
 
 // dev
-import firebaseConfig from '../../secrets/firebaseConfig';
+// import firebaseConfig from '../../secrets/firebaseConfig';
 // prod
-// import firebaseConfig from '../../secrets/firebaseConfigProd';
+import firebaseConfig from '../../secrets/firebaseConfigProd';
 
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();

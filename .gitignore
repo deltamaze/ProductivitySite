@@ -13,7 +13,7 @@ node_modules
 
 # production
 /build
-
+/dist
 # NativeScript application
 hooks
 platforms

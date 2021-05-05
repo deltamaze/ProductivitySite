@@ -6,7 +6,7 @@ class SignInPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            googleLoginImage: '../../src/assets/btn_google_signin_dark_normal_web.png'
+            googleLoginImage: '../../assets/btn_google_signin_dark_normal_web.png'
         };
     }
 
@@ -22,9 +22,9 @@ class SignInPage extends React.Component {
                 // eslint-disable-next-line
                 <img
                     src={this.state.googleLoginImage}
-                    onMouseOver={() => this.updateGoogleLoginImage('../../src/assets/btn_google_signin_dark_focus_web.png')}
-                    onMouseOut={() => this.updateGoogleLoginImage('../../src/assets/btn_google_signin_dark_normal_web.png')}
-                    onMouseDown={() => this.updateGoogleLoginImage('../../src/assets/btn_google_signin_dark_pressed_web.png')}
+                    onMouseOver={() => this.updateGoogleLoginImage('../../assets/btn_google_signin_dark_focus_web.png')}
+                    onMouseOut={() => this.updateGoogleLoginImage('../../assets/btn_google_signin_dark_normal_web.png')}
+                    onMouseDown={() => this.updateGoogleLoginImage('../../assets/btn_google_signin_dark_pressed_web.png')}
                     onClick={this.props.login}
                     border="0"
                     alt="LoginWithGoogle"
