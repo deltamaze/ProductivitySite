@@ -28,8 +28,8 @@ export function fetchSettings(uid) {
                             payload: {
                                 settingsData: {
                                     theme: 'Light',
-                                    colorOne: '#6305c2',
-                                    colorTwo: '#00eeff'
+                                    colorOne: '#0026AD',
+                                    colorTwo: '#4B0066'
                                 }
                             } // settings collection not set
                         });

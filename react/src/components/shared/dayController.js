@@ -35,7 +35,7 @@ class DayController extends React.Component {
         super(props);
 
         this.handleChange = this.handleChange.bind(this); // to grab event data, need to bind
-        this.setMonthWithDebounce = debounce(this.props.setMonth, 3000);
+        this.setMonthWithDebounce = debounce(this.props.setMonth, 1000);
         this.state = {
             mainTextArea: '',
             lastKeystrokeTimestamp: new Date()
